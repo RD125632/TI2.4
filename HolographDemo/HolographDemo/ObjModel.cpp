@@ -49,7 +49,7 @@ ObjModel::ObjModel(std::string fileName)
 		dirName = dirName.substr(0, dirName.rfind("\\"));
 	if(fileName == dirName)
 		dirName = "";
-
+	
 
 	std::ifstream pFile(fileName.c_str());
 
@@ -207,6 +207,7 @@ void ObjModel::draw()
 				materials[0]->texture->bind();
 				glNormal3f(normals[vertex.normal].x, normals[vertex.normal].y, normals[vertex.normal].z);
 				glTexCoord2f(texcoords[vertex.texcoord].x, texcoords[vertex.texcoord].y);
+				//glColor3f(1, 0, 0);
 				glVertex3f(vertices[vertex.position].x, vertices[vertex.position].y, vertices[vertex.position].z);
 			}
 			

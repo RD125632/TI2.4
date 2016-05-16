@@ -4,6 +4,7 @@
 
 #include "GL/freeglut.h"
 #include "Cube.h"
+#include "ObjModel.h"
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */
@@ -14,7 +15,8 @@
 	float rotateX, rotateY, rotateZ = 0.0f;
 	double trX, trY = 0;
 	bool perspectiveFlag = true;
-	Cube c1, c2, c3, c4;
+	Cube c1;
+	ObjModel obj = ObjModel("models/cube/cube-textures.obj");
 	GLenum mode = GL_FILL;
 	GLint holographic;
 	GLint second;
@@ -24,6 +26,7 @@
 /*-------------------------------------------------------------------------*/
 
 	void Idle(void);
+	void HolographicInit(void);
 	void HolographicSetupWindow(void);
 	void HolographicPaintComponent(void);
 	void SecondPaintComponent(void);
@@ -57,6 +60,21 @@
 		}
 	}
 
+	void HolographicInit(void)
+	{
+		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_LIGHTING);
+		glEnable(GL_LIGHT0);
+		glEnable(GL_LIGHT1);
+		glEnable(GL_TEXTURE_2D);
+		GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);
+		GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
+		GLfloat LightPosition[] = { 0, -1, 0, 0 };
+		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
+	}
+
 	void HolographicSetupWindow(void)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -88,7 +106,8 @@
 		glPushMatrix();
 			glRotatef(rotateY, 0.0, 1.0, 0.0);
 			glRotatef(rotateX, 1.0, 0.0, 0.0);
-			c1.draw();
+			//c1.draw();
+			obj.draw();
 		glPopMatrix();
 
 		glFlush();
@@ -139,8 +158,8 @@ int main(int argc, char *argv[])
 	glutReshapeFunc(HolographicReshapeWindow);
 	glutKeyboardFunc(KeyEvent);
 	glutInitWindowSize(1920, 1080);
+	HolographicInit();
 	second = glutCreateWindow("2D Graphics");
-	glEnable(GL_DEPTH_TEST);
 	glutIdleFunc(Idle);
 	glutDisplayFunc(SecondPaintComponent);
 	//glutReshapeFunc(ReshapeWindow);
