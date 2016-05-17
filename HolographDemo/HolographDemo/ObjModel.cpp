@@ -159,64 +159,27 @@ ObjModel::~ObjModel(void)
 
 void ObjModel::draw()
 {
-	/*glBegin(GL_QUADS);
-	glNormal3f(-1,0,0);
-	glVertex3f(-10,-10,-10);
-	glVertex3f(-10,-10,10);
-	glVertex3f(-10,10,10);
-	glVertex3f(-10,10,-10);
-	glNormal3f(1,0,0);
-	glVertex3f(10,-10,-10);
-	glVertex3f(10,-10,10);
-	glVertex3f(10,10,10);
-	glVertex3f(10,10,-10);
 
-	glNormal3f(0,1,0);
-	glVertex3f(-10,10,-10);
-	glVertex3f(-10,10,10);
-	glVertex3f(10,10,10);
-	glVertex3f(10,10,-10);
-	glNormal3f(0,-1,0);
-	glVertex3f(-10,-10,-10);
-	glVertex3f(-10,-10,10);
-	glVertex3f(10,-10,10);
-	glVertex3f(10,-10,-10);
-
-	glNormal3f(0,0,1);
-	glVertex3f(-10,-10,10);
-	glVertex3f(-10,10,10);
-	glVertex3f(10,10,10);
-	glVertex3f(10,-10,10);
-	glNormal3f(0,0,-1);
-	glVertex3f(-10,-10,-10);
-	glVertex3f(-10,10,-10);
-	glVertex3f(10,10,-10);
-	glVertex3f(10,-10,-10);
-	glEnd();*/
-	
 	for(ObjGroup* group : groups)
 	{
-		//zet het materiaal / texture van deze groep
-
 		glBegin(GL_TRIANGLES);
-		
+		/*glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materials[group->materialIndex]->ambient);
+		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materials[group->materialIndex]->diffuse);
+		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materials[group->materialIndex]->specular);
+		materials[group->materialIndex]->texture->bind();*/
 		for(Face face : group->faces)
 		{
 			for(Vertex vertex : face.vertices)
 			{
-				materials[0]->texture->bind();
 				glNormal3f(normals[vertex.normal].x, normals[vertex.normal].y, normals[vertex.normal].z);
-				glTexCoord2f(texcoords[vertex.texcoord].x, texcoords[vertex.texcoord].y);
-				//glColor3f(1, 0, 0);
-				glVertex3f(vertices[vertex.position].x, vertices[vertex.position].y, vertices[vertex.position].z);
+				//glTexCoord2f(texcoords[vertex.texcoord].x, texcoords[vertex.texcoord].y);
+ 				glVertex3f(vertices[vertex.position].x, vertices[vertex.position].y, vertices[vertex.position].z);
 			}
 			
 		}
 		glEnd();
 
 	}
-
-
 }
 
 void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
@@ -267,6 +230,18 @@ void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
 		{
 			currentMaterial->hasTexture = true;
 			currentMaterial->texture = new Texture(dirName + "/" + params[1]);
+		}
+		else if (params[0] == "ka")
+		{
+			currentMaterial->ambient[0] = std::stof(params[1]);
+			currentMaterial->ambient[1] = std::stof(params[2]);
+			currentMaterial->ambient[2] = std::stof(params[3]);
+		}
+		else if (params[0] == "kd")
+		{
+			currentMaterial->diffuse[0] = std::stof(params[1]);
+			currentMaterial->diffuse[1] = std::stof(params[2]);
+			currentMaterial->diffuse[2] = std::stof(params[3]);
 		}
 		else
 			std::cout<<"Didn't parse "<<params[0]<<" in material file"<<std::endl;

@@ -5,6 +5,7 @@
 #include "GL/freeglut.h"
 #include "Cube.h"
 #include "ObjModel.h"
+#include <vector>
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */
@@ -13,10 +14,12 @@
 	float Holographicwidth = 600;
 	float Holographicheight = 600;
 	float rotateX, rotateY, rotateZ = 0.0f;
+	float zoom = 1;
 	double trX, trY = 0;
 	bool perspectiveFlag = true;
+	int modelsIndex = 0;
 	Cube c1;
-	ObjModel obj = ObjModel("models/cube/cube-textures.obj");
+	std::vector<ObjModel*> objmodels;
 	GLenum mode = GL_FILL;
 	GLint holographic;
 	GLint second;
@@ -34,7 +37,7 @@
 	void HolographicReshapeWindow(int, int);
 
 	void KeyEvent(unsigned char, int, int);
-
+	void SpecialKeyEvent(int, int, int);
 
 /*-------------------------------------------------------------------------*/
 /*              Start Code												   */
@@ -73,6 +76,11 @@
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
 		GLfloat LightPosition[] = { 0, -1, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
+		objmodels.push_back(new ObjModel("models/cube/cube-textures.obj"));
+		objmodels.push_back(new ObjModel("models/car/honda_jazz.obj"));
+		objmodels.push_back(new ObjModel("models/normalstuff/normaltest.obj"));
+		objmodels.push_back(new ObjModel("models/bloemetje/PrimRoseP.obj"));
+		objmodels.push_back(new ObjModel("models/ketel/ketel.obj"));
 	}
 
 	void HolographicSetupWindow(void)
@@ -104,10 +112,11 @@
 		
 		// Cube 1
 		glPushMatrix();
+		glScalef(zoom, zoom, zoom);
 			glRotatef(rotateY, 0.0, 1.0, 0.0);
 			glRotatef(rotateX, 1.0, 0.0, 0.0);
 			//c1.draw();
-			obj.draw();
+			objmodels[modelsIndex]->draw();
 		glPopMatrix();
 
 		glFlush();
@@ -137,15 +146,49 @@
 	void KeyEvent(unsigned char key, int mouseX, int mouseY)
 	{
 
-		if (key == 27)
+		switch(key)
 		{
+		case 27:
 			exit(0);
+			break;
+		case 'w':
+			zoom = zoom*2;
+			break;
+		case 's':
+			zoom = zoom/2;
+			break;
 		}
+
 		
 		glutPostRedisplay();
 	}
 
-
+	void SpecialKeyEvent(int key, int mouseX, int mouseY)
+	{
+		switch(key)
+		{
+		case GLUT_KEY_LEFT:
+			if (modelsIndex > 0)
+			{
+				modelsIndex--;
+			}
+			else
+			{
+				modelsIndex = objmodels.size() - 1;
+			}
+			break;
+		case GLUT_KEY_RIGHT:
+			if (modelsIndex >= objmodels.size() - 1)
+			{
+				modelsIndex = 0;
+			}
+			else
+			{
+				modelsIndex++;
+			}
+			break;
+		}
+	}
 
 int main(int argc, char *argv[])
 {
@@ -157,6 +200,7 @@ int main(int argc, char *argv[])
 	glutIdleFunc(Idle);
 	glutReshapeFunc(HolographicReshapeWindow);
 	glutKeyboardFunc(KeyEvent);
+	glutSpecialFunc(SpecialKeyEvent);
 	glutInitWindowSize(1920, 1080);
 	HolographicInit();
 	second = glutCreateWindow("2D Graphics");
@@ -167,11 +211,3 @@ int main(int argc, char *argv[])
 	glutMainLoop();
 	return 0;
 }
-
-
-
-
-
-
-
-

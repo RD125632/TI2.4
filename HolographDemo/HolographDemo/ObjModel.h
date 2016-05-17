@@ -68,6 +68,9 @@ private:
 		std::string name;
 		bool hasTexture;
 		Texture *texture;
+		GLfloat ambient[4];
+		GLfloat diffuse[4];
+		GLfloat specular[4];
 	};
 
 	class ObjGroup

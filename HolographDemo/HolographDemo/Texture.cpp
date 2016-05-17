@@ -1,6 +1,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 
 #include "Texture.h"
+#include <iostream>
 #include <gl/glut.h>
 #include <gl/GL.h>
 #include <gl/glu.h>
@@ -10,8 +11,10 @@ Texture::Texture(const std::string & filename)
 {
 	int width, height, bpp;
 	glGenTextures(1, &textureID);
-	unsigned char* texture = stbi_load("resources/terainMap.png", &width, &height, &bpp, 4);
-	glBindTexture(GL_TEXTURE_2D, textureID);
+	unsigned char* texture = stbi_load(filename.c_str(), &width, &height, &bpp, 4);
+	if (!texture)
+	std::cout << stbi_failure_reason() << std::endl;
+	//glBindTexture(GL_TEXTURE_2D, textureID);
 	glTexImage2D(GL_TEXTURE_2D,
 		0,		//level
 		GL_RGBA,		//internal format
@@ -27,5 +30,6 @@ Texture::Texture(const std::string & filename)
 
 void Texture::bind()
 {
+	
 	//glBindTexture(GL_TEXTURE_2D, textureID);
 }
