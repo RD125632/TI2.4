@@ -3,38 +3,34 @@
 /*-------------------------------------------------------------------------*/
 
 #include "GL/freeglut.h"
-#include "Cube.h"
 #include "ObjModel.h"
+#include "Statemanager.h"
 #include <vector>
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */
 /*-------------------------------------------------------------------------*/
 
-	float Holographicwidth = 600;
-	float Holographicheight = 600;
 	float rotateX, rotateY, rotateZ = 0.0f;
 	float zoom = 1;
-	double trX, trY = 0;
-	bool perspectiveFlag = true;
-	int modelsIndex = 0;
-	Cube c1;
+	bool activeWindow = true;
+
 	std::vector<ObjModel*> objmodels;
+	std::vector<GLint> windows;
+
+	GLint hologramWindow, storyWindow;
 	GLenum mode = GL_FILL;
-	GLint holographic;
-	GLint second;
+	
+
 
 /*-------------------------------------------------------------------------*/
 /*				Function Prototyping                                       */
 /*-------------------------------------------------------------------------*/
 
 	void Idle(void);
-	void HolographicInit(void);
-	void HolographicSetupWindow(void);
-	void HolographicPaintComponent(void);
-	void SecondPaintComponent(void);
-	
-	void HolographicReshapeWindow(int, int);
+	void Init(void);
+	void SetupWindow(void);
+	void PaintComponent(void);
 
 	void KeyEvent(unsigned char, int, int);
 	void SpecialKeyEvent(int, int, int);
@@ -47,23 +43,22 @@
 /*              -- Window Functions										   */
 /*-------------------------------------------------------------------------*/
 
-	
-	void Idle(void)
+	void Init(void)
 	{
-		rotateY += 0.05f;
-		rotateX += 0.05f;
-		glutPostRedisplay();
-		if (glutGetWindow() != holographic)
-		{
-			glutSetWindow(holographic);
-		}
-		else
-		{
-			glutSetWindow(second);
-		}
+		windows.push_back(storyWindow);
+		windows.push_back(hologramWindow);
+
+		HologramInit();
 	}
 
-	void HolographicInit(void)
+	void Idle(void)
+	{
+		activeWindow = !activeWindow;
+		glutSetWindow(windows[activeWindow]);
+		glutPostRedisplay();
+	}
+
+	void HologramInit(void)
 	{
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_LIGHTING);
@@ -76,24 +71,20 @@
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
 		GLfloat LightPosition[] = { 0, -1, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
-		objmodels.push_back(new ObjModel("models/cube/cube-textures.obj"));
-		objmodels.push_back(new ObjModel("models/car/honda_jazz.obj"));
-		objmodels.push_back(new ObjModel("models/normalstuff/normaltest.obj"));
-		objmodels.push_back(new ObjModel("models/bloemetje/PrimRoseP.obj"));
 		objmodels.push_back(new ObjModel("models/ketel/ketel.obj"));
 	}
 
-	void HolographicSetupWindow(void)
+	void HologramSetup(void)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-		glViewport(0, 0, Holographicwidth, Holographicheight);
+		glViewport(0, 0, 1080, 1080);
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
-		gluPerspective(90, (Holographicwidth/Holographicwidth), 0.1f, 100);
+		gluPerspective(90, 1, 0.1f, 100);
 
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
@@ -103,39 +94,43 @@
 			0, 1, 0);
 	}
 
-	void HolographicPaintComponent(void)
+	void HologramPaintComponent(void)
 	{
-		// Reset window
-		HolographicSetupWindow();
+		// Set Window
+		HologramSetup();
 
-		glPolygonMode(GL_FRONT_AND_BACK, mode);
-		
-		// Cube 1
-		glPushMatrix();
-		glScalef(zoom, zoom, zoom);
-			glRotatef(rotateY, 0.0, 1.0, 0.0);
-			glRotatef(rotateX, 1.0, 0.0, 0.0);
-			//c1.draw();
-			objmodels[modelsIndex]->draw();
-		glPopMatrix();
-
-		glFlush();
 		glutSwapBuffers();
 	}
 
-	void SecondPaintComponent(void)
+	void StoryInit(void)
 	{
-		// Reset window
-		glPolygonMode(GL_FRONT_AND_BACK, mode);
 
-		glFlush();
-		glutSwapBuffers();
 	}
-	
-	void HolographicReshapeWindow(int w, int h)
+
+	void StorySetup(void)
 	{
-		Holographicwidth = w;
-		Holographicheight = h;
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+		glViewport(0, 0, 1080, 1080);
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+
+		gluPerspective(90, 1, 0.1f, 100);
+
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+
+		gluLookAt(0, 0, -4,
+			0, 0, 0,
+			0, 1, 0);
+	}
+
+	void StoryPaintComponent(void)
+	{
+
+		glutSwapBuffers();
 	}
 
 
@@ -157,9 +152,7 @@
 		case 's':
 			zoom = zoom/2;
 			break;
-		}
-
-		
+		}		
 		glutPostRedisplay();
 	}
 
@@ -168,24 +161,10 @@
 		switch(key)
 		{
 		case GLUT_KEY_LEFT:
-			if (modelsIndex > 0)
-			{
-				modelsIndex--;
-			}
-			else
-			{
-				modelsIndex = objmodels.size() - 1;
-			}
+			
 			break;
 		case GLUT_KEY_RIGHT:
-			if (modelsIndex >= objmodels.size() - 1)
-			{
-				modelsIndex = 0;
-			}
-			else
-			{
-				modelsIndex++;
-			}
+
 			break;
 		}
 	}
@@ -193,21 +172,26 @@
 int main(int argc, char *argv[])
 {
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitWindowSize(int(Holographicwidth), int(Holographicheight));
 	glutInit(&argc, argv);
-	holographic = glutCreateWindow("Hologram");
-	glutDisplayFunc(HolographicPaintComponent);
+
+	glutInitWindowSize(1920, 1080);
+	hologramWindow = glutCreateWindow("Hologram");
+	glutDisplayFunc(HologramPaintComponent);
 	glutIdleFunc(Idle);
-	glutReshapeFunc(HolographicReshapeWindow);
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
 	glutInitWindowSize(1920, 1080);
-	HolographicInit();
-	second = glutCreateWindow("2D Graphics");
+	HologramInit();
+
+	glutInitWindowSize(1920, 1080);
+	storyWindow = glutCreateWindow("Story");
+	glutDisplayFunc(StoryPaintComponent);
 	glutIdleFunc(Idle);
-	glutDisplayFunc(SecondPaintComponent);
-	//glutReshapeFunc(ReshapeWindow);
 	glutKeyboardFunc(KeyEvent);
+	glutSpecialFunc(SpecialKeyEvent);
+	glutInitWindowSize(1920, 1080);
+	StoryInit();
+
 	glutMainLoop();
 	return 0;
 }

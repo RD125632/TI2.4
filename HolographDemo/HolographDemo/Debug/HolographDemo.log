@@ -1,2 +1,13 @@
-﻿  Cube.cpp
-  HolographDemo.vcxproj -> C:\Users\Richard\Documents\TI2.4\HolographDemo\Debug\HolographDemo.exe
+﻿  Texture.cpp
+  Symptom.cpp
+  Statemanager.cpp
+  Screen.cpp
+  RecipeLoader.cpp
+  Recipe.cpp
+  Plot.cpp
+  ObjModel.cpp
+c:\users\titat_000\documents\ti2.4\holographdemo\holographdemo\objmodel.cpp(257): warning C4101: 'texture': unreferenced local variable
+  Main.cpp
+c:\users\titat_000\documents\ti2.4\holographdemo\holographdemo\main.cpp(47): error C3861: 'HologramInit': identifier not found
+  Color.cpp
+  Generating Code...
