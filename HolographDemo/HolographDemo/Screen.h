@@ -10,11 +10,8 @@
 class Screen
 {
 public:
-	Screen(float, float);
+	Screen();
 	int Display();
-private:
-	float width;
-	float height;
 	std::vector<ObjModel*> models;
 };
 

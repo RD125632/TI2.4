@@ -11,12 +11,11 @@ class Statemanager
 {
 public:
 	Statemanager();
-private:
 	int Gamestate;
 	int HologramState;
 	int StoryState;
-	std::vector<std::vector<Screen>> HologramScreens;
-	std::vector<std::vector<Screen>> StoryScreens;
+	std::vector<Screen> HologramScreens;
+	std::vector<Screen> StoryScreens;
 };
 
 #endif

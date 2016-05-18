@@ -1,9 +1,8 @@
 #include "Screen.h"
 
-Screen::Screen(float w, float h)
+
+Screen::Screen()
 {
-	width = w;
-	height = h;
 }
 
 int Screen::Display()

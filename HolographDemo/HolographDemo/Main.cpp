@@ -15,11 +15,10 @@
 	float zoom = 1;
 	bool activeWindow = true;
 
-	std::vector<ObjModel*> objmodels;
-
 	GLint hologramWindow, storyWindow;
 	GLenum mode = GL_FILL;
 	
+	Statemanager statemanager = Statemanager();
 
 
 /*-------------------------------------------------------------------------*/
@@ -50,7 +49,7 @@
 
 	void Init(void)
 	{
-		HologramInit();
+		HologramInit();	
 	}
 
 	void Idle(void)
@@ -80,7 +79,6 @@
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
 		GLfloat LightPosition[] = { 0, -1, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
-		objmodels.push_back(new ObjModel("models/cube/cube-textures.obj"));
 	}
 
 	void HologramSetup(void)
@@ -108,6 +106,8 @@
 		// Set Window
 		HologramSetup();
 
+		//Models
+		statemanager.HologramScreens.at(statemanager.HologramState).Display();
 		glutSwapBuffers();
 	}
 
@@ -138,7 +138,8 @@
 
 	void StoryPaintComponent(void)
 	{
-
+		//Models
+		statemanager.StoryScreens.at(statemanager.StoryState).Display();
 		glutSwapBuffers();
 	}
 
