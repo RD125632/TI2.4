@@ -16,7 +16,6 @@
 	bool activeWindow = true;
 
 	std::vector<ObjModel*> objmodels;
-	std::vector<GLint> windows;
 
 	GLint hologramWindow, storyWindow;
 	GLenum mode = GL_FILL;
@@ -27,10 +26,16 @@
 /*				Function Prototyping                                       */
 /*-------------------------------------------------------------------------*/
 
-	void Idle(void);
 	void Init(void);
-	void SetupWindow(void);
-	void PaintComponent(void);
+	void Idle(void);
+
+	void HologramInit(void);
+	void HologramSetup(void);
+	void HologramPaintComponent(void);
+
+	void StoryInit(void);
+	void StorySetup(void);
+	void StoryPaintComponent(void);
 
 	void KeyEvent(unsigned char, int, int);
 	void SpecialKeyEvent(int, int, int);
@@ -45,16 +50,20 @@
 
 	void Init(void)
 	{
-		windows.push_back(storyWindow);
-		windows.push_back(hologramWindow);
-
 		HologramInit();
 	}
 
 	void Idle(void)
 	{
-		activeWindow = !activeWindow;
-		glutSetWindow(windows[activeWindow]);
+		if (glutGetWindow() != hologramWindow)
+		{
+			glutSetWindow(hologramWindow);
+		}
+		else
+		{
+			glutSetWindow(storyWindow);
+		}
+
 		glutPostRedisplay();
 	}
 
@@ -71,7 +80,7 @@
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
 		GLfloat LightPosition[] = { 0, -1, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
-		objmodels.push_back(new ObjModel("models/ketel/ketel.obj"));
+		objmodels.push_back(new ObjModel("models/cube/cube-textures.obj"));
 	}
 
 	void HologramSetup(void)
