@@ -29,6 +29,7 @@
 
 	void Idle(void);
 	void Init(void);
+	void HologramInit(void);
 	void SetupWindow(void);
 	void PaintComponent(void);
 

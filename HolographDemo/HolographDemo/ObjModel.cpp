@@ -163,10 +163,10 @@ void ObjModel::draw()
 	for(ObjGroup* group : groups)
 	{
 		glBegin(GL_TRIANGLES);
-		/*glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materials[group->materialIndex]->ambient);
+		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materials[group->materialIndex]->ambient);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materials[group->materialIndex]->diffuse);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materials[group->materialIndex]->specular);
-		materials[group->materialIndex]->texture->bind();*/
+		materials[group->materialIndex]->texture->bind();
 		for(Face face : group->faces)
 		{
 			for(Vertex vertex : face.vertices)

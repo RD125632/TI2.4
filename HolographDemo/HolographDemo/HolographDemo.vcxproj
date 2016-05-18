@@ -149,8 +149,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BubblePartical.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="ObjModel.h" />
+    <ClInclude Include="Partical.h" />
+    <ClInclude Include="ParticalEmitter.h" />
     <ClInclude Include="Plot.h" />
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeLoader.h" />
@@ -159,11 +162,15 @@
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Symptom.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="WorldObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BubblePartical.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjModel.cpp" />
+    <ClCompile Include="Partical.cpp" />
+    <ClCompile Include="ParticalEmitter.cpp" />
     <ClCompile Include="Plot.cpp" />
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
@@ -171,6 +178,7 @@
     <ClCompile Include="Statemanager.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="WorldObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
