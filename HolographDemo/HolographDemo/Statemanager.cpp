@@ -6,7 +6,7 @@ Statemanager::Statemanager()
 	HologramState = 0;
 	StoryState = 0;
 	Screen screen = Screen();
-	screen.models.push_back(new ObjModel("models/cube/cube-textures.obj"));
+	screen.models.push_back(new ObjModel("models/ketel/ketel.obj"));
 	HologramScreens.push_back(screen);
 
 	Screen screen1 = Screen();

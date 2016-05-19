@@ -48,7 +48,8 @@
 
 	void Init(void)
 	{
-		HologramInit();	
+		HologramInit();
+		StoryInit();
 	}
 
 	void Idle(void)
@@ -78,7 +79,7 @@
 		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); 
 		GLfloat LightDiffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
-		GLfloat LightPosition[] = { 0, -1, 0, 0 };
+		GLfloat LightPosition[] = { 0, -10, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
 	}
 
@@ -206,7 +207,7 @@ int main(int argc, char *argv[])
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
 	glutReshapeFunc(HologramReshape);
-	HologramInit();
+	Init();
 
 	glutInitWindowSize(1920, 1080);
 	storyWindow = glutCreateWindow("Story");
@@ -214,7 +215,6 @@ int main(int argc, char *argv[])
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
-	StoryInit();
 
 	glutMainLoop();
 	return 0;

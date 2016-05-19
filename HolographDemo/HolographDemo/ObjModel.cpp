@@ -166,13 +166,19 @@ void ObjModel::draw()
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materials[group->materialIndex]->ambient);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materials[group->materialIndex]->diffuse);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materials[group->materialIndex]->specular);
-		materials[group->materialIndex]->texture->bind();
+		if (materials[group->materialIndex]->texture != NULL)
+		{
+			materials[group->materialIndex]->texture->bind();
+		}
 		for(Face face : group->faces)
 		{
 			for(Vertex vertex : face.vertices)
 			{
 				glNormal3f(normals[vertex.normal].x, normals[vertex.normal].y, normals[vertex.normal].z);
-				glTexCoord2f(texcoords[vertex.texcoord].x, texcoords[vertex.texcoord].y);
+				if (materials[group->materialIndex]->texture != NULL)
+				{
+					glTexCoord2f(texcoords[vertex.texcoord].x, texcoords[vertex.texcoord].y);
+				}
  				glVertex3f(vertices[vertex.position].x, vertices[vertex.position].y, vertices[vertex.position].z);
 			}
 			
