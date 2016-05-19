@@ -12,6 +12,7 @@ class Screen
 public:
 	Screen();
 	int Display();
+
 	std::vector<ObjModel*> models;
 };
 

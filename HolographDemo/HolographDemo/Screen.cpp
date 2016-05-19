@@ -1,5 +1,5 @@
 #include "Screen.h"
-
+#include "GL\freeglut.h"
 
 Screen::Screen()
 {

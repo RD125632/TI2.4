@@ -74,7 +74,7 @@
 		glEnable(GL_LIGHT1);
 		glEnable(GL_TEXTURE_2D);
 		GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.0f };
-		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);
+		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); 
 		GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
 		GLfloat LightPosition[] = { 0, -1, 0, 0 };
@@ -99,6 +99,13 @@
 		gluLookAt(0, 0, -4,
 			0, 0, 0,
 			0, 1, 0);
+
+		glPolygonMode(GL_FRONT_AND_BACK, mode);
+
+		glPushMatrix();
+		glTranslated(0, 2, 0);
+		glRotatef(rotateY, 1, 0, 0);
+		glScalef(zoom, zoom, zoom);
 	}
 
 	void HologramPaintComponent(void)
@@ -108,6 +115,8 @@
 
 		//Models
 		statemanager.HologramScreens.at(statemanager.HologramState).Display();
+		glPopMatrix();
+		glFlush();
 		glutSwapBuffers();
 	}
 
