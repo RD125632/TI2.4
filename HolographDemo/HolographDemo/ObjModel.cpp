@@ -172,7 +172,7 @@ void ObjModel::draw()
 			for(Vertex vertex : face.vertices)
 			{
 				glNormal3f(normals[vertex.normal].x, normals[vertex.normal].y, normals[vertex.normal].z);
-				//glTexCoord2f(texcoords[vertex.texcoord].x, texcoords[vertex.texcoord].y);
+				glTexCoord2f(texcoords[vertex.texcoord].x, texcoords[vertex.texcoord].y);
  				glVertex3f(vertices[vertex.position].x, vertices[vertex.position].y, vertices[vertex.position].z);
 			}
 			
@@ -242,6 +242,12 @@ void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
 			currentMaterial->diffuse[0] = std::stof(params[1]);
 			currentMaterial->diffuse[1] = std::stof(params[2]);
 			currentMaterial->diffuse[2] = std::stof(params[3]);
+		}
+		else if (params[0] == "ks")
+		{
+			currentMaterial->specular[0] = std::stof(params[1]);
+			currentMaterial->specular[1] = std::stof(params[2]);
+			currentMaterial->specular[2] = std::stof(params[3]);
 		}
 		else
 			std::cout<<"Didn't parse "<<params[0]<<" in material file"<<std::endl;

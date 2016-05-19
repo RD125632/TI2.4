@@ -30,6 +30,5 @@ Texture::Texture(const std::string & filename)
 
 void Texture::bind()
 {
-	
-	//glBindTexture(GL_TEXTURE_2D, textureID);
+	glBindTexture(GL_TEXTURE_2D, textureID);
 }

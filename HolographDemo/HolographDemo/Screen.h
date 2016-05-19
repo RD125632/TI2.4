@@ -12,6 +12,8 @@ class Screen
 public:
 	Screen();
 	int Display();
+	float zoom;
+	float rotateX, rotateY;
 
 	std::vector<ObjModel*> models;
 };

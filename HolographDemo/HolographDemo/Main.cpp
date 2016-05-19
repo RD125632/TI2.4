@@ -11,12 +11,11 @@
 /*				Local Variable                                             */
 /*-------------------------------------------------------------------------*/
 
-	float rotateX, rotateY, rotateZ = 0.0f;
-	float zoom = 1;
 	bool activeWindow = true;
 
 	GLint hologramWindow, storyWindow;
-	GLenum mode = GL_FILL;
+	GLint windowWidth, windowHeight;
+	GLenum mode = GL_LINE;
 	
 	Statemanager statemanager = Statemanager();
 
@@ -62,12 +61,14 @@
 		{
 			glutSetWindow(storyWindow);
 		}
-
+		statemanager.HologramScreens.at(statemanager.HologramState).rotateX += 0.5;
 		glutPostRedisplay();
 	}
 
 	void HologramInit(void)
 	{
+		windowHeight = 1080;
+		windowWidth = 1920;
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_LIGHTING);
 		glEnable(GL_LIGHT0);
@@ -75,7 +76,7 @@
 		glEnable(GL_TEXTURE_2D);
 		GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); 
-		GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		GLfloat LightDiffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
 		GLfloat LightPosition[] = { 0, -1, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
@@ -86,12 +87,12 @@
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-		glViewport(0, 0, 1080, 1080);
+		glViewport((windowWidth-windowHeight)/2, 0, windowHeight, windowHeight);
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
-		gluPerspective(90, 1, 0.1f, 100);
+		gluPerspective(90, windowHeight/windowHeight, 0.1f, 100);
 
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
@@ -99,13 +100,6 @@
 		gluLookAt(0, 0, -4,
 			0, 0, 0,
 			0, 1, 0);
-
-		glPolygonMode(GL_FRONT_AND_BACK, mode);
-
-		glPushMatrix();
-		glTranslated(0, 2, 0);
-		glRotatef(rotateY, 1, 0, 0);
-		glScalef(zoom, zoom, zoom);
 	}
 
 	void HologramPaintComponent(void)
@@ -115,9 +109,6 @@
 
 		//Models
 		statemanager.HologramScreens.at(statemanager.HologramState).Display();
-		glPopMatrix();
-		glFlush();
-		glutSwapBuffers();
 	}
 
 	void StoryInit(void)
@@ -130,17 +121,17 @@
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-		glViewport(0, 0, 1080, 1080);
+		glViewport(0, 0, 1920, 1080);
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
-		gluPerspective(90, 1, 0.1f, 100);
+		gluPerspective(90, 1920/1080, 0.1f, 100);
 
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
-		gluLookAt(0, 0, -4,
+		gluLookAt(0, 1, -4,
 			0, 0, 0,
 			0, 1, 0);
 	}
@@ -149,7 +140,12 @@
 	{
 		//Models
 		statemanager.StoryScreens.at(statemanager.StoryState).Display();
-		glutSwapBuffers();
+	}
+
+	void HologramReshape(int width, int heigth)
+	{
+		windowWidth = width;
+		windowHeight = heigth;
 	}
 
 
@@ -166,10 +162,16 @@
 			exit(0);
 			break;
 		case 'w':
-			zoom = zoom*2;
+			statemanager.HologramScreens.at(statemanager.HologramState).zoom = statemanager.HologramScreens.at(statemanager.HologramState).zoom*2;
 			break;
 		case 's':
-			zoom = zoom/2;
+			statemanager.HologramScreens.at(statemanager.HologramState).zoom = statemanager.HologramScreens.at(statemanager.HologramState).zoom/2;
+			break;
+		case 'a':
+			statemanager.HologramScreens.at(statemanager.HologramState).rotateY -= 0.5;
+			break;
+		case 'd':
+			statemanager.HologramScreens.at(statemanager.HologramState).rotateY += 0.5;
 			break;
 		}		
 		glutPostRedisplay();
@@ -184,8 +186,12 @@
 			break;
 		case GLUT_KEY_RIGHT:
 
+			break; 
+		case GLUT_KEY_F11:
+			glutFullScreenToggle();
 			break;
 		}
+		
 	}
 
 int main(int argc, char *argv[])
@@ -199,7 +205,7 @@ int main(int argc, char *argv[])
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
-	glutInitWindowSize(1920, 1080);
+	glutReshapeFunc(HologramReshape);
 	HologramInit();
 
 	glutInitWindowSize(1920, 1080);
@@ -208,7 +214,6 @@ int main(int argc, char *argv[])
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
-	glutInitWindowSize(1920, 1080);
 	StoryInit();
 
 	glutMainLoop();
