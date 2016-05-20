@@ -68,9 +68,10 @@ private:
 		std::string name;
 		bool hasTexture;
 		Texture *texture;
-		GLfloat ambient[4];
-		GLfloat diffuse[4];
-		GLfloat specular[4];
+		GLfloat ambient[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
+		GLfloat diffuse[4] = { 0.8f, 0.8f, 0.8f, 1.0f };
+		GLfloat specular[4] = { 0, 0, 0, 1 };
+		GLfloat shininess[1] = { 0 };
 	};
 
 	class ObjGroup

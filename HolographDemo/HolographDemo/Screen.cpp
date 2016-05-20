@@ -14,7 +14,14 @@ int Screen::Display()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glPushMatrix();
-	glScalef(zoom, zoom, zoom);
+	if (!isUpsideDown)
+	{
+		glScalef(zoom, zoom, zoom);
+	}
+	else
+	{
+		glScalef(zoom, -zoom, zoom);
+	}
 	glRotatef(rotateX, 1, 0, 0);
 	glRotatef(rotateY, 0, 1, 0);
 	for (auto m : models)

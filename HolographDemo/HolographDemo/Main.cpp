@@ -62,7 +62,7 @@
 		{
 			glutSetWindow(storyWindow);
 		}
-		statemanager.HologramScreens.at(statemanager.HologramState).rotateX += 0.5;
+		statemanager.HologramScreens.at(statemanager.HologramState).rotateY += 2;
 		glutPostRedisplay();
 	}
 
@@ -88,12 +88,12 @@
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-		glViewport((windowWidth-windowHeight)/2, 0, windowHeight, windowHeight);
+		glViewport(0, 0, windowWidth, windowHeight);
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
-		gluPerspective(90, windowHeight/windowHeight, 0.1f, 100);
+		gluPerspective(90, (float) windowWidth/windowHeight, 0.1f, 100);
 
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
@@ -168,11 +168,11 @@
 		case 's':
 			statemanager.HologramScreens.at(statemanager.HologramState).zoom = statemanager.HologramScreens.at(statemanager.HologramState).zoom/2;
 			break;
-		case 'a':
-			statemanager.HologramScreens.at(statemanager.HologramState).rotateY -= 0.5;
+		case 'q':
+			statemanager.HologramScreens.at(statemanager.HologramState).rotateX -= 0.5;
 			break;
-		case 'd':
-			statemanager.HologramScreens.at(statemanager.HologramState).rotateY += 0.5;
+		case 'a':
+			statemanager.HologramScreens.at(statemanager.HologramState).rotateX += 0.5;
 			break;
 		}		
 		glutPostRedisplay();
@@ -190,6 +190,9 @@
 			break; 
 		case GLUT_KEY_F11:
 			glutFullScreenToggle();
+			break;
+		case GLUT_KEY_DOWN:
+			statemanager.HologramScreens.at(statemanager.HologramState).isUpsideDown = !statemanager.HologramScreens.at(statemanager.HologramState).isUpsideDown;
 			break;
 		}
 		

@@ -9,7 +9,7 @@
 
 Texture::Texture(const std::string & filename)
 {
-	int width, height, bpp;
+	int bpp;
 	glGenTextures(1, &textureID);
 	unsigned char* texture = stbi_load(filename.c_str(), &width, &height, &bpp, 4);
 	if (!texture)
@@ -23,7 +23,7 @@ Texture::Texture(const std::string & filename)
 		0,		//border
 		GL_RGBA,		//data format
 		GL_UNSIGNED_BYTE,	//data type
-		texture);
+		texture); 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //if the texture is smaller, than the image, we get the avarege of the pixels next to it
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //same if the image bigger
 }

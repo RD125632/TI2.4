@@ -13,6 +13,7 @@ public:
 	Screen();
 	int Display();
 	float zoom;
+	bool isUpsideDown = false;
 	float rotateX, rotateY;
 
 	std::vector<ObjModel*> models;

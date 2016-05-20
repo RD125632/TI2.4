@@ -166,13 +166,14 @@ void ObjModel::draw()
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materials[group->materialIndex]->ambient);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materials[group->materialIndex]->diffuse);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materials[group->materialIndex]->specular);
+		glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, materials[group->materialIndex]->shininess);
 		if (materials[group->materialIndex]->texture != NULL)
 		{
 			materials[group->materialIndex]->texture->bind();
 		}
-		for(Face face : group->faces)
+		for(Face &face : group->faces)
 		{
-			for(Vertex vertex : face.vertices)
+			for(Vertex &vertex : face.vertices)
 			{
 				glNormal3f(normals[vertex.normal].x, normals[vertex.normal].y, normals[vertex.normal].z);
 				if (materials[group->materialIndex]->texture != NULL)
@@ -255,6 +256,11 @@ void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
 			currentMaterial->specular[1] = std::stof(params[2]);
 			currentMaterial->specular[2] = std::stof(params[3]);
 		}
+		else if (params[0] == "ns")
+		{
+			currentMaterial->shininess[0] = std::stof(params[1]);
+		}
+		
 		else
 			std::cout<<"Didn't parse "<<params[0]<<" in material file"<<std::endl;
 	}
@@ -266,7 +272,8 @@ void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
 ObjModel::MaterialInfo::MaterialInfo()
 {
 	hasTexture = false;
-	Texture *texture;
+	*texture;
+	
 }
 
 
