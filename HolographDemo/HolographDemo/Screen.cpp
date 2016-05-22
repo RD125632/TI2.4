@@ -11,7 +11,7 @@ int Screen::Display()
 {
 
 	//Models
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPolygonMode(GL_FRONT_AND_BACK, mode);
 
 	glPushMatrix();
 	if (!isUpsideDown)
@@ -34,3 +34,4 @@ int Screen::Display()
 
 	return 0;
 }
+ 

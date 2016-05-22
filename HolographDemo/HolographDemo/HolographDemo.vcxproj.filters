@@ -98,10 +98,10 @@
     <ClCompile Include="Partical.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="WorldObject.cpp">
+    <ClCompile Include="BubblePartical.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="BubblePartical.cpp">
+    <ClCompile Include="WorldObject.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>

@@ -167,6 +167,8 @@ void ObjModel::draw()
 		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materials[group->materialIndex]->diffuse);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materials[group->materialIndex]->specular);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, materials[group->materialIndex]->shininess);
+		glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, materials[group->materialIndex]->emission);
+		
 		if (materials[group->materialIndex]->texture != NULL)
 		{
 			materials[group->materialIndex]->texture->bind();
@@ -182,7 +184,6 @@ void ObjModel::draw()
 				}
  				glVertex3f(vertices[vertex.position].x, vertices[vertex.position].y, vertices[vertex.position].z);
 			}
-			
 		}
 		glEnd();
 
@@ -256,11 +257,16 @@ void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
 			currentMaterial->specular[1] = std::stof(params[2]);
 			currentMaterial->specular[2] = std::stof(params[3]);
 		}
+		else if (params[0] == "ke")
+		{
+			currentMaterial->emission[0] = std::stof(params[1]);
+			currentMaterial->emission[1] = std::stof(params[2]);
+			currentMaterial->emission[2] = std::stof(params[3]);
+		}
 		else if (params[0] == "ns")
 		{
 			currentMaterial->shininess[0] = std::stof(params[1]);
 		}
-		
 		else
 			std::cout<<"Didn't parse "<<params[0]<<" in material file"<<std::endl;
 	}

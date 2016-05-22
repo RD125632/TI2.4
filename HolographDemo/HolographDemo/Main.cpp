@@ -15,7 +15,6 @@
 
 	GLint hologramWindow, storyWindow;
 	GLint windowWidth, windowHeight;
-	GLenum mode = GL_LINE;
 	
 	Statemanager statemanager = Statemanager();
 
@@ -72,14 +71,13 @@
 		windowWidth = 1920;
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_LIGHTING);
-		glEnable(GL_LIGHT0);
 		glEnable(GL_LIGHT1);
 		glEnable(GL_TEXTURE_2D);
-		GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+		GLfloat LightAmbient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); 
-		GLfloat LightDiffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+		GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
-		GLfloat LightPosition[] = { 0, -10, 0, 0 };
+		GLfloat LightPosition[] = { 0, -1, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
 	}
 
@@ -127,7 +125,7 @@
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
-		gluPerspective(90, 1920/1080, 0.1f, 100);
+		gluPerspective(90, 1920/1080, -10, 100);
 
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
@@ -157,22 +155,32 @@
 	void KeyEvent(unsigned char key, int mouseX, int mouseY)
 	{
 
-		switch(key)
+		switch (key)
 		{
 		case 27:
 			exit(0);
 			break;
 		case 'w':
-			statemanager.HologramScreens.at(statemanager.HologramState).zoom = statemanager.HologramScreens.at(statemanager.HologramState).zoom*2;
+			statemanager.HologramScreens.at(statemanager.HologramState).zoom = statemanager.HologramScreens.at(statemanager.HologramState).zoom * 2;
 			break;
 		case 's':
-			statemanager.HologramScreens.at(statemanager.HologramState).zoom = statemanager.HologramScreens.at(statemanager.HologramState).zoom/2;
+			statemanager.HologramScreens.at(statemanager.HologramState).zoom = statemanager.HologramScreens.at(statemanager.HologramState).zoom / 2;
 			break;
 		case 'q':
 			statemanager.HologramScreens.at(statemanager.HologramState).rotateX -= 0.5;
 			break;
 		case 'a':
 			statemanager.HologramScreens.at(statemanager.HologramState).rotateX += 0.5;
+			break;
+		case 't':
+			if (statemanager.HologramScreens.at(statemanager.HologramState).mode == GL_FILL)
+			{
+				statemanager.HologramScreens.at(statemanager.HologramState).mode = GL_LINE;
+			}
+			else
+			{
+				statemanager.HologramScreens.at(statemanager.HologramState).mode = GL_FILL;
+			}
 			break;
 		}		
 		glutPostRedisplay();

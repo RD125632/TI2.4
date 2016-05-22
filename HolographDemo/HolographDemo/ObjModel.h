@@ -72,6 +72,7 @@ private:
 		GLfloat diffuse[4] = { 0.8f, 0.8f, 0.8f, 1.0f };
 		GLfloat specular[4] = { 0, 0, 0, 1 };
 		GLfloat shininess[1] = { 0 };
+		GLfloat emission[4] = { 0, 0, 0, 1 };
 	};
 
 	class ObjGroup

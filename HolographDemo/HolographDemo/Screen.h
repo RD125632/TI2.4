@@ -15,6 +15,7 @@ public:
 	float zoom;
 	bool isUpsideDown = false;
 	float rotateX, rotateY;
+	GLenum mode = GL_FILL;
 
 	std::vector<ObjModel*> models;
 };
