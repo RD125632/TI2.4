@@ -10,7 +10,7 @@
 class Statemanager
 {
 public:
-	Statemanager();
+	Statemanager(int hologramWindow, int storyWindow);
 	int Gamestate;
 	int HologramState;
 	int StoryState;

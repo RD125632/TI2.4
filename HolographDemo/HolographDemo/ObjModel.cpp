@@ -162,7 +162,6 @@ void ObjModel::draw()
 
 	for(ObjGroup* group : groups)
 	{
-		glBegin(GL_TRIANGLES);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materials[group->materialIndex]->ambient);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materials[group->materialIndex]->diffuse);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materials[group->materialIndex]->specular);
@@ -171,8 +170,10 @@ void ObjModel::draw()
 		
 		if (materials[group->materialIndex]->texture != NULL)
 		{
+			glEnable(GL_TEXTURE_2D);
 			materials[group->materialIndex]->texture->bind();
 		}
+		glBegin(GL_TRIANGLES);
 		for(Face &face : group->faces)
 		{
 			for(Vertex &vertex : face.vertices)

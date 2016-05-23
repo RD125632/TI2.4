@@ -16,7 +16,7 @@
 	GLint hologramWindow, storyWindow;
 	GLint windowWidth, windowHeight;
 	
-	Statemanager statemanager = Statemanager();
+	Statemanager* statemanager = NULL;
 
 
 /*-------------------------------------------------------------------------*/
@@ -61,7 +61,7 @@
 		{
 			glutSetWindow(storyWindow);
 		}
-		statemanager.HologramScreens.at(statemanager.HologramState).rotateY += 2;
+		statemanager->HologramScreens.at(statemanager->HologramState).rotateY += 2;
 		glutPostRedisplay();
 	}
 
@@ -107,7 +107,7 @@
 		HologramSetup();
 
 		//Models
-		statemanager.HologramScreens.at(statemanager.HologramState).Display();
+		statemanager->HologramScreens.at(statemanager->HologramState).Display();
 	}
 
 	void StoryInit(void)
@@ -138,7 +138,7 @@
 	void StoryPaintComponent(void)
 	{
 		//Models
-		statemanager.StoryScreens.at(statemanager.StoryState).Display();
+		statemanager->StoryScreens.at(statemanager->StoryState).Display();
 	}
 
 	void HologramReshape(int width, int heigth)
@@ -161,25 +161,25 @@
 			exit(0);
 			break;
 		case 'w':
-			statemanager.HologramScreens.at(statemanager.HologramState).zoom = statemanager.HologramScreens.at(statemanager.HologramState).zoom * 2;
+			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom * 2;
 			break;
 		case 's':
-			statemanager.HologramScreens.at(statemanager.HologramState).zoom = statemanager.HologramScreens.at(statemanager.HologramState).zoom / 2;
+			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom / 2;
 			break;
 		case 'q':
-			statemanager.HologramScreens.at(statemanager.HologramState).rotateX -= 0.5;
+			statemanager->HologramScreens.at(statemanager->HologramState).rotateX -= 0.5;
 			break;
 		case 'a':
-			statemanager.HologramScreens.at(statemanager.HologramState).rotateX += 0.5;
+			statemanager->HologramScreens.at(statemanager->HologramState).rotateX += 0.5;
 			break;
 		case 't':
-			if (statemanager.HologramScreens.at(statemanager.HologramState).mode == GL_FILL)
+			if (statemanager->HologramScreens.at(statemanager->HologramState).mode == GL_FILL)
 			{
-				statemanager.HologramScreens.at(statemanager.HologramState).mode = GL_LINE;
+				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_LINE;
 			}
 			else
 			{
-				statemanager.HologramScreens.at(statemanager.HologramState).mode = GL_FILL;
+				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_FILL;
 			}
 			break;
 		}		
@@ -200,7 +200,7 @@
 			glutFullScreenToggle();
 			break;
 		case GLUT_KEY_DOWN:
-			statemanager.HologramScreens.at(statemanager.HologramState).isUpsideDown = !statemanager.HologramScreens.at(statemanager.HologramState).isUpsideDown;
+			statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown = !statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown;
 			break;
 		}
 		
@@ -226,6 +226,7 @@ int main(int argc, char *argv[])
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
+	statemanager = new Statemanager(hologramWindow, storyWindow);
 
 	glutMainLoop();
 	return 0;

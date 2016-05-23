@@ -14,7 +14,7 @@ Texture::Texture(const std::string & filename)
 	unsigned char* texture = stbi_load(filename.c_str(), &width, &height, &bpp, 4);
 	if (!texture)
 	std::cout << stbi_failure_reason() << std::endl;
-	//glBindTexture(GL_TEXTURE_2D, textureID);
+	glBindTexture(GL_TEXTURE_2D, textureID);
 	glTexImage2D(GL_TEXTURE_2D,
 		0,		//level
 		GL_RGBA,		//internal format
