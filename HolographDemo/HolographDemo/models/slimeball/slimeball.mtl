@@ -1,0 +1,12 @@
+# Blender MTL File: 'slimeball.blend'
+# Material Count: 1
+
+newmtl Material.001
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.081536 0.706667 0.242301
+Ks 0.026839 0.261538 0.020288
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.854167
+illum 2
