@@ -1,36 +1,22 @@
 #pragma once
-
-#include <vector>
+#include "soloud.h"
+#include "soloud_wav.h"
 #include <string>
+#include <vector>
 
-class sound
+class SoundEngine
 {
 public:
-	/**
-		Registers a sound in the vector to play it whenever it's needed (one-time declaration of a sound)
-		Path of the file will NOT be checked!
-
-		@param  name the name of the sound
-				path the path of the file
-		@return 1 succeeded
-				0 failed
-	**/
-	static int RegisterSound(std::string, std::string);
-
-	/**
-		Plays the requested sound
-
-		@param name the name of the sound
-	**/
-	static void Playsound(std::string);
+	SoundEngine();
+	~SoundEngine();
+	int registerSound(std::string, std::string);
+	void playSound(std::string, bool);
 
 private:
-	struct SoundStruct
-	{
-		std::string name, path;
+	struct SoundStruct {
+		SoLoud::Wav channel;
+		std::string name, path; //integer of the playing sound might be needed in this struct as well
 	};
-	
-	static std::vector<SoundStruct> sounds;
-
-	std::string searchStruct(const std::string);
+	SoLoud::Soloud engine;
+	std::vector<SoundStruct> sounds;
 };

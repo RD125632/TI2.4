@@ -1,32 +1,42 @@
 #include "Sound.h"
-#include <thread>
-#include <future>
+#include "soloud.h"
+#include <string>
 
-int sound::RegisterSound(std::string name, std::string path)
+SoundEngine::SoundEngine()
+{
+	engine.init();
+}
+
+SoundEngine::~SoundEngine()
+{
+	sounds.clear();
+	engine.deinit();
+}
+
+int SoundEngine::registerSound(std::string name, std::string path)
 {
 	int i = sounds.size();
+	SoLoud::Wav channel;
 	SoundStruct temp;
+
 	temp.name = name;
 	temp.path = path;
+	channel.load(path.c_str());
+	temp.channel = channel;
+	
 	sounds.push_back(temp);
-
 	if (i == sounds.size())
 		return 0;
 	else
 		return 1;
 }
 
-
-std::string sound::searchStruct(const std::string name)
+void SoundEngine::playSound(std::string name, bool loop)
 {
-	for (std::vector<SoundStruct>::iterator it = sounds.begin(); it != sounds.end(); ++it)
-		if (it->name == name)
-			return it->path;
-}
-
-void sound::Playsound(const std::string name)
-{
-	auto future = std::async(searchStruct, name);
-	PlaySound(TEXT(future.get()), NULL, SND_FILENAME | SND_ASYNC);
+	for(std::vector<SoundStruct>::iterator it = sounds.begin(); it != sounds.end(); ++it)
+		if (it->name == name) {
+			int h = engine.play(it->channel);
+			engine.setLooping(h, loop);
+		}
 }
 

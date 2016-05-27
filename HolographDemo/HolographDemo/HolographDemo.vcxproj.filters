@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Objects">
       <UniqueIdentifier>{ae318fb8-f7b6-4b02-940d-ea5de351b47c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="soloud">
+      <UniqueIdentifier>{e5c394c4-2b0a-42b3-ae80-560d4ea07243}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h">
@@ -63,6 +66,9 @@
     <ClInclude Include="Sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="soloud\src\audiosource\wav\stb_vorbis.h">
+      <Filter>soloud</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -109,6 +115,72 @@
     </ClCompile>
     <ClCompile Include="Sound.cpp">
       <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_audiosource.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_bus.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_core_3d.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_core_basicops.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_core_faderops.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_core_filterops.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_core_getters.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_core_setters.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_core_voicegroup.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_core_voiceops.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_fader.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_fft.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_fft_lut.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_file.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_filter.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\core\soloud_thread.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\backend\wasapi\soloud_wasapi.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\backend\winmm\soloud_winmm.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\audiosource\wav\soloud_wav.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\audiosource\wav\soloud_wavstream.cpp">
+      <Filter>soloud</Filter>
+    </ClCompile>
+    <ClCompile Include="soloud\src\audiosource\wav\stb_vorbis.c">
+      <Filter>soloud</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
