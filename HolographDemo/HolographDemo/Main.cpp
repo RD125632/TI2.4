@@ -61,7 +61,7 @@
 		{
 			glutSetWindow(storyWindow);
 		}
-		statemanager->HologramScreens.at(statemanager->HologramState).rotateY += 2;
+		statemanager->HologramScreens.at(statemanager->HologramState).rotateY += 0.5;
 		glutPostRedisplay();
 	}
 
@@ -73,11 +73,11 @@
 		glEnable(GL_LIGHTING);
 		glEnable(GL_LIGHT1);
 		glEnable(GL_TEXTURE_2D);
-		GLfloat LightAmbient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+		GLfloat LightAmbient[] = { 0.2f, 0.1f, 0.1f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); 
 		GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
-		GLfloat LightPosition[] = { 0, -1, 0, 0 };
+		GLfloat LightPosition[] = { 0, -3, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
 	}
 
@@ -96,7 +96,7 @@
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 
-		gluLookAt(0, 0, -4,
+		gluLookAt(0, 0, -1,
 			0, 0, 0,
 			0, 1, 0);
 	}
@@ -201,6 +201,10 @@
 			break;
 		case GLUT_KEY_DOWN:
 			statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown = !statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown;
+			GLfloat lightposition[] = { 0,0,0,0 };
+			glGetLightfv(GL_LIGHT1, GL_POSITION, lightposition);
+			lightposition[1] = -lightposition[1];
+			glLightfv(GL_LIGHT1, GL_POSITION, lightposition);
 			break;
 		}
 		
