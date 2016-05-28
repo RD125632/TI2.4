@@ -8,8 +8,8 @@ Statemanager::Statemanager(int hologramWindow, int storyWindow)
 	StoryState = 0;
 	glutSetWindow(hologramWindow);
 	Screen screen = Screen();
-	screen.models.push_back(new ObjModel("models/cheese/cheese.obj"));
-	//screen.models.push_back(new ObjModel("models/bloemetje/PrimroseP.obj"));
+	//screen.models.push_back(new ObjModel("models/ei/ketel.obj"));
+	screen.models.push_back(new ObjModel("models/ketel/ketel.obj"));
 	HologramScreens.push_back(screen);
 
 	glutSetWindow(storyWindow);

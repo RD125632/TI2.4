@@ -12,6 +12,10 @@ class Screen
 public:
 	Screen();
 	int Display();
+	void NextItem();
+	void PreviousItem();
+	int currentModel;
+	bool debugMode;
 	float zoom;
 	bool isUpsideDown = false;
 	float rotateX, rotateY;

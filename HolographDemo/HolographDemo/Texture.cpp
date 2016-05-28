@@ -11,6 +11,7 @@ Texture::Texture(const std::string & filename)
 {
 	int bpp;
 	glGenTextures(1, &textureID);
+	stbi_set_flip_vertically_on_load(true);
 	unsigned char* texture = stbi_load(filename.c_str(), &width, &height, &bpp, 4);
 	if (!texture)
 	std::cout << stbi_failure_reason() << std::endl;

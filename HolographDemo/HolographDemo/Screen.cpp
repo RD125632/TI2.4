@@ -5,6 +5,8 @@ Screen::Screen()
 {
 	zoom = 1;
 	rotateX = 0, rotateY = 0;
+	currentModel = 0;
+	debugMode = false;
 }
 
 int Screen::Display()
@@ -16,17 +18,24 @@ int Screen::Display()
 	glPushMatrix();
 	if (!isUpsideDown)
 	{
-		glScalef(zoom, zoom, zoom);
+		glScalef(-zoom, zoom, zoom);
 	}
 	else
 	{
-		glScalef(zoom, -zoom, zoom);
+		glScalef(-zoom, -zoom, zoom);
 	}
 	glRotatef(rotateX, 1, 0, 0);
 	glRotatef(rotateY, 0, 1, 0);
-	for (auto m : models)
+	if (debugMode)
 	{
-		m->draw();
+		models[currentModel]->draw();
+	}
+	else
+	{
+		for (auto m : models)
+		{
+			m->draw();
+		}
 	}
 	glPopMatrix();
 	glFlush();
@@ -34,4 +43,27 @@ int Screen::Display()
 
 	return 0;
 }
- 
+
+void Screen::NextItem()
+{
+	if (currentModel < models.size())
+	{
+		currentModel++;
+	}
+	else
+	{
+		currentModel = 0;
+	}
+}
+
+void Screen::PreviousItem()
+{
+	if (currentModel == 0)
+	{
+		currentModel = models.size() - 1;
+	}
+	else
+	{
+		currentModel--;
+	}
+}

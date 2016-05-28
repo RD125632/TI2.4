@@ -73,18 +73,19 @@
 		glEnable(GL_LIGHTING);
 		glEnable(GL_LIGHT1);
 		glEnable(GL_TEXTURE_2D);
-		GLfloat LightAmbient[] = { 0.2f, 0.1f, 0.1f, 1.0f };
+		GLfloat LightAmbient[] = { 0.05f, 0.05f, 0.05f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); 
-		GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+		GLfloat LightDiffuse[] = { 0.1f, 0.3f, 1.0f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
-		GLfloat LightPosition[] = { 0, -3, 0, 0 };
+		//GLfloat LightPosition[] = { 0, 1, 3, 0 };
+		GLfloat LightPosition[] = { -3, -1, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
 	}
 
 	void HologramSetup(void)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.00392156862f, 0.00784313725f, 0.01176470588f, 1.0f);
 
 		glViewport(0, 0, windowWidth, windowHeight);
 
@@ -161,10 +162,10 @@
 			exit(0);
 			break;
 		case 'w':
-			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom * 2;
+			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom * 1.5f;
 			break;
 		case 's':
-			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom / 2;
+			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom / 1.5f;
 			break;
 		case 'q':
 			statemanager->HologramScreens.at(statemanager->HologramState).rotateX -= 0.5;
@@ -191,10 +192,12 @@
 		switch(key)
 		{
 		case GLUT_KEY_LEFT:
-			
+			statemanager->HologramScreens.at(statemanager->HologramState).PreviousItem();
+			statemanager->HologramScreens.at(statemanager->HologramState).debugMode = true;
 			break;
 		case GLUT_KEY_RIGHT:
-
+			statemanager->HologramScreens.at(statemanager->HologramState).NextItem();
+			statemanager->HologramScreens.at(statemanager->HologramState).debugMode = true;
 			break; 
 		case GLUT_KEY_F11:
 			glutFullScreenToggle();
