@@ -1,5 +1,6 @@
 #include "Screen.h"
 #include "GL\freeglut.h"
+#include <iostream>
 
 Screen::Screen()
 {
@@ -46,7 +47,7 @@ int Screen::Display()
 
 void Screen::NextItem()
 {
-	if (currentModel < models.size())
+	if (currentModel < models.size() -1)
 	{
 		currentModel++;
 	}
