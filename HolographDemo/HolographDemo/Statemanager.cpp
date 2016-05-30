@@ -28,7 +28,7 @@ Statemanager::Statemanager(int hologramWindow, int storyWindow)
 	screen.models.push_back(new ObjModel("models/ship/shipA_OBJ.obj"));
 	//screen.models.push_back(new ObjModel("models/shroom/Magic Mushroom.obj"));
 	screen.models.push_back(new ObjModel("models/slimeball/slimeball.obj"));
-	screen.models.push_back(new ObjModel("models/office/Office.obj"));
+	//screen.models.push_back(new ObjModel("models/office/Office.obj"));
 	HologramScreens.push_back(screen);
 
 	glutSetWindow(storyWindow);
