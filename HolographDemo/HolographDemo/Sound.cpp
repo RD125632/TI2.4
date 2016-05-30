@@ -35,8 +35,16 @@ void SoundEngine::playSound(std::string name, bool loop)
 {
 	for(std::vector<SoundStruct>::iterator it = sounds.begin(); it != sounds.end(); ++it)
 		if (it->name == name) {
-			int h = engine.play(it->channel);
-			engine.setLooping(h, loop);
+			it->soundnr = engine.play(it->channel);
+			engine.setLooping(it->soundnr, loop);
+		}
+}
+
+void SoundEngine::stopLooping(std::string name)
+{
+	for (std::vector<SoundStruct>::iterator it = sounds.begin(); it != sounds.end(); ++it)
+		if (it->name == name) {
+			engine.setLooping(it->soundnr, false);
 		}
 }
 
