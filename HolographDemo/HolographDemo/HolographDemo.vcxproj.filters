@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Objects">
       <UniqueIdentifier>{ae318fb8-f7b6-4b02-940d-ea5de351b47c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{a57f7839-44eb-4f6b-a296-5079bfdd449d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h">
@@ -110,5 +113,13 @@
     <ClCompile Include="Sound.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\lighting.vs">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\lighting.fs">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
