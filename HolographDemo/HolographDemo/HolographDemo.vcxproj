@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BillBordParticalEffects.h" />
     <ClInclude Include="BubblePartical.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="ObjModel.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeLoader.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="SolidSphere.h" />
     <ClInclude Include="Statemanager.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Symptom.h" />
@@ -167,6 +169,7 @@
     <ClInclude Include="WorldObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BillBordParticalEffects.cpp" />
     <ClCompile Include="BubblePartical.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -177,6 +180,7 @@
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="SolidSphere.cpp" />
     <ClCompile Include="Statemanager.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />

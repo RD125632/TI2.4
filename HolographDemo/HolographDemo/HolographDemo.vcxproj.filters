@@ -60,6 +60,12 @@
     <ClInclude Include="BubblePartical.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SolidSphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BillBordParticalEffects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -103,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="WorldObject.cpp">
       <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SolidSphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BillBordParticalEffects.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
