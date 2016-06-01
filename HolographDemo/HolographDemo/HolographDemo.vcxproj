@@ -160,6 +160,7 @@
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeLoader.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Statemanager.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Symptom.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Statemanager.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />

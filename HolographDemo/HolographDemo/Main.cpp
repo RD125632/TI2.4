@@ -6,6 +6,7 @@
 #include "ObjModel.h"
 #include "Statemanager.h"
 #include <vector>
+#include "Sound.h"
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */
@@ -17,6 +18,7 @@
 	GLint windowWidth, windowHeight;
 	
 	Statemanager* statemanager = NULL;
+	SoundEngine* S_Engine = NULL;
 
 
 /*-------------------------------------------------------------------------*/
@@ -213,6 +215,22 @@
 		
 	}
 
+	void RegisterAllSounds() {
+		/**
+		In this function you can register your sounds.
+		example: S_Engine->RegisterSound("Magic", "sounds/magic.wav"); (1st parameter is name, 2nd parameter is path)
+		play a sound: S_Engine->Play_Sound("Magic", true); (1st parameter is name, 2nd parameter is looping)
+		stop a sound: S_Engine->Stop_Sound();
+		ONLY PLAYS WAV!
+		**/
+		S_Engine->RegisterSound("Magic", "sounds/magic.wav");
+		S_Engine->RegisterSound("Splash", "sounds/splash.wav");
+		S_Engine->RegisterSound("Pickup", "sounds/pickup.wav");
+		S_Engine->RegisterSound("Boil", "sounds/boil.wav");
+		S_Engine->RegisterSound("Book", "sounds/book.wav");
+		S_Engine->RegisterSound("Music", "sounds/music.wav");
+	}
+
 int main(int argc, char *argv[])
 {
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
@@ -234,6 +252,9 @@ int main(int argc, char *argv[])
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
 	statemanager = new Statemanager(hologramWindow, storyWindow);
+
+	S_Engine = new SoundEngine();
+	RegisterAllSounds();
 
 	glutMainLoop();
 	return 0;
