@@ -6,6 +6,8 @@
 #include "ObjModel.h"
 #include "Statemanager.h"
 #include <vector>
+#include <iostream>
+#include "Sound.h"
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */
@@ -17,6 +19,8 @@
 	GLint windowWidth, windowHeight;
 	
 	Statemanager* statemanager = NULL;
+
+	SoundEngine* Engine = NULL;
 
 
 /*-------------------------------------------------------------------------*/
@@ -227,6 +231,10 @@ int main(int argc, char *argv[])
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
 	statemanager = new Statemanager(hologramWindow, storyWindow);
+
+	Engine = new SoundEngine();
+	Engine->RegisterSound("Magic", "sound/magic.wav");
+	Engine->Play_Sound("Magic", true);
 
 	glutMainLoop();
 	return 0;

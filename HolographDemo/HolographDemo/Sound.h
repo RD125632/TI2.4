@@ -1,24 +1,30 @@
 #pragma once
-#include "soloud.h"
-#include "soloud_wav.h"
+
 #include <string>
+#include <Windows.h>
 #include <vector>
+
+#ifndef SOUND_ENGINE_CLASS
+#define SOUND_ENGINE_CLASS
+
+#define FAILED_RETURN 0
+#define SUCCES_RETURN 1
 
 class SoundEngine
 {
-public:
-	SoundEngine();
-	~SoundEngine();
-	int registerSound(std::string, std::string);
-	void playSound(std::string, bool);
-	void stopLooping(std::string);
+	public:
+		SoundEngine();
+		~SoundEngine();
+		int RegisterSound(std::string, std::string);
+		void Play_Sound(std::string, bool);
 
-private:
-	struct SoundStruct {
-		SoLoud::Wav channel;
-		std::string name, path; //integer of the playing sound might be needed in this struct as well
-		int soundnr;
-	};
-	SoLoud::Soloud engine;
-	std::vector<SoundStruct> sounds;
+	private:
+		struct SoundStruct
+		{
+			std::string name, path;
+		};
+		std::vector<SoundStruct> sounds;
 };
+
+
+#endif

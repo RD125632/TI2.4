@@ -89,14 +89,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;WITH_WASAPI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>freeglut/include;soloud/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>freeglut/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>freeglut/lib;soloud/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;soloud_x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>freeglut/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -161,7 +161,6 @@
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeLoader.h" />
     <ClInclude Include="Screen.h" />
-    <ClInclude Include="soloud\src\audiosource\wav\stb_vorbis.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Statemanager.h" />
     <ClInclude Include="stb_image.h" />
@@ -180,28 +179,6 @@
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
     <ClCompile Include="Screen.cpp" />
-    <ClCompile Include="soloud\src\audiosource\wav\soloud_wav.cpp" />
-    <ClCompile Include="soloud\src\audiosource\wav\soloud_wavstream.cpp" />
-    <ClCompile Include="soloud\src\audiosource\wav\stb_vorbis.c" />
-    <ClCompile Include="soloud\src\backend\wasapi\soloud_wasapi.cpp" />
-    <ClCompile Include="soloud\src\backend\winmm\soloud_winmm.cpp" />
-    <ClCompile Include="soloud\src\core\soloud.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_audiosource.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_bus.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_core_3d.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_core_basicops.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_core_faderops.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_core_filterops.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_core_getters.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_core_setters.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_core_voicegroup.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_core_voiceops.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_fader.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_fft.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_fft_lut.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_file.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_filter.cpp" />
-    <ClCompile Include="soloud\src\core\soloud_thread.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Statemanager.cpp" />
     <ClCompile Include="Symptom.cpp" />

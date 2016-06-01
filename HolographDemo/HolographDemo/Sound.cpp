@@ -1,50 +1,35 @@
 #include "Sound.h"
-#include "soloud.h"
-#include <string>
+#include <vector>
 
 SoundEngine::SoundEngine()
 {
-	engine.init();
+	
 }
 
 SoundEngine::~SoundEngine()
 {
 	sounds.clear();
-	engine.deinit();
 }
 
-int SoundEngine::registerSound(std::string name, std::string path)
+int SoundEngine::RegisterSound(std::string name, std::string path)
 {
 	int i = sounds.size();
-	SoLoud::Wav channel;
 	SoundStruct temp;
-
 	temp.name = name;
 	temp.path = path;
-	channel.load(path.c_str());
-	temp.channel = channel;
-	
+
 	sounds.push_back(temp);
-	if (i == sounds.size())
-		return 0;
+	if (i != sounds.size())
+		return SUCCES_RETURN;
 	else
-		return 1;
+		return FAILED_RETURN;
 }
 
-void SoundEngine::playSound(std::string name, bool loop)
+void SoundEngine::Play_Sound(std::string name, bool repeat)
 {
-	for(std::vector<SoundStruct>::iterator it = sounds.begin(); it != sounds.end(); ++it)
+	for (std::vector<SoundStruct>::iterator it = sounds.begin(); it != sounds.end(); ++it) {
 		if (it->name == name) {
-			it->soundnr = engine.play(it->channel);
-			engine.setLooping(it->soundnr, loop);
+				PlaySoundA(it->path.c_str(), NULL, SND_ASYNC | SND_FILENAME | (repeat ? SND_LOOP : 0));
 		}
+	}
 }
-
-void SoundEngine::stopLooping(std::string name)
-{
-	for (std::vector<SoundStruct>::iterator it = sounds.begin(); it != sounds.end(); ++it)
-		if (it->name == name) {
-			engine.setLooping(it->soundnr, false);
-		}
-}
-
