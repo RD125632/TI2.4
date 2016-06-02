@@ -51,7 +51,7 @@ int HologramScreen::Setup(int windowWidth, int windowHeight)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	gluPerspective(90, (float)windowWidth / windowHeight, 0.1f, 100);
+	gluPerspective(90, (float)windowWidth / windowHeight, 0.1f, 200);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();

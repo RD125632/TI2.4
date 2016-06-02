@@ -25,7 +25,7 @@ Statemanager::Statemanager(int hologramWindow, int storyWindow)
 	screen.models.push_back(new ObjModel("models/plank/plank.obj"));
 	screen.models.push_back(new ObjModel("models/polspoon/polspoon.obj"));
 	screen.models.push_back(new ObjModel("models/ship/shipA_OBJ.obj"));
-	screen.models.push_back(new ObjModel("models/shroom/Magic Mushroom.obj"));
+	//screen.models.push_back(new ObjModel("models/shroom/Magic Mushroom.obj"));
 	//screen.models.push_back(new ObjModel("models/office/Office.obj"));
 	HologramScreens.push_back(screen);
 
