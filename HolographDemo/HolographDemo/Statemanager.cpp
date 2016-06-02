@@ -1,5 +1,4 @@
 #include "Statemanager.h"
-#include "Screen.h"
 #include "GL\glut.h"
 
 Statemanager::Statemanager(int hologramWindow, int storyWindow)
@@ -7,7 +6,7 @@ Statemanager::Statemanager(int hologramWindow, int storyWindow)
 	HologramState = 0;
 	StoryState = 0;
 	glutSetWindow(hologramWindow);
-	Screen screen = Screen();
+	HologramScreen screen = HologramScreen();
 	screen.models.push_back(new ObjModel("models/slimeball/slimeball.obj"));
 	screen.models.push_back(new ObjModel("models/ketel/ketel.obj"));
 	screen.models.push_back(new ObjModel("models/ei/ei.obj"));
@@ -27,12 +26,11 @@ Statemanager::Statemanager(int hologramWindow, int storyWindow)
 	screen.models.push_back(new ObjModel("models/polspoon/polspoon.obj"));
 	screen.models.push_back(new ObjModel("models/ship/shipA_OBJ.obj"));
 	//screen.models.push_back(new ObjModel("models/shroom/Magic Mushroom.obj"));
-	screen.models.push_back(new ObjModel("models/slimeball/slimeball.obj"));
 	//screen.models.push_back(new ObjModel("models/office/Office.obj"));
 	HologramScreens.push_back(screen);
 
 	glutSetWindow(storyWindow);
-	Screen screen1 = Screen();
+	StoryScreen screen1 = StoryScreen();
 	screen1.models.push_back(new ObjModel("models/ei/ei.obj"));
 	StoryScreens.push_back(screen1);
 }

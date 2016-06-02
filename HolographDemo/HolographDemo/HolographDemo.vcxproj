@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="BubblePartical.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="HologramScreen.h" />
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="Partical.h" />
     <ClInclude Include="ParticalEmitter.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Statemanager.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="StoryScreen.h" />
     <ClInclude Include="Symptom.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="WorldObject.h" />
@@ -171,6 +173,7 @@
   <ItemGroup>
     <ClCompile Include="BubblePartical.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="HologramScreen.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="Partical.cpp" />
@@ -181,6 +184,7 @@
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Statemanager.cpp" />
+    <ClCompile Include="StoryScreen.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="WorldObject.cpp" />
