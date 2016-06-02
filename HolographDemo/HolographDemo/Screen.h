@@ -13,6 +13,7 @@ class Screen
 public:
 	Screen();
 	virtual int Display() = 0;
+	virtual int Setup(int,int) = 0;
 	bool debugMode;
 	float zoom;
 	float rotateX, rotateY;

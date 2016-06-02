@@ -13,6 +13,7 @@ class StoryScreen: public Screen
 public:
 	StoryScreen();
 	int Display() override;
+	int Setup(int,int) override;
 };
 
 #endif

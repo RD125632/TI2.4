@@ -10,6 +10,7 @@ class HologramScreen: public Screen
 public:
 	HologramScreen();
 	int Display() override;
+	int Setup(int,int) override;
 	void NextItem();
 	void PreviousItem();
 	int currentModel;
