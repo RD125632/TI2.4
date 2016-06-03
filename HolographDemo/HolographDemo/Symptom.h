@@ -10,7 +10,8 @@ class Symptom
 {
 public:
 	Symptom();
-	Symptom(std::string, std::string);
+	Symptom(int, std::string, std::string);
+	int id;
 	std::string name;
 	std::string description;
 };

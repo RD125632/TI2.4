@@ -15,8 +15,9 @@ std::vector<Ingredient> RecipeLoader::loadIngredients()
 
 	for (std::string line; getline(input, line); )
 	{
+		std::string::size_type sz;
 		std::vector<std::string> parts = RecipeLoader::split(line, ':');
-		Ingredient ing = Ingredient(parts.at(0), parts.at(1), parts.at(2));
+		Ingredient ing = Ingredient(parts.at(0), std::stoi(parts.at(1), &sz));
 		list.push_back(ing);
 	}
 	return list;
@@ -29,8 +30,9 @@ std::vector<Symptom> RecipeLoader::loadSymptoms()
 
 	for (std::string line; getline(input, line); )
 	{
+		std::string::size_type sz;
 		std::vector<std::string> parts = RecipeLoader::split(line, ':');
-		Symptom ing = Symptom(parts.at(0), parts.at(1));
+		Symptom ing = Symptom(std::stoi(parts.at(0), &sz), parts.at(1), parts.at(2));
 		list.push_back(ing);
 	}
 	return list;

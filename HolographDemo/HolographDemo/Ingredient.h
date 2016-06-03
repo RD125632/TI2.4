@@ -11,10 +11,9 @@
 class Ingredient
 {
 public:
-	Ingredient(std::string, std::string, std::string);
+	Ingredient(std::string, int);
 	std::string name;
-	std::string description;
-	std::string cures;
+	int cures;
 	ObjModel* models;
 };
 

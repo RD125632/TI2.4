@@ -87,6 +87,9 @@
     <ClInclude Include="Book.h">
       <Filter>Header Files\FileIO</Filter>
     </ClInclude>
+    <ClInclude Include="Wizard.h">
+      <Filter>Header Files\FileIO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -138,6 +141,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Book.cpp">
+      <Filter>Source Files\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Wizard.cpp">
       <Filter>Source Files\FileIO</Filter>
     </ClCompile>
   </ItemGroup>

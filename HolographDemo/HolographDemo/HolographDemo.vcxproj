@@ -168,6 +168,7 @@
     <ClInclude Include="StoryScreen.h" />
     <ClInclude Include="Symptom.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Wizard.h" />
     <ClInclude Include="WorldObject.h" />
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +188,7 @@
     <ClCompile Include="StoryScreen.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Wizard.cpp" />
     <ClCompile Include="WorldObject.cpp" />
   </ItemGroup>
   <ItemGroup>
