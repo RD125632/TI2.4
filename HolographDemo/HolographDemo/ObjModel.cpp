@@ -162,15 +162,16 @@ void ObjModel::draw()
 
 	for(ObjGroup* group : groups)
 	{
+		
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materials[group->materialIndex]->ambient);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, materials[group->materialIndex]->diffuse);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, materials[group->materialIndex]->specular);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, materials[group->materialIndex]->shininess);
 		glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, materials[group->materialIndex]->emission);
-		
+		glEnable(GL_TEXTURE_2D);
+
 		if (materials[group->materialIndex]->texture != NULL)
 		{
-			glEnable(GL_TEXTURE_2D);
 			materials[group->materialIndex]->texture->bind();
 		}
 		glBegin(GL_TRIANGLES);
