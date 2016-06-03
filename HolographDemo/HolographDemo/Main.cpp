@@ -6,6 +6,7 @@
 #include "ObjModel.h"
 #include "Statemanager.h"
 #include <vector>
+#include <iostream>
 #include "Sound.h"
 
 /*-------------------------------------------------------------------------*/
@@ -193,6 +194,8 @@
 
 int main(int argc, char *argv[])
 {
+	std::cout << argv[0];
+
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInit(&argc, argv);
 

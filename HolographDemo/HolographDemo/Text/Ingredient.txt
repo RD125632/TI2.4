@@ -1,0 +1,15 @@
+baksteen:
+bloem:
+bot:
+brood:
+auto:
+kaas:
+diamand:
+ei:
+oog:
+bloempot:
+tand:
+parel:
+boot:
+paddestoel:
+slijmbal:

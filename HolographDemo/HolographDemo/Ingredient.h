@@ -4,12 +4,18 @@
 #define INGREDIENT_H_
 
 #include <string>
+#include <vector>
+#include "Symptom.h"
+#include "ObjModel.h"
 
 class Ingredient
 {
 public:
-	Ingredient(std::string);
+	Ingredient(std::string, std::string, std::string);
 	std::string name;
+	std::string description;
+	std::string cures;
+	ObjModel* models;
 };
 
 
