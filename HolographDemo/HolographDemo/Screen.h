@@ -6,18 +6,16 @@
 #include <string>
 #include <vector>
 #include "ObjModel.h"
+#include "GL\freeglut.h"
 
 class Screen
 {
 public:
 	Screen();
-	int Display();
-	void NextItem();
-	void PreviousItem();
-	int currentModel;
+	virtual int Display() = 0;
+	virtual int Setup(int,int) = 0;
 	bool debugMode;
 	float zoom;
-	bool isUpsideDown = false;
 	float rotateX, rotateY;
 	GLenum mode = GL_FILL;
 

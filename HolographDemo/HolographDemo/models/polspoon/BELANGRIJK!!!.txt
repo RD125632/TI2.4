@@ -1,1 +1,0 @@
-dit gebruikt de texture uit ../plank/wood.jpg

@@ -1,0 +1,9 @@
+Andromeda Virus,Patient word steeds jonger totdat hij verdwijnt/
+Atlantis Complex,Patient word geobsedeerd door atlantis/
+Cobra Virus,Patient word blind/		
+Steen Virus,Patient verandert in steen/
+Vuur Pokken,Patient heeft pokken die branden/
+Kakel lach,Patient heeft slappe lach/
+Moeras adem,Patient heeft hele slechte adem/
+Idioterites,Patient word heel stom/
+
