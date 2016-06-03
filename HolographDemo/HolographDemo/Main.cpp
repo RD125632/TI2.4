@@ -6,6 +6,7 @@
 #include "ObjModel.h"
 #include "Statemanager.h"
 #include <vector>
+#include "LeapHandler.h"
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */
@@ -235,6 +236,14 @@ int main(int argc, char *argv[])
 	glutSpecialFunc(SpecialKeyEvent);
 	statemanager = new Statemanager(hologramWindow, storyWindow);
 
+
+	SampleListener listener;
+	Controller controller;
+
+	controller.addListener(listener);
+
 	glutMainLoop();
+
+
 	return 0;
 }
