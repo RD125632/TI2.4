@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="BillBordParticalEffects.h" />
     <ClInclude Include="BubblePartical.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="HologramScreen.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Plot.h" />
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeLoader.h" />
+    <ClInclude Include="Room.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="SolidSphere.h" />
     <ClInclude Include="Sound.h" />
@@ -177,6 +179,7 @@
   <ItemGroup>
     <ClCompile Include="BillBordParticalEffects.cpp" />
     <ClCompile Include="BubblePartical.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="HologramScreen.cpp" />
@@ -188,6 +191,7 @@
     <ClCompile Include="Plot.cpp" />
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
+    <ClCompile Include="Room.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="SolidSphere.cpp" />
     <ClCompile Include="Sound.cpp" />

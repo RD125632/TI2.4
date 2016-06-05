@@ -26,7 +26,6 @@
 /*				Function Prototyping                                       */
 /*-------------------------------------------------------------------------*/
 
-	void Init(void);
 	void Idle(void);
 
 	void HologramInit(void);
@@ -45,12 +44,6 @@
 /*-------------------------------------------------------------------------*/
 /*              -- Window Functions										   */
 /*-------------------------------------------------------------------------*/
-
-	void Init(void)
-	{
-		HologramInit();
-		StoryInit();
-	}
 
 	void Idle(void)
 	{
@@ -94,7 +87,16 @@
 
 	void StoryInit(void)
 	{
-
+		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_LIGHTING);
+		glEnable(GL_LIGHT0);
+		glEnable(GL_TEXTURE_2D);
+		GLfloat LightAmbient[] = { 0.1f, 0.1f, 0.1f, 0.1f };
+		glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
+		GLfloat LightDiffuse[] = { 0.1f, 0.5f, 1.0f, 1.0f };
+		glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
+		GLfloat LightPosition[] = { -1, -1, 0, 0 };
+		glLightfv(GL_LIGHT0, GL_POSITION, LightPosition);
 	}
 
 	void StoryPaintComponent(void)
@@ -125,9 +127,11 @@
 			break;
 		case 'w':
 			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom + 1.5f;
+			statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom + 1.5f;
 			break;
 		case 's':
 			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom - 1.5f;
+			statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom - 1.5f;
 			break;
 		case 'q':
 			statemanager->HologramScreens.at(statemanager->HologramState).rotateX -= 0.5;
@@ -139,10 +143,12 @@
 			if (statemanager->HologramScreens.at(statemanager->HologramState).mode == GL_FILL)
 			{
 				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_LINE;
+				statemanager->StoryScreens.at(statemanager->StoryState).mode = GL_LINE;
 			}
 			else
 			{
 				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_FILL;
+				statemanager->StoryScreens.at(statemanager->StoryState).mode = GL_FILL;
 			}
 			break;
 		}		
@@ -203,7 +209,7 @@ int main(int argc, char *argv[])
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
 	glutReshapeFunc(HologramReshape);
-	Init();
+	HologramInit();
 
 	glutInitWindowSize(1920, 1080);
 	storyWindow = glutCreateWindow("Story");
@@ -211,6 +217,7 @@ int main(int argc, char *argv[])
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
+	StoryInit();
 	statemanager = new Statemanager(hologramWindow, storyWindow);
 
 	S_Engine = new SoundEngine();
