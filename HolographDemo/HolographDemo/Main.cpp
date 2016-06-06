@@ -105,10 +105,10 @@
 		statemanager->StoryScreens.at(statemanager->StoryState).Display();
 	}
 
-	void HologramReshape(int width, int heigth)
+	void HologramReshape(int width, int height)
 	{
 		windowWidth = width;
-		windowHeight = heigth;
+		windowHeight = height;
 	}
 
 
