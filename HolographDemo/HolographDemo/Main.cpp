@@ -75,9 +75,9 @@
 		glEnable(GL_LIGHTING);
 		glEnable(GL_LIGHT1);
 		glEnable(GL_TEXTURE_2D);
-		GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+		GLfloat LightAmbient[] = { 0.1f, 0.1f, 0.1f, 0.1f };
 		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); 
-		GLfloat LightDiffuse[] = { 0.1f, 0.3f, 1.0f, 1.0f };
+		GLfloat LightDiffuse[] = { 0.1f, 0.5f, 1.0f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
 		//GLfloat LightPosition[] = { 0, 1, 3, 0 };
 		GLfloat LightPosition[] = { -1, -1, 0, 0 };

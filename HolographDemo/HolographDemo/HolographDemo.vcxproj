@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />
+    <ClInclude Include="BillBordParticalEffects.h" />
     <ClInclude Include="BubblePartical.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="HologramScreen.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="ParticalEmitter.h" />
     <ClInclude Include="RecipeLoader.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="SolidSphere.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Statemanager.h" />
     <ClInclude Include="stb_image.h" />
@@ -173,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Book.cpp" />
+    <ClCompile Include="BillBordParticalEffects.cpp" />
     <ClCompile Include="BubblePartical.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="HologramScreen.cpp" />
@@ -183,6 +186,7 @@
     <ClCompile Include="ParticalEmitter.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="SolidSphere.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Statemanager.cpp" />
     <ClCompile Include="StoryScreen.cpp" />
