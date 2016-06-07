@@ -6,6 +6,9 @@
 #include "ObjModel.h"
 #include "Statemanager.h"
 #include <vector>
+#include "LeapHandler.h"
+#include <iostream>
+#include "Sound.h"
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */
@@ -15,23 +18,22 @@
 
 	GLint hologramWindow, storyWindow;
 	GLint windowWidth, windowHeight;
+	float zoom = 1;
 	
 	Statemanager* statemanager = NULL;
+	SoundEngine* S_Engine = NULL;
 
 
 /*-------------------------------------------------------------------------*/
 /*				Function Prototyping                                       */
 /*-------------------------------------------------------------------------*/
 
-	void Init(void);
 	void Idle(void);
 
 	void HologramInit(void);
-	void HologramSetup(void);
 	void HologramPaintComponent(void);
 
 	void StoryInit(void);
-	void StorySetup(void);
 	void StoryPaintComponent(void);
 
 	void KeyEvent(unsigned char, int, int);
@@ -44,12 +46,6 @@
 /*-------------------------------------------------------------------------*/
 /*              -- Window Functions										   */
 /*-------------------------------------------------------------------------*/
-
-	void Init(void)
-	{
-		HologramInit();
-		StoryInit();
-	}
 
 	void Idle(void)
 	{
@@ -73,39 +69,19 @@
 		glEnable(GL_LIGHTING);
 		glEnable(GL_LIGHT1);
 		glEnable(GL_TEXTURE_2D);
-		GLfloat LightAmbient[] = { 0.05f, 0.05f, 0.05f, 1.0f };
+		GLfloat LightAmbient[] = { 0.1f, 0.1f, 0.1f, 0.1f };
 		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); 
-		GLfloat LightDiffuse[] = { 0.1f, 0.3f, 1.0f, 1.0f };
+		GLfloat LightDiffuse[] = { 0.1f, 0.5f, 1.0f, 1.0f };
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
 		//GLfloat LightPosition[] = { 0, 1, 3, 0 };
-		GLfloat LightPosition[] = { -3, -1, 0, 0 };
+		GLfloat LightPosition[] = { -1, -1, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
-	}
-
-	void HologramSetup(void)
-	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(0.00392156862f, 0.00784313725f, 0.01176470588f, 1.0f);
-
-		glViewport(0, 0, windowWidth, windowHeight);
-
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-
-		gluPerspective(90, (float) windowWidth/windowHeight, 0.1f, 100);
-
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-
-		gluLookAt(0, 0, -1,
-			0, 0, 0,
-			0, 1, 0);
 	}
 
 	void HologramPaintComponent(void)
 	{
 		// Set Window
-		HologramSetup();
+		statemanager->HologramScreens.at(statemanager->HologramState).Setup(windowWidth, windowHeight);
 
 		//Models
 		statemanager->HologramScreens.at(statemanager->HologramState).Display();
@@ -113,39 +89,29 @@
 
 	void StoryInit(void)
 	{
-
-	}
-
-	void StorySetup(void)
-	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
-		glViewport(0, 0, 1920, 1080);
-
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-
-		gluPerspective(90, 1920/1080, -10, 100);
-
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-
-		gluLookAt(0, 1, -4,
-			0, 0, 0,
-			0, 1, 0);
+		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_LIGHTING);
+		glEnable(GL_LIGHT0);
+		glEnable(GL_TEXTURE_2D);
+		GLfloat LightAmbient[] = { 0.1f, 0.1f, 0.1f, 0.1f };
+		glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
+		GLfloat LightDiffuse[] = { 0.1f, 0.5f, 1.0f, 1.0f };
+		glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
+		GLfloat LightPosition[] = { -1, -1, 0, 0 };
+		glLightfv(GL_LIGHT0, GL_POSITION, LightPosition);
 	}
 
 	void StoryPaintComponent(void)
 	{
+		statemanager->StoryScreens.at(statemanager->StoryState).Setup(windowWidth, windowHeight);
 		//Models
 		statemanager->StoryScreens.at(statemanager->StoryState).Display();
 	}
 
-	void HologramReshape(int width, int heigth)
+	void HologramReshape(int width, int height)
 	{
 		windowWidth = width;
-		windowHeight = heigth;
+		windowHeight = height;
 	}
 
 
@@ -162,10 +128,12 @@
 			exit(0);
 			break;
 		case 'w':
-			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom * 1.5f;
+			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom + 1.5f;
+			statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom + 1.5f;
 			break;
 		case 's':
-			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom / 1.5f;
+			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom - 1.5f;
+			statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom - 1.5f;
 			break;
 		case 'q':
 			statemanager->HologramScreens.at(statemanager->HologramState).rotateX -= 0.5;
@@ -177,10 +145,12 @@
 			if (statemanager->HologramScreens.at(statemanager->HologramState).mode == GL_FILL)
 			{
 				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_LINE;
+				statemanager->StoryScreens.at(statemanager->StoryState).mode = GL_LINE;
 			}
 			else
 			{
 				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_FILL;
+				statemanager->StoryScreens.at(statemanager->StoryState).mode = GL_FILL;
 			}
 			break;
 		}		
@@ -213,8 +183,26 @@
 		
 	}
 
+	void RegisterAllSounds() {
+		/**
+		In this function you can register your sounds.
+		example: S_Engine->RegisterSound("Magic", "sounds/magic.wav"); (1st parameter is name, 2nd parameter is path)
+		play a sound: S_Engine->Play_Sound("Magic", true); (1st parameter is name, 2nd parameter is looping)
+		stop a sound: S_Engine->Stop_Sound();
+		ONLY PLAYS WAV!
+		**/
+		S_Engine->RegisterSound("Magic", "sounds/magic.wav");
+		S_Engine->RegisterSound("Splash", "sounds/splash.wav");
+		S_Engine->RegisterSound("Pickup", "sounds/pickup.wav");
+		S_Engine->RegisterSound("Boil", "sounds/boil.wav");
+		S_Engine->RegisterSound("Book", "sounds/book.wav");
+		S_Engine->RegisterSound("Music", "sounds/music.wav");
+	}
+
 int main(int argc, char *argv[])
 {
+	std::cout << argv[0];
+
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInit(&argc, argv);
 
@@ -225,7 +213,7 @@ int main(int argc, char *argv[])
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
 	glutReshapeFunc(HologramReshape);
-	Init();
+	HologramInit();
 
 	glutInitWindowSize(1920, 1080);
 	storyWindow = glutCreateWindow("Story");
@@ -233,8 +221,18 @@ int main(int argc, char *argv[])
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
+	StoryInit();
 	statemanager = new Statemanager(hologramWindow, storyWindow);
 
+	SampleListener listener;
+	Controller controller;
+
+	controller.addListener(listener);
+	S_Engine = new SoundEngine();
+	RegisterAllSounds();
+
 	glutMainLoop();
+
+
 	return 0;
 }

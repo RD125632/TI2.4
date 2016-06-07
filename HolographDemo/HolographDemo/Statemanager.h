@@ -5,6 +5,8 @@
 
 #include <string>
 #include "Screen.h"
+#include "HologramScreen.h"
+#include "StoryScreen.h"
 #include <vector>
 
 class Statemanager
@@ -14,8 +16,8 @@ public:
 	int Gamestate;
 	int HologramState;
 	int StoryState;
-	std::vector<Screen> HologramScreens;
-	std::vector<Screen> StoryScreens;
+	std::vector<HologramScreen> HologramScreens;
+	std::vector<StoryScreen> StoryScreens;
 };
 
 #endif
