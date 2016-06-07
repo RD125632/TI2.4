@@ -1,49 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="shaders">
-      <UniqueIdentifier>{a57f7839-44eb-4f6b-a296-5079bfdd449d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Screens">
-      <UniqueIdentifier>{de30ef39-36d5-4486-806f-d82b0bb6620f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\FileIO">
-      <UniqueIdentifier>{ae318fb8-f7b6-4b02-940d-ea5de351b47c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Graphics">
-      <UniqueIdentifier>{dbab2e71-b54e-4ba9-93f8-ff2215f50a3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Graphics">
-      <UniqueIdentifier>{09b6c46d-c254-4cc9-b112-ba4415cb6452}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Screens">
-      <UniqueIdentifier>{523460c5-dd3f-4a76-9b02-2116a8599f54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\FileIO">
-      <UniqueIdentifier>{7d30502e-0ba5-43d6-a03a-bdde81851d8d}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="LeapHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BillBordParticalEffects.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Book.cpp">
+      <Filter>Source Files\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="BubblePartical.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="HologramScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Ingredient.cpp">
+      <Filter>Source Files\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjModel.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Partical.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticalEmitter.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="RecipeLoader.cpp">
+      <Filter>Source Files\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="SolidSphere.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Statemanager.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="StoryScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Symptom.cpp">
+      <Filter>Source Files\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Wizard.cpp">
+      <Filter>Source Files\FileIO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Statemanager.h">
+    <ClInclude Include="Sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WorldObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sound.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="BillBordParticalEffects.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
+      <Filter>Header Files\FileIO</Filter>
     </ClInclude>
     <ClInclude Include="BubblePartical.h">
       <Filter>Header Files\Graphics</Filter>
@@ -53,9 +86,6 @@
     </ClInclude>
     <ClInclude Include="HologramScreen.h">
       <Filter>Header Files\Screens</Filter>
-    </ClInclude>
-    <ClInclude Include="FileIO.h">
-      <Filter>Header Files\FileIO</Filter>
     </ClInclude>
     <ClInclude Include="Ingredient.h">
       <Filter>Header Files\FileIO</Filter>
@@ -69,16 +99,16 @@
     <ClInclude Include="ParticalEmitter.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Plot.h">
-      <Filter>Header Files\FileIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Recipe.h">
-      <Filter>Header Files\FileIO</Filter>
-    </ClInclude>
     <ClInclude Include="RecipeLoader.h">
       <Filter>Header Files\FileIO</Filter>
     </ClInclude>
     <ClInclude Include="Screen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidSphere.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Statemanager.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
     <ClInclude Include="stb_image.h">
@@ -93,10 +123,10 @@
     <ClInclude Include="Texture.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="SolidSphere.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Wizard.h">
+      <Filter>Header Files\FileIO</Filter>
     </ClInclude>
-    <ClInclude Include="BillBordParticalEffects.h">
+    <ClInclude Include="LeapHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Room.h">
@@ -113,16 +143,7 @@
     <ClCompile Include="Symptom.cpp">
       <Filter>Source Files\FileIO</Filter>
     </ClCompile>
-    <ClCompile Include="Recipe.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
-    <ClCompile Include="Plot.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
     <ClCompile Include="RecipeLoader.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
-    <ClCompile Include="FileIO.cpp">
       <Filter>Source Files\FileIO</Filter>
     </ClCompile>
     <ClCompile Include="Ingredient.cpp">
@@ -178,11 +199,46 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\lighting.vs">
-      <Filter>shaders</Filter>
-    </None>
     <None Include="shaders\lighting.fs">
-      <Filter>shaders</Filter>
+      <Filter>Source Files\Shaders</Filter>
     </None>
+    <None Include="shaders\lighting.vs">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="shaders\lighting.vs">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{32c7d181-9db7-4910-8e98-a398d8aa665e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ef4b8a07-54bb-4729-9a50-60c38696d58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{6e013fb9-0cbd-427e-9ce7-e917401a1660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{b3dab83d-06a3-44ec-b48f-4e038acafae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens">
+      <UniqueIdentifier>{3d1e622a-ddf1-46ca-a603-a3f159196aab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FileIO">
+      <UniqueIdentifier>{79b834b0-31ba-4df1-990c-cbd647a2dd90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{d4f4ecb7-bfb4-48ed-9174-b80654b8844a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FileIO">
+      <UniqueIdentifier>{668acd53-3c75-4301-9b8e-64abb6655faf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens">
+      <UniqueIdentifier>{6d08f9b3-6a1a-4ce4-a35d-109ee26ea45b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shaders">
+      <UniqueIdentifier>{275d6581-d647-45cf-b144-c09a242098aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

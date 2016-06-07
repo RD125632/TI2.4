@@ -6,6 +6,8 @@
 #include "ObjModel.h"
 #include "Statemanager.h"
 #include <vector>
+#include "LeapHandler.h"
+#include <iostream>
 #include "Sound.h"
 
 /*-------------------------------------------------------------------------*/
@@ -106,10 +108,10 @@
 		statemanager->StoryScreens.at(statemanager->StoryState).Display();
 	}
 
-	void HologramReshape(int width, int heigth)
+	void HologramReshape(int width, int height)
 	{
 		windowWidth = width;
-		windowHeight = heigth;
+		windowHeight = height;
 	}
 
 
@@ -199,6 +201,8 @@
 
 int main(int argc, char *argv[])
 {
+	std::cout << argv[0];
+
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInit(&argc, argv);
 
@@ -220,9 +224,15 @@ int main(int argc, char *argv[])
 	StoryInit();
 	statemanager = new Statemanager(hologramWindow, storyWindow);
 
+	SampleListener listener;
+	Controller controller;
+
+	controller.addListener(listener);
 	S_Engine = new SoundEngine();
 	RegisterAllSounds();
 
 	glutMainLoop();
+
+
 	return 0;
 }
