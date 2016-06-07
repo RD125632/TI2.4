@@ -30,6 +30,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -78,6 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>LeapSDK\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -90,14 +92,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>LeapSDK\include;freeglut/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>LeapSDK\include;freeglut/include;glew/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>freeglut/lib; LeapSDK/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Leap.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>freeglut/lib;glew/lib/release/Win32;LeapSDK/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;Leap.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -124,14 +126,15 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>freeglut/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>LeapSDK\include;freeglut/include;glew/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>freeglut/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>freeglut/lib;glew/lib/release/Win32;LeapSDK/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glew32.lib;Leap.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -153,42 +156,54 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Book.h" />
     <ClInclude Include="BillBordParticalEffects.h" />
     <ClInclude Include="BubblePartical.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="LeapHandler.h" />
+    <ClInclude Include="HologramScreen.h" />
+    <ClInclude Include="Ingredient.h" />
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="Partical.h" />
     <ClInclude Include="ParticalEmitter.h" />
-    <ClInclude Include="Plot.h" />
-    <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeLoader.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="SolidSphere.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Statemanager.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="StoryScreen.h" />
     <ClInclude Include="Symptom.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Wizard.h" />
     <ClInclude Include="WorldObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Book.cpp" />
     <ClCompile Include="BillBordParticalEffects.cpp" />
     <ClCompile Include="BubblePartical.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="LeapHandler.cpp" />
+    <ClCompile Include="HologramScreen.cpp" />
+    <ClCompile Include="Ingredient.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="Partical.cpp" />
     <ClCompile Include="ParticalEmitter.cpp" />
-    <ClCompile Include="Plot.cpp" />
-    <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="SolidSphere.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Statemanager.cpp" />
+    <ClCompile Include="StoryScreen.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Wizard.cpp" />
     <ClCompile Include="WorldObject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\lighting.fs" />
+    <None Include="shaders\lighting.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

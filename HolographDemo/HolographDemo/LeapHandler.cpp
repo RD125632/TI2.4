@@ -25,7 +25,3 @@ void SampleListener::onDisconnect(const Controller&)
 	std::cout << "leap disconnected" << std::endl;
 	
 }
-
-
-
-

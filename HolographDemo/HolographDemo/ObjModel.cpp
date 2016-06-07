@@ -173,6 +173,10 @@ void ObjModel::draw()
 			glEnable(GL_TEXTURE_2D);
 			materials[group->materialIndex]->texture->bind();
 		}
+		else
+		{
+			glDisable(GL_TEXTURE_2D);
+		}
 		glBegin(GL_TRIANGLES);
 		for(Face &face : group->faces)
 		{
@@ -279,7 +283,7 @@ void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
 ObjModel::MaterialInfo::MaterialInfo()
 {
 	hasTexture = false;
-	*texture;
+	texture = NULL;
 	
 }
 
