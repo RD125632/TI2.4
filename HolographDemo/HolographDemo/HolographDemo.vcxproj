@@ -151,12 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\BubblePartical.h" />
+    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\ParticalEmitter.h" />
+    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\smokeParticle.h" />
     <ClInclude Include="BillBordParticalEffects.h" />
-    <ClInclude Include="BubblePartical.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="Partical.h" />
-    <ClInclude Include="ParticalEmitter.h" />
     <ClInclude Include="Plot.h" />
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeLoader.h" />
@@ -169,13 +170,14 @@
     <ClInclude Include="WorldObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\BubblePartical.cpp" />
+    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\ParticalEmitter.cpp" />
+    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\smokeParticle.cpp" />
     <ClCompile Include="BillBordParticalEffects.cpp" />
-    <ClCompile Include="BubblePartical.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="Partical.cpp" />
-    <ClCompile Include="ParticalEmitter.cpp" />
     <ClCompile Include="Plot.cpp" />
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
