@@ -182,7 +182,6 @@
     <ClCompile Include="BubblePartical.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Color.cpp" />
-    <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="HologramScreen.cpp" />
     <ClCompile Include="Ingredient.cpp" />
     <ClCompile Include="Main.cpp" />

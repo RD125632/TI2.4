@@ -125,9 +125,6 @@
     <ClCompile Include="RecipeLoader.cpp">
       <Filter>Source Files\FileIO</Filter>
     </ClCompile>
-    <ClCompile Include="FileIO.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
     <ClCompile Include="Ingredient.cpp">
       <Filter>Source Files\FileIO</Filter>
     </ClCompile>
