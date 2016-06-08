@@ -34,6 +34,10 @@ int HologramScreen::Display()
 			m->draw();
 		}
 	}*/
+	for (auto object : objects)
+	{
+		object->draw();
+	}
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
