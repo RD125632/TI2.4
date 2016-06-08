@@ -4,7 +4,7 @@
 
 ObjectManager::ObjectManager()
 {
-	ketel = new NewKetel("models/ketel/ketel.obj", 0, 0, 0);
+	ketel = new NewKetel("models/ketel/ketel.obj", 0, 0, 0); // moet nog verbeterd worden
 }
 
 
