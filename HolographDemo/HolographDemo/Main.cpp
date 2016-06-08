@@ -72,6 +72,11 @@
 		{
 			storyScreen.objects.push_back(obj);
 		}
+		hologramScreen.objects.push_back(objectManager->ketel);
+		for (auto obj : objectManager->effects)
+		{
+			hologramScreen.objects.push_back(obj);
+		}
 	}
 	void HologramInit(void)
 	{
@@ -92,7 +97,8 @@
 
 	void HologramPaintComponent(void)
 	{
-		
+		hologramScreen.Setup(1080, 1920);
+		hologramScreen.Display();
 	}
 
 	void StoryInit(void)
@@ -111,6 +117,7 @@
 
 	void StoryPaintComponent(void)
 	{
+		storyScreen.Setup(1080,1920);
 		storyScreen.Display();
 	}
 
@@ -134,18 +141,18 @@
 			exit(0);
 			break;
 		case 'w':
-			//statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom + 1.5f;
-			//statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom + 1.5f;
+			hologramScreen.zoom += 1.5;
+			storyScreen.zoom += 1.5;
 			break;
 		case 's':
-			//statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom - 1.5f;
-			//statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom - 1.5f;
+			hologramScreen.zoom -= 1.5;
+			storyScreen.zoom -= 1.5;
 			break;
 		case 'q':
-			//statemanager->HologramScreens.at(statemanager->HologramState).rotateX -= 0.5;
+			hologramScreen.rotateX -= 0.5f;
 			break;
 		case 'a':
-			//statemanager->HologramScreens.at(statemanager->HologramState).rotateX += 0.5;
+			hologramScreen.rotateX += 0.5f;
 			break;
 		case 't':
 			/*if (statemanager->HologramScreens.at(statemanager->HologramState).mode == GL_FILL)
