@@ -1,7 +1,0 @@
-LEAP instellingen in VS:
-
-1.Leap uitpakken ergens in je project.
-2.Properties > VC++ Directories > bij Library directories invullen: path naar "LeapSDK\lib\x86"
-3.Properties > C/C++ bij Additional include directories invullen: path naar "LeapSDK\include"
-4.Properties > Linker > General > Additional include directories invullen: path naar "LeapSDK/lib" 
-5.Properties > Linker > Input 	> Additional Dependencies invullen: "Leap.lib"
