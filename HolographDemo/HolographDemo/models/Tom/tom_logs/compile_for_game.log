@@ -1,0 +1,71 @@
+// Created by Crowbar 0.24.0.0
+
+Compiling...
+
+qdir:    "c:\users\remco\documents\3d-modelling\gamecube - tom and jerry in war of the whiskers - tom\tom\"
+gamedir: "C:\Program Files (x86)\Steam\steamapps\common\SourceFilmmaker\game\usermod\"
+g_path:  "tom.qc"
+Building binary model files...
+Working on "tom.qc"
+SMD MODEL tom.smd
+Processing LOD for material: tom
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Model has 2-dimensional geometry (less than 0.500 inches thick on any axis)!!!
+WARNING: Error with convex elements of tom.smd, building single convex!!!!
+Model has 4 convex sub-parts
+Collision model completed.
+---------------------
+writing C:\Program Files (x86)\Steam\steamapps\common\SourceFilmmaker\game\usermod\models/tom.mdl:
+bones          964 bytes (1)
+   animation       x       y       ips    angle
+animations     112 bytes (1 anims) (1 frames) [0:00]
+sequences      220 bytes (1 seq) 
+ik/pose        164 bytes
+eyeballs         0 bytes (0 eyeballs)
+flexes           0 bytes (0 flexes)
+textures        72 bytes
+keyvalues        0 bytes
+bone transforms        0 bytes
+bone flex driver       0 bytes
+Collision model volume 3289.79 in^3
+collision        0 bytes
+total         1720
+---------------------
+writing C:\Program Files (x86)\Steam\steamapps\common\SourceFilmmaker\game\usermod\models/tom.vvd:
+vertices    250464 bytes (5218 vertices)
+tangents     83488 bytes (5218 vertices)
+total       334016 bytes
+---------------------
+Generating optimized mesh "C:\Program Files (x86)\Steam\steamapps\common\SourceFilmmaker\game\usermod\models/tom.dx90.vtx":
+body parts:         8 bytes
+models:            20 bytes
+model LODs:        12 bytes
+meshes:             9 bytes
+strip groups:      33 bytes
+strips:            35 bytes
+verts:          46962 bytes
+indices:        26520 bytes
+bone changes:      16 bytes
+everything:     73639 bytes
+
+Completed "tom.qc"
+
+Compiling...
