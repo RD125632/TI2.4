@@ -4,7 +4,7 @@
 
 #include "GL/freeglut.h"
 #include "ObjModel.h"
-#include "Statemanager.h"
+#include "GlobalCollector.h"
 #include <vector>
 #include "Sound.h"
 
@@ -18,7 +18,6 @@
 	GLint windowWidth, windowHeight;
 	float zoom = 1;
 	
-	Statemanager* statemanager = NULL;
 	SoundEngine* S_Engine = NULL;
 
 
@@ -55,7 +54,7 @@
 		{
 			glutSetWindow(storyWindow);
 		}
-		statemanager->HologramScreens.at(statemanager->HologramState).rotateY += 0.5;
+		GlobalCollector::Instance()->holoScreen.rotateY += 0.5;
 		glutPostRedisplay();
 	}
 
@@ -78,11 +77,8 @@
 
 	void HologramPaintComponent(void)
 	{
-		// Set Window
-		statemanager->HologramScreens.at(statemanager->HologramState).Setup(windowWidth, windowHeight);
-
-		//Models
-		statemanager->HologramScreens.at(statemanager->HologramState).Display();
+		GlobalCollector::Instance()->holoScreen.Setup(windowWidth, windowHeight);
+		GlobalCollector::Instance()->holoScreen.Display();
 	}
 
 	void StoryInit(void)
@@ -101,9 +97,8 @@
 
 	void StoryPaintComponent(void)
 	{
-		statemanager->StoryScreens.at(statemanager->StoryState).Setup(windowWidth, windowHeight);
-		//Models
-		statemanager->StoryScreens.at(statemanager->StoryState).Display();
+		GlobalCollector::Instance()->storyScreen.Setup(windowWidth, windowHeight);
+		GlobalCollector::Instance()->storyScreen.Display();
 	}
 
 	void HologramReshape(int width, int heigth)
@@ -126,29 +121,29 @@
 			exit(0);
 			break;
 		case 'w':
-			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom + 1.5f;
-			statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom + 1.5f;
+			GlobalCollector::Instance()->holoScreen.zoom = GlobalCollector::Instance()->holoScreen.zoom + 1.5f;
+			GlobalCollector::Instance()->storyScreen.zoom = GlobalCollector::Instance()->storyScreen.zoom + 1.5f;
 			break;
 		case 's':
-			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom - 1.5f;
-			statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom - 1.5f;
+			GlobalCollector::Instance()->holoScreen.zoom = GlobalCollector::Instance()->holoScreen.zoom - 1.5f;
+			GlobalCollector::Instance()->storyScreen.zoom = GlobalCollector::Instance()->storyScreen.zoom - 1.5f;
 			break;
 		case 'q':
-			statemanager->HologramScreens.at(statemanager->HologramState).rotateX -= 0.5;
+			GlobalCollector::Instance()->holoScreen.rotateX -= 0.5;
 			break;
 		case 'a':
-			statemanager->HologramScreens.at(statemanager->HologramState).rotateX += 0.5;
+			GlobalCollector::Instance()->holoScreen.rotateX -= 0.5;
 			break;
 		case 't':
-			if (statemanager->HologramScreens.at(statemanager->HologramState).mode == GL_FILL)
+			if (GlobalCollector::Instance()->holoScreen.mode == GL_FILL)
 			{
-				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_LINE;
-				statemanager->StoryScreens.at(statemanager->StoryState).mode = GL_LINE;
+				GlobalCollector::Instance()->holoScreen.mode = GL_LINE;
+				GlobalCollector::Instance()->storyScreen.mode = GL_LINE;
 			}
 			else
 			{
-				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_FILL;
-				statemanager->StoryScreens.at(statemanager->StoryState).mode = GL_FILL;
+				GlobalCollector::Instance()->holoScreen.mode = GL_FILL;
+				GlobalCollector::Instance()->storyScreen.mode = GL_FILL;
 			}
 			break;
 		}		
@@ -160,18 +155,16 @@
 		switch(key)
 		{
 		case GLUT_KEY_LEFT:
-			statemanager->HologramScreens.at(statemanager->HologramState).PreviousItem();
-			statemanager->HologramScreens.at(statemanager->HologramState).debugMode = true;
+
 			break;
 		case GLUT_KEY_RIGHT:
-			statemanager->HologramScreens.at(statemanager->HologramState).NextItem();
-			statemanager->HologramScreens.at(statemanager->HologramState).debugMode = true;
+
 			break; 
 		case GLUT_KEY_F11:
 			glutFullScreenToggle();
 			break;
 		case GLUT_KEY_DOWN:
-			statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown = !statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown;
+			GlobalCollector::Instance()->holoScreen.isUpsideDown = !GlobalCollector::Instance()->holoScreen.isUpsideDown;
 			GLfloat lightposition[] = { 0,0,0,0 };
 			glGetLightfv(GL_LIGHT1, GL_POSITION, lightposition);
 			lightposition[1] = -lightposition[1];
@@ -218,7 +211,6 @@ int main(int argc, char *argv[])
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
 	StoryInit();
-	statemanager = new Statemanager(hologramWindow, storyWindow);
 
 	S_Engine = new SoundEngine();
 	RegisterAllSounds();

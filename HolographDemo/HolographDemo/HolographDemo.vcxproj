@@ -72,6 +72,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>LeapSDK\lib\x86;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <ExecutablePath>$(VC_ExecutablePath_x86);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(SystemRoot)\SysWow64;$(FxCopDir);$(PATH);LeapSDK\lib\x86;</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -79,6 +80,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>LeapSDK\lib\x86;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <ExecutablePath>$(VC_ExecutablePath_x86);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(SystemRoot)\SysWow64;$(FxCopDir);$(PATH);LeapSDK\lib\x86;</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -160,24 +162,22 @@
     <ClInclude Include="BubblePartical.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
-    <ClInclude Include="FileIO.h" />
     <ClInclude Include="HologramScreen.h" />
     <ClInclude Include="Ingredient.h" />
     <ClInclude Include="LeapHandler.h" />
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="Partical.h" />
     <ClInclude Include="ParticalEmitter.h" />
-    <ClInclude Include="Plot.h" />
-    <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeLoader.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="smokeParticle.h" />
     <ClInclude Include="SolidSphere.h" />
     <ClInclude Include="Sound.h" />
-    <ClInclude Include="Statemanager.h" />
+    <ClInclude Include="GlobalCollector.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="StoryScreen.h" />
+    <ClInclude Include="SuperObject.h" />
     <ClInclude Include="Symptom.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Wizard.h" />
@@ -196,15 +196,13 @@
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="Partical.cpp" />
     <ClCompile Include="ParticalEmitter.cpp" />
-    <ClCompile Include="Plot.cpp" />
-    <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="smokeParticle.cpp" />
     <ClCompile Include="SolidSphere.cpp" />
     <ClCompile Include="Sound.cpp" />
-    <ClCompile Include="Statemanager.cpp" />
+    <ClCompile Include="GlobalCollector.cpp" />
     <ClCompile Include="StoryScreen.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />

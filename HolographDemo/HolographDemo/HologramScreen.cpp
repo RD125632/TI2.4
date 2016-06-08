@@ -1,5 +1,6 @@
 #include "HologramScreen.h"
 #include <iostream>
+#include "GlobalCollector.h"
 
 HologramScreen::HologramScreen() : Screen()
 {
@@ -23,7 +24,12 @@ int HologramScreen::Display()
 	}
 	glRotatef(rotateX, 1, 0, 0);
 	glRotatef(rotateY, 0, 1, 0);
-	if (debugMode)
+	
+	Ingredient i = GlobalCollector::Instance()->ingredients.at(2);
+	i.model->draw();
+
+	
+	/*if (debugMode)
 	{
 		models[currentModel]->draw();
 	}
@@ -33,7 +39,8 @@ int HologramScreen::Display()
 		{
 			m->draw();
 		}
-	}
+	}*/
+
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();

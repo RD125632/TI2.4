@@ -5,17 +5,16 @@
 
 #include <string>
 #include <vector>
-#include "Symptom.h"
+#include "SuperObject.h"
 #include "ObjModel.h"
 
-class Ingredient
+class Ingredient : public SuperObject
 {
 public:
 	Ingredient();
-	Ingredient(std::string, int, ObjModel*);
+	Ingredient(int, std::string, int, ObjModel*);
 	std::string name;
 	int cures;
-	ObjModel* model;
 };
 
 

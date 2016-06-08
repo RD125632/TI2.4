@@ -1,10 +1,3 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
-#include <sstream>
-#include "Symptom.h"
-#include "Ingredient.h"
 #include "RecipeLoader.h"
 
 std::vector<Ingredient> RecipeLoader::loadIngredients()
@@ -17,7 +10,7 @@ std::vector<Ingredient> RecipeLoader::loadIngredients()
 	{
 		std::string::size_type sz;
 		std::vector<std::string> parts = RecipeLoader::split(line, ':');
-		Ingredient ing = Ingredient(parts.at(0), std::stoi(parts.at(1), &sz), new ObjModel("models/"+ parts.at(2) +"/object.obj"));
+		Ingredient ing = Ingredient(std::stoi(parts.at(0), &sz), parts.at(1), std::stoi(parts.at(2), &sz), new ObjModel("models/"+ parts.at(3) +"/" + parts.at(3) + ".obj"));
 		list.push_back(ing);
 	}
 	return list;

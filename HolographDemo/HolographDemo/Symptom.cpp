@@ -4,9 +4,9 @@ Symptom::Symptom()
 {
 }
 
-Symptom::Symptom(int ID, std::string newname, std::string desc)
+Symptom::Symptom(int id, std::string newname, std::string desc)
 {
-	id = ID;
+	ID = id;
 	name = newname;
 	description = desc;
 }

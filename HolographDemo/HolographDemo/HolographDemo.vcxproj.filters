@@ -36,9 +36,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Statemanager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,20 +45,11 @@
     <ClInclude Include="HologramScreen.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
-    <ClInclude Include="FileIO.h">
-      <Filter>Header Files\FileIO</Filter>
-    </ClInclude>
     <ClInclude Include="Ingredient.h">
       <Filter>Header Files\FileIO</Filter>
     </ClInclude>
     <ClInclude Include="ObjModel.h">
       <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Plot.h">
-      <Filter>Header Files\FileIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Recipe.h">
-      <Filter>Header Files\FileIO</Filter>
     </ClInclude>
     <ClInclude Include="RecipeLoader.h">
       <Filter>Header Files\FileIO</Filter>
@@ -117,18 +105,18 @@
     <ClInclude Include="LeapHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SuperObject.h">
+      <Filter>Header Files\FileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalCollector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Symptom.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
-    <ClCompile Include="Recipe.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
-    <ClCompile Include="Plot.cpp">
       <Filter>Source Files\FileIO</Filter>
     </ClCompile>
     <ClCompile Include="RecipeLoader.cpp">
@@ -144,9 +132,6 @@
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
     <ClCompile Include="StoryScreen.cpp">
-      <Filter>Source Files\Screens</Filter>
-    </ClCompile>
-    <ClCompile Include="Statemanager.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
     <ClCompile Include="Color.cpp">
@@ -182,9 +167,6 @@
     <ClCompile Include="SolidSphere.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="WorldObject.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="BillBordParticalEffects.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
@@ -196,6 +178,12 @@
     </ClCompile>
     <ClCompile Include="LeapHandler.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldObject.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalCollector.cpp">
+      <Filter>Source Files\Screens</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -9,13 +9,12 @@
 #include "Ingredient.h"
 #include "ObjModel.h"
 
-class Wizard
+class Wizard : SuperObject
 {
 public:
 	Wizard();
-	std::vector<Symptom> symptoms;
-	ObjModel* model;
-
+	Wizard(std::vector<int>);
+	std::vector<int> symptoms;
 };
 
 #endif

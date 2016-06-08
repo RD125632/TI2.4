@@ -5,13 +5,13 @@
 
 #include <string>
 #include <vector>
+#include "SuperObject.h"
 
-class Symptom
+class Symptom : public SuperObject
 {
 public:
 	Symptom();
 	Symptom(int, std::string, std::string);
-	int id;
 	std::string name;
 	std::string description;
 };
