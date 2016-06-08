@@ -23,17 +23,6 @@ int HologramScreen::Display()
 	}
 	glRotatef(rotateX, 1, 0, 0);
 	glRotatef(rotateY, 0, 1, 0);
-	/*if (debugMode)
-	{
-		models[currentModel]->draw();
-	}
-	else
-	{
-		for (auto m : models)
-		{
-			m->draw();
-		}
-	}*/
 	for (auto object : objects)
 	{
 		object->draw();
