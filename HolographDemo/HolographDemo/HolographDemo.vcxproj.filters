@@ -108,6 +108,9 @@
     <ClInclude Include="Shader.h">
       <Filter>shaders</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -181,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
