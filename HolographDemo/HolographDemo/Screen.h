@@ -1,5 +1,5 @@
 #pragma once
-
+#include "WorldObject.h"
 #ifndef SCREEN_H_
 #define SCREEN_H_
 
@@ -19,7 +19,7 @@ public:
 	float rotateX, rotateY;
 	GLenum mode = GL_FILL;
 
-	std::vector<ObjModel*> models;
+	std::vector<tmp12::WorldObject *> objects;
 };
 
 #endif

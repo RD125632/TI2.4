@@ -7,6 +7,9 @@
 #include "Statemanager.h"
 #include <vector>
 #include "Sound.h"
+#include "StoryScreen.h"
+#include "HologramScreen.h"
+#include "ObjectManager.h"
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */
@@ -17,8 +20,10 @@
 	GLint hologramWindow, storyWindow;
 	GLint windowWidth, windowHeight;
 	float zoom = 1;
-	
-	Statemanager* statemanager = NULL;
+	static ObjectManager *objectManager;
+	static StoryScreen storyScreen;
+	static HologramScreen hologramScreen;
+	//Statemanager* statemanager = NULL;
 	SoundEngine* S_Engine = NULL;
 
 
@@ -55,10 +60,19 @@
 		{
 			glutSetWindow(storyWindow);
 		}
-		statemanager->HologramScreens.at(statemanager->HologramState).rotateY += 0.5;
+		//statemanager->HologramScreens.at(statemanager->HologramState).rotateY += 0.5;
 		glutPostRedisplay();
 	}
+	void ObjectInit(void)
+	{
+		objectManager = new ObjectManager();
 
+		storyScreen.objects.push_back(objectManager->ketel);
+		for (auto obj : objectManager->effects)
+		{
+			storyScreen.objects.push_back(obj);
+		}
+	}
 	void HologramInit(void)
 	{
 		windowHeight = 1080;
@@ -78,32 +92,26 @@
 
 	void HologramPaintComponent(void)
 	{
-		// Set Window
-		statemanager->HologramScreens.at(statemanager->HologramState).Setup(windowWidth, windowHeight);
-
-		//Models
-		statemanager->HologramScreens.at(statemanager->HologramState).Display();
+		
 	}
 
 	void StoryInit(void)
 	{
 		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_LIGHTING);
-		glEnable(GL_LIGHT0);
+		/*glEnable(GL_LIGHTING);
+		glEnable(GL_LIGHT0);*/
 		glEnable(GL_TEXTURE_2D);
-		GLfloat LightAmbient[] = { 0.1f, 0.1f, 0.1f, 0.1f };
+		/*GLfloat LightAmbient[] = { 0.1f, 0.1f, 0.1f, 0.1f };
 		glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
 		GLfloat LightDiffuse[] = { 0.1f, 0.5f, 1.0f, 1.0f };
 		glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
 		GLfloat LightPosition[] = { -1, -1, 0, 0 };
-		glLightfv(GL_LIGHT0, GL_POSITION, LightPosition);
+		glLightfv(GL_LIGHT0, GL_POSITION, LightPosition);*/
 	}
 
 	void StoryPaintComponent(void)
 	{
-		statemanager->StoryScreens.at(statemanager->StoryState).Setup(windowWidth, windowHeight);
-		//Models
-		statemanager->StoryScreens.at(statemanager->StoryState).Display();
+		storyScreen.Display();
 	}
 
 	void HologramReshape(int width, int heigth)
@@ -126,21 +134,21 @@
 			exit(0);
 			break;
 		case 'w':
-			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom + 1.5f;
-			statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom + 1.5f;
+			//statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom + 1.5f;
+			//statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom + 1.5f;
 			break;
 		case 's':
-			statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom - 1.5f;
-			statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom - 1.5f;
+			//statemanager->HologramScreens.at(statemanager->HologramState).zoom = statemanager->HologramScreens.at(statemanager->HologramState).zoom - 1.5f;
+			//statemanager->StoryScreens.at(statemanager->StoryState).zoom = statemanager->StoryScreens.at(statemanager->StoryState).zoom - 1.5f;
 			break;
 		case 'q':
-			statemanager->HologramScreens.at(statemanager->HologramState).rotateX -= 0.5;
+			//statemanager->HologramScreens.at(statemanager->HologramState).rotateX -= 0.5;
 			break;
 		case 'a':
-			statemanager->HologramScreens.at(statemanager->HologramState).rotateX += 0.5;
+			//statemanager->HologramScreens.at(statemanager->HologramState).rotateX += 0.5;
 			break;
 		case 't':
-			if (statemanager->HologramScreens.at(statemanager->HologramState).mode == GL_FILL)
+			/*if (statemanager->HologramScreens.at(statemanager->HologramState).mode == GL_FILL)
 			{
 				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_LINE;
 				statemanager->StoryScreens.at(statemanager->StoryState).mode = GL_LINE;
@@ -149,7 +157,7 @@
 			{
 				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_FILL;
 				statemanager->StoryScreens.at(statemanager->StoryState).mode = GL_FILL;
-			}
+			}*/
 			break;
 		}		
 		glutPostRedisplay();
@@ -160,18 +168,18 @@
 		switch(key)
 		{
 		case GLUT_KEY_LEFT:
-			statemanager->HologramScreens.at(statemanager->HologramState).PreviousItem();
-			statemanager->HologramScreens.at(statemanager->HologramState).debugMode = true;
+			/*statemanager->HologramScreens.at(statemanager->HologramState).PreviousItem();
+			statemanager->HologramScreens.at(statemanager->HologramState).debugMode = true;*/
 			break;
 		case GLUT_KEY_RIGHT:
-			statemanager->HologramScreens.at(statemanager->HologramState).NextItem();
-			statemanager->HologramScreens.at(statemanager->HologramState).debugMode = true;
+			/*statemanager->HologramScreens.at(statemanager->HologramState).NextItem();
+			statemanager->HologramScreens.at(statemanager->HologramState).debugMode = true;*/
 			break; 
 		case GLUT_KEY_F11:
 			glutFullScreenToggle();
 			break;
 		case GLUT_KEY_DOWN:
-			statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown = !statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown;
+			//statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown = !statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown;
 			GLfloat lightposition[] = { 0,0,0,0 };
 			glGetLightfv(GL_LIGHT1, GL_POSITION, lightposition);
 			lightposition[1] = -lightposition[1];
@@ -218,8 +226,7 @@ int main(int argc, char *argv[])
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
 	StoryInit();
-	statemanager = new Statemanager(hologramWindow, storyWindow);
-
+	ObjectInit();
 	S_Engine = new SoundEngine();
 	RegisterAllSounds();
 

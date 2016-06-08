@@ -23,7 +23,7 @@ int HologramScreen::Display()
 	}
 	glRotatef(rotateX, 1, 0, 0);
 	glRotatef(rotateY, 0, 1, 0);
-	if (debugMode)
+	/*if (debugMode)
 	{
 		models[currentModel]->draw();
 	}
@@ -33,7 +33,7 @@ int HologramScreen::Display()
 		{
 			m->draw();
 		}
-	}
+	}*/
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -65,24 +65,24 @@ int HologramScreen::Setup(int windowWidth, int windowHeight)
 
 void HologramScreen::NextItem()
 {
-	if (currentModel < models.size() - 1)
+	/*if (currentModel < models.size() - 1)
 	{
 		currentModel++;
 	}
 	else
 	{
 		currentModel = 0;
-	}
+	}*/
 }
 
 void HologramScreen::PreviousItem()
 {
-	if (currentModel == 0)
+	/*if (currentModel == 0)
 	{
 		currentModel = models.size() - 1;
 	}
 	else
 	{
 		currentModel--;
-	}
+	}*/
 }

@@ -159,6 +159,8 @@
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="HologramScreen.h" />
     <ClInclude Include="Ingredient.h" />
+    <ClInclude Include="Ketel.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="Partical.h" />
     <ClInclude Include="ParticalEmitter.h" />
@@ -185,7 +187,9 @@
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="HologramScreen.cpp" />
     <ClCompile Include="Ingredient.cpp" />
+    <ClCompile Include="Ketel.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="Partical.cpp" />
     <ClCompile Include="ParticalEmitter.cpp" />

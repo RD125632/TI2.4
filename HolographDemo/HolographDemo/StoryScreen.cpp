@@ -14,7 +14,7 @@ int StoryScreen::Display()
 
 	glPushMatrix();
 	room.draw();
-	for (auto m : models)
+	for (auto m : objects)
 	{
 		m->draw();
 	}
