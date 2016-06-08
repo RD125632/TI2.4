@@ -27,6 +27,7 @@ std::vector<Symptom> RecipeLoader::loadSymptoms()
 {
 	std::ifstream input("Text/Symptom.txt");
 	std::vector<Symptom> list;
+	std::vector<Symptom> chosenOnes;
 
 	for (std::string line; getline(input, line); )
 	{
@@ -35,7 +36,26 @@ std::vector<Symptom> RecipeLoader::loadSymptoms()
 		Symptom ing = Symptom(std::stoi(parts.at(0), &sz), parts.at(1), parts.at(2));
 		list.push_back(ing);
 	}
-	return list;
+	
+	int v1, v2, v3;
+	v1 = rand() % list.size();
+	v2 = rand() % list.size();
+	v3 = rand() % list.size();
+
+	while (v2 == v1)
+	{
+		v2 = rand() % list.size();
+	}
+	while (v3 == v2 || v3 == v1)
+	{
+		v3 = rand() % list.size();
+	}
+
+	chosenOnes.push_back(list.at(v1));
+	chosenOnes.push_back(list.at(v2));
+	chosenOnes.push_back(list.at(v3));
+
+	return chosenOnes;
 }
 
 std::vector<std::string> &RecipeLoader::split(const std::string &s, char delim, std::vector<std::string> &elems) {
