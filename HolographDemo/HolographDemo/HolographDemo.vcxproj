@@ -167,8 +167,6 @@
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="Partical.h" />
     <ClInclude Include="ParticalEmitter.h" />
-    <ClInclude Include="Plot.h" />
-    <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeLoader.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Screen.h" />
@@ -196,8 +194,6 @@
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="Partical.cpp" />
     <ClCompile Include="ParticalEmitter.cpp" />
-    <ClCompile Include="Plot.cpp" />
-    <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Screen.cpp" />

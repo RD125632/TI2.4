@@ -57,12 +57,6 @@
     <ClInclude Include="ObjModel.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Plot.h">
-      <Filter>Header Files\FileIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Recipe.h">
-      <Filter>Header Files\FileIO</Filter>
-    </ClInclude>
     <ClInclude Include="RecipeLoader.h">
       <Filter>Header Files\FileIO</Filter>
     </ClInclude>
@@ -123,12 +117,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Symptom.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
-    <ClCompile Include="Recipe.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
-    <ClCompile Include="Plot.cpp">
       <Filter>Source Files\FileIO</Filter>
     </ClCompile>
     <ClCompile Include="RecipeLoader.cpp">
