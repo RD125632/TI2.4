@@ -1,7 +1,6 @@
 #include "Ingredient.h"
 
-Ingredient::Ingredient(std::string newname, int s)
+Ingredient::Ingredient(std::string newname)
 {
 	name = newname;
-	cures = s;
 }

@@ -71,14 +71,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>LeapSDK\lib\x86;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>LeapSDK/lib/x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -91,14 +89,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>freeglut/include;LeapSDK\lib\x86;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>freeglut/include;glew/include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>freeglut/lib;LeapSDK/lib/x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Leap.lib%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>freeglut/lib;glew/lib/release/Win32</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -125,15 +123,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>freeglut/include;LeapSDK/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>freeglut/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>freeglut/lib;LeapSDK/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Leap.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>freeglut/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -155,19 +152,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\BubblePartical.h" />
-    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\ParticalEmitter.h" />
-    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\smokeParticle.h" />
     <ClInclude Include="BillBordParticalEffects.h" />
+    <ClInclude Include="BubblePartical.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="FileIO.h" />
     <ClInclude Include="HologramScreen.h" />
+    <ClInclude Include="Ingredient.h" />
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="Partical.h" />
+    <ClInclude Include="ParticalEmitter.h" />
     <ClInclude Include="Plot.h" />
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="RecipeLoader.h" />
+    <ClInclude Include="Room.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="SolidSphere.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Statemanager.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="StoryScreen.h" />
@@ -176,25 +177,33 @@
     <ClInclude Include="WorldObject.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\BubblePartical.cpp" />
-    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\ParticalEmitter.cpp" />
-    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\smokeParticle.cpp" />
     <ClCompile Include="BillBordParticalEffects.cpp" />
+    <ClCompile Include="BubblePartical.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="HologramScreen.cpp" />
+    <ClCompile Include="Ingredient.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="Partical.cpp" />
+    <ClCompile Include="ParticalEmitter.cpp" />
     <ClCompile Include="Plot.cpp" />
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
+    <ClCompile Include="Room.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="SolidSphere.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Statemanager.cpp" />
     <ClCompile Include="StoryScreen.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="WorldObject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\lighting.fs" />
+    <None Include="shaders\lighting.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

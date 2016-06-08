@@ -1,8 +1,13 @@
 #pragma once
+
+#include "Ingredient.h"
+#include <vector>
+
 class Recipe
 {
 public:
-	Recipe();
-	~Recipe();
+	std::vector<Ingredient> ingredients;
+	std::string symptom;
+	std::string name;
+	int id;
 };
-

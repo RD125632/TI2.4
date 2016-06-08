@@ -1,7 +1,5 @@
 #include "Statemanager.h"
 #include "GL\glut.h"
-#include "Book.h"
-#include "Wizard.h"
 
 Statemanager::Statemanager(int hologramWindow, int storyWindow)
 {
@@ -26,9 +24,6 @@ Statemanager::Statemanager(int hologramWindow, int storyWindow)
 	//screen.models.push_back(new ObjModel("models/shroom/Magic Mushroom.obj"));
 	//screen.models.push_back(new ObjModel("models/office/Office.obj"));
 	HologramScreens.push_back(screen);
-
-	Book* book = new Book();
-	Wizard* kees = new Wizard();
 
 	glutSetWindow(storyWindow);
 	StoryScreen screen1 = StoryScreen();
