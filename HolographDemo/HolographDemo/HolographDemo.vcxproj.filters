@@ -114,6 +114,9 @@
     <ClInclude Include="Book.h">
       <Filter>Header Files\FileIO</Filter>
     </ClInclude>
+    <ClInclude Include="LeapHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -190,6 +193,9 @@
     </ClCompile>
     <ClCompile Include="Wizard.cpp">
       <Filter>Source Files\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="LeapHandler.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
