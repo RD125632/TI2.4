@@ -60,19 +60,19 @@
 		{
 			glutSetWindow(storyWindow);
 		}
-		//statemanager->HologramScreens.at(statemanager->HologramState).rotateY += 0.5;
+		hologramScreen.rotateY += 0.5;
 		glutPostRedisplay();
 	}
 	void ObjectInit(void)
 	{
 		objectManager = new ObjectManager();
 
-		storyScreen.objects.push_back(objectManager->ketel);
+		//storyScreen.objects.push_back(objectManager->ketel);
 		for (auto obj : objectManager->effects)
 		{
 			storyScreen.objects.push_back(obj);
 		}
-		hologramScreen.objects.push_back(objectManager->ketel);
+		//hologramScreen.objects.push_back(objectManager->ketel);
 		for (auto obj : objectManager->effects)
 		{
 			hologramScreen.objects.push_back(obj);
@@ -186,7 +186,7 @@
 			glutFullScreenToggle();
 			break;
 		case GLUT_KEY_DOWN:
-			//statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown = !statemanager->HologramScreens.at(statemanager->HologramState).isUpsideDown;
+			hologramScreen.isUpsideDown = !hologramScreen.isUpsideDown;
 			GLfloat lightposition[] = { 0,0,0,0 };
 			glGetLightfv(GL_LIGHT1, GL_POSITION, lightposition);
 			lightposition[1] = -lightposition[1];

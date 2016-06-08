@@ -4,8 +4,8 @@
 
 ObjectManager::ObjectManager()
 {
-	this->ketel = new Ketel(0, 0, 0);
-	BillBordParticalEffects *temp = new BillBordParticalEffects(0, 0, 0, 1, "recousces/fireAnimate.png", 4);
+	//this->ketel = new Ketel(0, 0, 0);
+	BillBordParticalEffects *temp = new BillBordParticalEffects(0, 0, 0, 10,"resources/fireAnimate.png", 4);
 	this->effects.push_back(temp);
 }
 
