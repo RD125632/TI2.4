@@ -1,10 +1,10 @@
 #pragma once
 #include "WorldObject.h"
 
-class BillBordParticalEffects : public tmp12::WorldObject
+class BillBordParticalEffects : public tmp12::WorldObject  
 {
 public:
-	BillBordParticalEffects(int X, int Y, int Z, unsigned int Size, char* TexturePath, unsigned int TextureGridWidthAndH);
+	BillBordParticalEffects(int X,int Y, int Z, unsigned int Size, char* TexturePath,unsigned int TextureGridWidthAndH);
 	~BillBordParticalEffects();
 	void draw();
 	int size;

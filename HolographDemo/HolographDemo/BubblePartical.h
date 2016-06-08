@@ -7,6 +7,7 @@ public:
 	BubblePartical(float X, float Y, float Z);
 	~BubblePartical();
 	void draw();
+	static int getID();
 	float alpha;
 	float red;
 	float green;

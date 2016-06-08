@@ -14,25 +14,25 @@ BillBordParticalEffects::BillBordParticalEffects(int X, int Y, int Z, unsigned i
 	z = Z;
 	size = Size;
 	textureGridWidthAndH = TextureGridWidthAndH;
-
-	int width, height, bpp;
-	glGenTextures(1, &textureID);
-	unsigned char* texture = stbi_load(TexturePath, &width, &height, &bpp, 4);
-	glBindTexture(GL_TEXTURE_2D, textureID);
-	glTexImage2D(GL_TEXTURE_2D,
-		0,		//level
-		GL_RGBA,		//internal format
-		width,		//width
-		height,		//height
-		0,		//border
-		GL_RGBA,		//data format
-		GL_UNSIGNED_BYTE,	//data type
-		texture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //if the texture is smaller, than the image, we get the avarege of the pixels next to it
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //same if the image bigger
-	GetSystemTime(&oldTime);
-	timeInterval = 500 / (textureGridWidthAndH*textureGridWidthAndH);
-
+	
+		int width, height, bpp;
+		glGenTextures(1, &textureID);
+		unsigned char* texture = stbi_load(TexturePath, &width, &height, &bpp, 4);
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		glTexImage2D(GL_TEXTURE_2D,
+			0,		//level
+			GL_RGBA,		//internal format
+			width,		//width
+			height,		//height
+			0,		//border
+			GL_RGBA,		//data format
+			GL_UNSIGNED_BYTE,	//data type
+			texture);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //if the texture is smaller, than the image, we get the avarege of the pixels next to it
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //same if the image bigger
+		GetSystemTime(&oldTime);
+		timeInterval = 500 / (textureGridWidthAndH*textureGridWidthAndH);
+	
 }
 
 BillBordParticalEffects::~BillBordParticalEffects()
@@ -43,15 +43,15 @@ void BillBordParticalEffects::draw()
 {
 	GetSystemTime(&newTime);
 	float scale = 1.0f / textureGridWidthAndH;
-	float aX = (frameCount%textureGridWidthAndH) * scale;
-	float aY = frameCount / textureGridWidthAndH * scale;
+	float aX =  (frameCount%textureGridWidthAndH) * scale;
+	float aY =  frameCount/textureGridWidthAndH * scale;
 	float bX = aX + scale;
 	float bY = aY + scale;
 	glDisable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+	
 	glColor4f(1, 1, 1, 1);
 
 	glPushMatrix();
