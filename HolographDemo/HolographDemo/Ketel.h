@@ -1,3 +1,8 @@
+
+/*
+Obsolete!!
+*/
+
 #pragma once
 #include "WorldObject.h"
 #include "ObjModel.h"

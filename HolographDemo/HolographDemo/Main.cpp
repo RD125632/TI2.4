@@ -63,21 +63,13 @@
 		//statemanager->HologramScreens.at(statemanager->HologramState).rotateY += 0.5;
 		glutPostRedisplay();
 	}
+
 	void ObjectInit(void)
 	{
 		objectManager = new ObjectManager();
-
-		storyScreen.objects.push_back(objectManager->ketel);
-		for (auto obj : objectManager->effects)
-		{
-			storyScreen.objects.push_back(obj);
-		}
-		hologramScreen.objects.push_back(objectManager->ketel);
-		for (auto obj : objectManager->effects)
-		{
-			hologramScreen.objects.push_back(obj);
-		}
+		hologramScreen.objects.push_back(objectManager->ketel); //moet verbeterd worden
 	}
+
 	void HologramInit(void)
 	{
 		windowHeight = 1080;

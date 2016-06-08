@@ -160,6 +160,8 @@
     <ClInclude Include="HologramScreen.h" />
     <ClInclude Include="Ingredient.h" />
     <ClInclude Include="Ketel.h" />
+    <ClInclude Include="NewKetel.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="Partical.h" />
@@ -189,6 +191,8 @@
     <ClCompile Include="Ingredient.cpp" />
     <ClCompile Include="Ketel.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="newKetel.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="Partical.cpp" />

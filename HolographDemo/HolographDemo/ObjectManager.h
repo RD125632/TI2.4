@@ -1,5 +1,5 @@
 #pragma once
-#include "Ketel.h"
+#include "NewKetel.h"
 #include "BillBordParticalEffects.h"
 #include "ParticalEmitter.h"
 
@@ -8,10 +8,10 @@ class ObjectManager
 public:
 	ObjectManager();
 	~ObjectManager();
-	Ketel *ketel;
+	NewKetel* ketel;
 	// plank,tovenaar,boek
-	std::vector<tmp12::WorldObject*> ingedienten;
-	std::vector<tmp12::WorldObject*> effects;
+
+	std::vector<Object *> objects;
 	void DrawAll();
 
 };

@@ -1,3 +1,8 @@
+
+/*
+Obsolete!!
+*/
+
 #include "WorldObject.h"
 
 using namespace tmp12;
