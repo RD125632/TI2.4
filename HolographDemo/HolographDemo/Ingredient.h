@@ -11,10 +11,11 @@
 class Ingredient
 {
 public:
-	Ingredient(std::string, int);
+	Ingredient();
+	Ingredient(std::string, int, ObjModel*);
 	std::string name;
 	int cures;
-	ObjModel* models;
+	ObjModel* model;
 };
 
 
