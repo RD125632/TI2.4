@@ -6,6 +6,7 @@
 
 #include <windows.h>
 #include <gl/GL.h>
+#include <GL\freeglut.h>
 #include "Texture.h"
 
 using namespace std;

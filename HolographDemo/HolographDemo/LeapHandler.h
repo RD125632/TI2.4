@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string.h>
-#include "Leap.h"
+#include <Leap.h>
 
 using namespace Leap;
 
