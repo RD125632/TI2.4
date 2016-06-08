@@ -22,24 +22,15 @@ int HologramScreen::Display()
 	{
 		glScalef(-1, -1, 1);
 	}
-	glRotatef(rotateX, 1, 0, 0);
-	glRotatef(rotateY, 0, 1, 0);
-	
-	Ingredient i = GlobalCollector::Instance()->ingredients.at(2);
-	i.model->draw();
 
-	
-	/*if (debugMode)
-	{
-		models[currentModel]->draw();
-	}
-	else
-	{
-		for (auto m : models)
-		{
-			m->draw();
-		}
-	}*/
+	/* SET POSITION AND ROTATION */
+	//GlobalCollector::Instance()->ingredients.at(2).rotZ = 50;
+	//GlobalCollector::Instance()->ingredients.at(2).posX = 2;
+	//GlobalCollector::Instance()->ingredients.at(0).draw();
+
+	/* ANOTHER OBJECT */
+	GlobalCollector::Instance()->book.draw();
+
 
 	glPopMatrix();
 	glFlush();
