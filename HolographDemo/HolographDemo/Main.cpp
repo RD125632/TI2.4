@@ -155,16 +155,16 @@
 			hologramScreen.rotateX += 0.5f;
 			break;
 		case 't':
-			/*if (statemanager->HologramScreens.at(statemanager->HologramState).mode == GL_FILL)
+			if (hologramScreen.mode == GL_FILL)
 			{
-				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_LINE;
-				statemanager->StoryScreens.at(statemanager->StoryState).mode = GL_LINE;
+				hologramScreen.mode = GL_LINE;
+				storyScreen.mode = GL_LINE;
 			}
 			else
 			{
-				statemanager->HologramScreens.at(statemanager->HologramState).mode = GL_FILL;
-				statemanager->StoryScreens.at(statemanager->StoryState).mode = GL_FILL;
-			}*/
+				hologramScreen.mode = GL_FILL;
+				storyScreen.mode = GL_FILL;
+			}
 			break;
 		}		
 		glutPostRedisplay();
