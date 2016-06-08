@@ -7,7 +7,7 @@ Statemanager::Statemanager(int hologramWindow, int storyWindow)
 	StoryState = 0;
 	glutSetWindow(hologramWindow);
 	HologramScreen screen = HologramScreen();
-	/*
+	
 	screen.models.push_back(new ObjModel("models/bone/bone.obj"));
 	screen.models.push_back(new ObjModel("models/slimeball/slimeball.obj"));
 	screen.models.push_back(new ObjModel("models/ketel/ketel.obj"));
@@ -21,7 +21,7 @@ Statemanager::Statemanager(int hologramWindow, int storyWindow)
 	screen.models.push_back(new ObjModel("models/kies/kies.obj"));
 	screen.models.push_back(new ObjModel("models/pearl/pearl.obj"));
 	screen.models.push_back(new ObjModel("models/plank/plank.obj"));
-	screen.models.push_back(new ObjModel("models/polspoon/polspoon.obj"));*/
+	screen.models.push_back(new ObjModel("models/polspoon/polspoon.obj"));
 	//screen.models.push_back(new ObjModel("models/shroom/Magic Mushroom.obj"));
 	//screen.models.push_back(new ObjModel("models/office/Office.obj"));
 	HologramScreens.push_back(screen);

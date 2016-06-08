@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BillBordParticalEffects.h" />
+    <ClInclude Include="Book.h" />
     <ClInclude Include="BubblePartical.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
@@ -175,10 +176,12 @@
     <ClInclude Include="StoryScreen.h" />
     <ClInclude Include="Symptom.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Wizard.h" />
     <ClInclude Include="WorldObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BillBordParticalEffects.cpp" />
+    <ClCompile Include="Book.cpp" />
     <ClCompile Include="BubblePartical.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Color.cpp" />
@@ -200,6 +203,7 @@
     <ClCompile Include="StoryScreen.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Wizard.cpp" />
     <ClCompile Include="WorldObject.cpp" />
   </ItemGroup>
   <ItemGroup>
