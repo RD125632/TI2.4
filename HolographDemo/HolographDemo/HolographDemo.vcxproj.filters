@@ -87,25 +87,25 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\BillBordParticalEffects.h">
+    <ClInclude Include="SolidSphere.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\BubblePartical.h">
+    <ClInclude Include="BillBordParticalEffects.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\ParticalEmitter.h">
+    <ClInclude Include="BubblePartical.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\Partical.h">
+    <ClInclude Include="Partical.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\SolidSphere.h">
+    <ClInclude Include="ParticalEmitter.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\smokeParticle.h">
+    <ClInclude Include="smokeParticle.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\3D_Graphics\week 3\openGL_Test\WorldObject.h">
+    <ClInclude Include="WorldObject.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
@@ -161,25 +161,25 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\BillBordParticalEffects.cpp">
+    <ClCompile Include="BubblePartical.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\BubblePartical.cpp">
+    <ClCompile Include="Partical.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\Partical.cpp">
+    <ClCompile Include="ParticalEmitter.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\ParticalEmitter.cpp">
+    <ClCompile Include="smokeParticle.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\smokeParticle.cpp">
+    <ClCompile Include="SolidSphere.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\SolidSphere.cpp">
+    <ClCompile Include="WorldObject.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\3D_Graphics\week 3\openGL_Test\WorldObject.cpp">
+    <ClCompile Include="BillBordParticalEffects.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
