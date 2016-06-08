@@ -17,7 +17,7 @@ std::vector<Ingredient> RecipeLoader::loadIngredients()
 	{
 		std::string::size_type sz;
 		std::vector<std::string> parts = RecipeLoader::split(line, ':');
-		Ingredient ing = Ingredient(parts.at(0), std::stoi(parts.at(1), &sz));
+		Ingredient ing = Ingredient(parts.at(0), std::stoi(parts.at(1), &sz), new ObjModel("models/"+ parts.at(2) +"/object.obj"));
 		list.push_back(ing);
 	}
 	return list;
