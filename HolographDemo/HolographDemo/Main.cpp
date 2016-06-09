@@ -15,7 +15,8 @@
 	bool activeWindow = true;
 
 	GLint hologramWindow, storyWindow;
-	GLint windowWidth, windowHeight;
+	GLint hWindowWidth, hWindowHeight;
+	GLint sWindowWidth, sWindowHeight;
 	float zoom = 1;
 	
 	SoundEngine* S_Engine = NULL;
@@ -32,6 +33,9 @@
 
 	void StoryInit(void);
 	void StoryPaintComponent(void);
+
+	void HologramReshape(int width, int heigth);
+	void StoryReshape(int width, int heigth);
 
 	void KeyEvent(unsigned char, int, int);
 	void SpecialKeyEvent(int, int, int);
@@ -60,8 +64,8 @@
 
 	void HologramInit(void)
 	{
-		windowHeight = 1080;
-		windowWidth = 1920;
+		hWindowHeight = 1080;
+		hWindowWidth = 1920;
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_LIGHTING);
 		glEnable(GL_LIGHT1);
@@ -77,7 +81,7 @@
 
 	void HologramPaintComponent(void)
 	{
-		GlobalCollector::Instance()->holoScreen.Setup(windowWidth, windowHeight);
+		GlobalCollector::Instance()->holoScreen.Setup(hWindowWidth, hWindowHeight);
 		GlobalCollector::Instance()->holoScreen.Display();
 	}
 
@@ -97,14 +101,22 @@
 
 	void StoryPaintComponent(void)
 	{
-		GlobalCollector::Instance()->storyScreen.Setup(windowWidth, windowHeight);
+		GlobalCollector::Instance()->storyScreen.Setup(sWindowWidth, sWindowHeight);
 		GlobalCollector::Instance()->storyScreen.Display();
 	}
 
 	void HologramReshape(int width, int heigth)
 	{
-		windowWidth = width;
-		windowHeight = heigth;
+		hWindowWidth = width;
+		hWindowHeight = heigth;
+		glutPostRedisplay();
+	}
+
+	void StoryReshape(int width, int heigth)
+	{
+		sWindowWidth = width;
+		sWindowHeight = heigth;
+		glutPostRedisplay();
 	}
 
 
@@ -195,7 +207,7 @@ int main(int argc, char *argv[])
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInit(&argc, argv);
 
-	glutInitWindowSize(1920, 1080);
+	glutInitWindowSize(1000, 600);
 	hologramWindow = glutCreateWindow("Hologram");
 	glutDisplayFunc(HologramPaintComponent);
 	glutIdleFunc(Idle);
@@ -204,12 +216,13 @@ int main(int argc, char *argv[])
 	glutReshapeFunc(HologramReshape);
 	HologramInit();
 
-	glutInitWindowSize(1920, 1080);
+	glutInitWindowSize(1000, 600);
 	storyWindow = glutCreateWindow("Story");
 	glutDisplayFunc(StoryPaintComponent);
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyEvent);
 	glutSpecialFunc(SpecialKeyEvent);
+	glutReshapeFunc(StoryReshape);
 	StoryInit();
 
 	S_Engine = new SoundEngine();
