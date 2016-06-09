@@ -31,7 +31,7 @@ int HologramScreen::Display()
 	glRotatef(rotateY, 0, 1, 0);
 	/* ANOTHER OBJECT */
 	GlobalCollector::Instance()->book.draw();
-	GlobalCollector::Instance()->ketel.draw();
+	//GlobalCollector::Instance()->ketel.draw();
 
 	glPopMatrix();
 	glFlush();
