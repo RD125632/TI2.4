@@ -121,15 +121,15 @@
 			exit(0);
 			break;
 		case 'w':
-			GlobalCollector::Instance()->holoScreen.zoom = GlobalCollector::Instance()->holoScreen.zoom + 1.5f;
-			GlobalCollector::Instance()->storyScreen.zoom = GlobalCollector::Instance()->storyScreen.zoom + 1.5f;
+			GlobalCollector::Instance()->holoScreen.zoom += 1.5f;
+			GlobalCollector::Instance()->storyScreen.zoom += 1.5f;
 			break;
 		case 's':
-			GlobalCollector::Instance()->holoScreen.zoom = GlobalCollector::Instance()->holoScreen.zoom - 1.5f;
-			GlobalCollector::Instance()->storyScreen.zoom = GlobalCollector::Instance()->storyScreen.zoom - 1.5f;
+			GlobalCollector::Instance()->holoScreen.zoom -= 1.5f;
+			GlobalCollector::Instance()->storyScreen.zoom -= 1.5f;
 			break;
 		case 'q':
-			GlobalCollector::Instance()->holoScreen.rotateX -= 0.5;
+			GlobalCollector::Instance()->holoScreen.rotateX += 0.5;
 			break;
 		case 'a':
 			GlobalCollector::Instance()->holoScreen.rotateX -= 0.5;

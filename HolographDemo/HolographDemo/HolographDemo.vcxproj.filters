@@ -34,6 +34,12 @@
     <Filter Include="Header Files\FileIO">
       <UniqueIdentifier>{7d30502e-0ba5-43d6-a03a-bdde81851d8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{743085c5-1a2e-47c6-8694-bacc9d0d6677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Objects">
+      <UniqueIdentifier>{f70d6634-1c54-4d99-9c1b-1c796c1e54c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sound.h">
@@ -44,9 +50,6 @@
     </ClInclude>
     <ClInclude Include="HologramScreen.h">
       <Filter>Header Files\Screens</Filter>
-    </ClInclude>
-    <ClInclude Include="Ingredient.h">
-      <Filter>Header Files\FileIO</Filter>
     </ClInclude>
     <ClInclude Include="ObjModel.h">
       <Filter>Header Files\Graphics</Filter>
@@ -96,20 +99,32 @@
     <ClInclude Include="WorldObject.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Wizard.h">
-      <Filter>Header Files\FileIO</Filter>
-    </ClInclude>
-    <ClInclude Include="Book.h">
-      <Filter>Header Files\FileIO</Filter>
-    </ClInclude>
     <ClInclude Include="LeapHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SuperObject.h">
-      <Filter>Header Files\FileIO</Filter>
-    </ClInclude>
     <ClInclude Include="GlobalCollector.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SuperObject.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Wizard.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Ingredient.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Pollspoon.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="KetelObject.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlankObject.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -120,9 +135,6 @@
       <Filter>Source Files\FileIO</Filter>
     </ClCompile>
     <ClCompile Include="RecipeLoader.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
-    <ClCompile Include="Ingredient.cpp">
       <Filter>Source Files\FileIO</Filter>
     </ClCompile>
     <ClCompile Include="HologramScreen.cpp">
@@ -170,12 +182,6 @@
     <ClCompile Include="BillBordParticalEffects.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Book.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
-    <ClCompile Include="Wizard.cpp">
-      <Filter>Source Files\FileIO</Filter>
-    </ClCompile>
     <ClCompile Include="LeapHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -184,6 +190,24 @@
     </ClCompile>
     <ClCompile Include="GlobalCollector.cpp">
       <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Book.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Wizard.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Ingredient.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Pollspoon.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="KetelObject.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlankObject.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

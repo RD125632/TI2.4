@@ -27,10 +27,11 @@ int HologramScreen::Display()
 	//GlobalCollector::Instance()->ingredients.at(2).rotZ = 50;
 	//GlobalCollector::Instance()->ingredients.at(2).posX = 2;
 	//GlobalCollector::Instance()->ingredients.at(0).draw();
-
+	glRotatef(rotateX, 1, 0, 0);
+	glRotatef(rotateY, 0, 1, 0);
 	/* ANOTHER OBJECT */
 	GlobalCollector::Instance()->book.draw();
-
+	GlobalCollector::Instance()->ketel.draw();
 
 	glPopMatrix();
 	glFlush();

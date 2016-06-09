@@ -1,0 +1,12 @@
+# Blender MTL File: 'ketel blendfile.blend'
+# Material Count: 1
+
+newmtl Material_ketel
+Ns 96.078431
+Ka 0.200000 0.200000 0.200000
+Kd 0.104109 0.110745 0.110745
+Ks 0.161998 0.018084 0.001502
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2

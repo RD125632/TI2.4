@@ -10,6 +10,9 @@
 #include "Wizard.h"
 #include "Ingredient.h"
 #include "RecipeLoader.h"
+#include "KetelObject.h"
+#include "PlankObject.h"
+#include "Pollspoon.h"
 #include <vector>
 
 class GlobalCollector
@@ -20,6 +23,9 @@ public:
 	StoryScreen storyScreen;
 	Book book;
 	Wizard wizard;
+	KetelObject ketel;
+	PlankObject plank;
+	Pollspoon pollspoon;
 	std::vector<Ingredient> ingredients;
 	std::vector<Symptom> symptoms;
 
