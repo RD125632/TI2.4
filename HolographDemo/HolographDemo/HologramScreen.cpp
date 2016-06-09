@@ -9,10 +9,8 @@ HologramScreen::HologramScreen() : Screen()
 
 int HologramScreen::Display()
 {
-
 	//Models
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
-
 	glPushMatrix();
 	if (!isUpsideDown)
 	{
@@ -30,7 +28,7 @@ int HologramScreen::Display()
 	glRotatef(rotateX, 1, 0, 0);
 	glRotatef(rotateY, 0, 1, 0);
 	/* ANOTHER OBJECT */
-	GlobalCollector::Instance()->book.draw();
+	GlobalCollector::Instance()->ingredients.at(2).draw();
 	//GlobalCollector::Instance()->ketel.draw();
 
 	glPopMatrix();

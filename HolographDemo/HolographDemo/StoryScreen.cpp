@@ -11,11 +11,17 @@ int StoryScreen::Display()
 {
 	//Models
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
-
 	glPushMatrix();
+	if (!isUpsideDown)
+	{
+		glScalef(-1, 1, 1);
+	}
+	else
+	{
+		glScalef(-1, -1, 1);
+	}
 	
-	//GlobalCollector::Instance()->room->draw();
-	GlobalCollector::Instance()->book.draw();
+	GlobalCollector::Instance()->room->draw();
 	
 	glPopMatrix();
 	glFlush();

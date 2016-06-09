@@ -13,7 +13,7 @@
 #include "KetelObject.h"
 #include "PlankObject.h"
 #include "Pollspoon.h"
-#include "Wall.h"
+#include "Room.h"
 #include <vector>
 
 class GlobalCollector

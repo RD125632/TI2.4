@@ -8,11 +8,15 @@
 class Room
 {
 public:
-	Room(float size);
+	Room(GLfloat, GLfloat, GLfloat);
 	GLuint Room::loadTexture(const char *);
 	void draw();
-	float size;
+	GLfloat width;
+	GLfloat height;
+	GLfloat depth;
 private:
-	GLuint texture;
+	GLuint floorTexture;
+	GLuint sideWallTexture;
+	GLuint frontWallTexture;
 };
 

@@ -207,6 +207,14 @@ int main(int argc, char *argv[])
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
+	glutInitWindowSize(1000, 600);
+	storyWindow = glutCreateWindow("Story");
+	glutDisplayFunc(StoryPaintComponent);
+	glutIdleFunc(Idle);
+	glutKeyboardFunc(KeyEvent);
+	glutSpecialFunc(SpecialKeyEvent);
+	glutReshapeFunc(StoryReshape);
+	StoryInit();
 
 	glutInitWindowSize(1000, 600);
 	hologramWindow = glutCreateWindow("Hologram");
@@ -217,14 +225,10 @@ int main(int argc, char *argv[])
 	glutReshapeFunc(HologramReshape);
 	HologramInit();
 
-	glutInitWindowSize(1000, 600);
-	storyWindow = glutCreateWindow("Story");
-	glutDisplayFunc(StoryPaintComponent);
-	glutIdleFunc(Idle);
-	glutKeyboardFunc(KeyEvent);
-	glutSpecialFunc(SpecialKeyEvent);
-	glutReshapeFunc(StoryReshape);
-	StoryInit();
+
+
+
+
 
 	S_Engine = new SoundEngine();
 	RegisterAllSounds();
