@@ -210,6 +210,7 @@ int main(int argc, char *argv[])
 
 	glutInitWindowSize(1000, 600);
 	hologramWindow = glutCreateWindow("Hologram");
+	HGLRC hRCA = wglGetCurrentContext();
 	glutDisplayFunc(HologramPaintComponent);
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyEvent);
@@ -219,6 +220,8 @@ int main(int argc, char *argv[])
 
 	glutInitWindowSize(1000, 600);
 	storyWindow = glutCreateWindow("Story");
+	HGLRC hRCB = wglGetCurrentContext();
+	wglShareLists(hRCA, hRCB);
 	glutDisplayFunc(StoryPaintComponent);
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyEvent);
