@@ -208,16 +208,8 @@ int main(int argc, char *argv[])
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 
 	glutInitWindowSize(1000, 600);
-	storyWindow = glutCreateWindow("Story");
-	glutDisplayFunc(StoryPaintComponent);
-	glutIdleFunc(Idle);
-	glutKeyboardFunc(KeyEvent);
-	glutSpecialFunc(SpecialKeyEvent);
-	glutReshapeFunc(StoryReshape);
-	StoryInit();
-
-	glutInitWindowSize(1000, 600);
 	hologramWindow = glutCreateWindow("Hologram");
+	HGLRC hRCA = wglGetCurrentContext();
 	glutDisplayFunc(HologramPaintComponent);
 	glutIdleFunc(Idle);
 	glutKeyboardFunc(KeyEvent);
@@ -225,6 +217,16 @@ int main(int argc, char *argv[])
 	glutReshapeFunc(HologramReshape);
 	HologramInit();
 
+	glutInitWindowSize(1000, 600);
+	storyWindow = glutCreateWindow("Story");
+	HGLRC hRCB = wglGetCurrentContext();
+	glutDisplayFunc(StoryPaintComponent);
+	glutIdleFunc(Idle);
+	glutKeyboardFunc(KeyEvent);
+	glutSpecialFunc(SpecialKeyEvent);
+	glutReshapeFunc(StoryReshape);
+	StoryInit();
+	wglShareLists(hRCA, hRCB);
 
 
 
