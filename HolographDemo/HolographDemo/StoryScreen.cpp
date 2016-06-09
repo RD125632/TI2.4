@@ -11,9 +11,9 @@ int StoryScreen::Display()
 
 	//Models
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
-
+	room->draw();
 	glPushMatrix();
-	room.draw();
+	
 	for (auto m : models)
 	{
 		m->draw();

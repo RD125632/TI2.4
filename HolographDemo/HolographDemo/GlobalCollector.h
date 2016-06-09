@@ -19,6 +19,7 @@ class GlobalCollector
 {
 public:
 	static GlobalCollector* Instance();
+	Room *room = new Room(100);
 	HologramScreen holoScreen;
 	StoryScreen storyScreen;
 	Book book;

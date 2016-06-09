@@ -97,6 +97,7 @@
 		glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
 		GLfloat LightPosition[] = { -1, -1, 0, 0 };
 		glLightfv(GL_LIGHT0, GL_POSITION, LightPosition);
+
 	}
 
 	void StoryPaintComponent(void)
