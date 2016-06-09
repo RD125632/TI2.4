@@ -1,13 +1,16 @@
-#include "Room.h"
+#include "Wall.h"
 
-using namespace std;
+Wall::Wall(void)
+{
 
-Room::Room(float size)
+}
+
+Wall::Wall(GLint i)
 {
 	texture = loadTexture("models/wall.bmp");
 }
 
-GLuint Room::loadTexture(const char * imagepath)
+GLuint Wall::loadTexture(const char * imagepath)
 {
 	cout << "->Loading Texture..." << endl;
 	unsigned char header[54];	// Each BMP file begins by a 54-bytes header
@@ -53,86 +56,24 @@ GLuint Room::loadTexture(const char * imagepath)
 	return textureID;
 }
 
-void Room::draw()
+void Wall::draw(void)
 {
-	//glColor4f(1, 1, 1, 0);
-	//glDisable(GL_LIGHTING); //turn off lighting, when making the skybox
-	//glDisable(GL_DEPTH_TEST);       //turn off depth texting
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
-	glBegin(GL_QUADS);      //and draw a face
-	glColor4f(1, 1, 1, 1);
-	//back face
-	glTexCoord2f(0.0f, 0.0f);      //use the correct texture coordinate
-	glVertex3f(size / 2, size / 2, size / 2);       //and a vertex
-	glTexCoord2f(1.0f, 0.0f);      //and repeat it...
-	glVertex3f(-size / 2, size / 2, size / 2);
-	glTexCoord2f(1.0f, 1.0f);
-	glVertex3f(-size / 2, -size / 2, size / 2);
-	glTexCoord2f(0.0f, 1.0f);
-	glVertex3f(size / 2, -size / 2, size / 2);
-	glEnd();
-	glDisable(GL_TEXTURE_2D);
-	/*
 	glBegin(GL_QUADS);
-	//left face
-	glTexCoord2f(0, 0);
-	glVertex3f(-size / 2, size / 2, size / 2);
-	glTexCoord2f(1, 0);
-	glVertex3f(-size / 2, size / 2, -size / 2);
-	glTexCoord2f(1, 1);
-	glVertex3f(-size / 2, -size / 2, -size / 2);
-	glTexCoord2f(0, 1);
-	glVertex3f(-size / 2, -size / 2, size / 2);
-	glEnd();
-	
-	glBegin(GL_QUADS);
-	//front face
-	glTexCoord2f(1, 0);
-	glVertex3f(size / 2, size / 2, -size / 2);
-	glTexCoord2f(0, 0);
-	glVertex3f(-size / 2, size / 2, -size / 2);
-	glTexCoord2f(0, 1);
-	glVertex3f(-size / 2, -size / 2, -size / 2);
-	glTexCoord2f(1, 1);
-	glVertex3f(size / 2, -size / 2, -size / 2);
-	glEnd();
-	
-	glBegin(GL_QUADS);
-	//right face
-	glTexCoord2f(0, 0);
-	glVertex3f(size / 2, size / 2, -size / 2);
-	glTexCoord2f(1, 0);
-	glVertex3f(size / 2, size / 2, size / 2);
-	glTexCoord2f(1, 1);
-	glVertex3f(size / 2, -size / 2, size / 2);
-	glTexCoord2f(0, 1);
-	glVertex3f(size / 2, -size / 2, -size / 2);
-	glEnd();
 
-	glBegin(GL_QUADS);                      //top face
-	glTexCoord2f(1, 0);
-	glVertex3f(size / 2, size / 2, size / 2);
 	glTexCoord2f(0, 0);
 	glVertex3f(-size / 2, size / 2, size / 2);
-	glTexCoord2f(0, 1);
+	glTexCoord2f(1, 0);
 	glVertex3f(-size / 2, size / 2, -size / 2);
 	glTexCoord2f(1, 1);
-	glVertex3f(size / 2, size / 2, -size / 2);
-	glEnd();
-	
-	glBegin(GL_QUADS);
-	//bottom face
-	glTexCoord2f(1, 1);
-	glVertex3f(size / 2, -size / 2, size / 2);
+	glVertex3f(-size / 2, -size / 2, -size / 2);
 	glTexCoord2f(0, 1);
 	glVertex3f(-size / 2, -size / 2, size / 2);
-	glTexCoord2f(0, 0);
-	glVertex3f(-size / 2, -size / 2, -size / 2);
-	glTexCoord2f(1, 0);
-	glVertex3f(size / 2, -size / 2, -size / 2);
-	glEnd();*/
-	glEnable(GL_LIGHTING);  //turn everything back, which we turned on, and turn everything off, which we have turned on.
-	glEnable(GL_DEPTH_TEST);
+	glEnd();
 }
 
+void Wall::move(void)
+{
+
+}

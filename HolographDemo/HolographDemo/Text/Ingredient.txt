@@ -2,10 +2,10 @@
 2:brood:2:bread
 3:kaas:4:cheese
 4:diamand:6:diamond
-5:ei:4:ei
+5:ei:4:egg
 6:oog:1:eye
 7:bloempot:7:flower
-8:tand:6:kies
+8:tand:6:tooth
 9:parel:0:pearl
 10:paddestoel:5:shroom
 0:slijmbal:1:slimeball

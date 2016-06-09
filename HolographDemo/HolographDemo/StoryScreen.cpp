@@ -1,4 +1,5 @@
 #include "StoryScreen.h"
+#include "GlobalCollector.h"
 #include <iostream>
 
 StoryScreen::StoryScreen() : Screen()
@@ -8,16 +9,14 @@ StoryScreen::StoryScreen() : Screen()
 
 int StoryScreen::Display()
 {
-
 	//Models
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
-	room->draw();
+
 	glPushMatrix();
 	
-	for (auto m : models)
-	{
-		m->draw();
-	}
+	//GlobalCollector::Instance()->room->draw();
+	GlobalCollector::Instance()->book.draw();
+	
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -28,19 +27,19 @@ int StoryScreen::Display()
 int StoryScreen::Setup(int windowWidth, int windowHeight)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor(0.00392156862f, 0.00784313725f, 0.01176470588f, 1.0f);
 
 	glViewport(0, 0, windowWidth, windowHeight);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	gluPerspective(90, (float)windowWidth / windowHeight, 0.1f, 100);
+	gluPerspective(90, (float)windowWidth / windowHeight, 0.1f, 200);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	gluLookAt(camera.currentlocation[0], camera.currentlocation[1], camera.currentlocation[2],
+	gluLookAt(0, 0, -zoom,
 		0, 0, 0,
 		0, 1, 0);
 

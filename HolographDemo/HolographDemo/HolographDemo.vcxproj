@@ -183,6 +183,7 @@
     <ClInclude Include="SuperObject.h" />
     <ClInclude Include="Symptom.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Wall.h" />
     <ClInclude Include="Wizard.h" />
     <ClInclude Include="WorldObject.h" />
   </ItemGroup>
@@ -192,6 +193,7 @@
     <ClCompile Include="BubblePartical.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Floor.cpp" />
     <ClCompile Include="HologramScreen.cpp" />
     <ClCompile Include="Ingredient.cpp" />
     <ClCompile Include="KetelObject.cpp" />
@@ -212,6 +214,7 @@
     <ClCompile Include="StoryScreen.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Wizard.cpp" />
     <ClCompile Include="WorldObject.cpp" />
   </ItemGroup>

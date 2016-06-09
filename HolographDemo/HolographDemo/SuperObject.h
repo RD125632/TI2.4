@@ -26,6 +26,7 @@ public:
 		glRotatef(rotZ, 0, 0, 1);		// Rotate Z
 		model->draw();					// Draw the object
 		glPopMatrix();					// Clear Translate and rotation
+		glDisable(GL_TEXTURE_2D);
 	};
 };
 

@@ -13,7 +13,6 @@
 class StoryScreen: public Screen
 {
 public:
-	Room *room;
 	Camera camera = Camera();
 	StoryScreen();
 	int Display() override;

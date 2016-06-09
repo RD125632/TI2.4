@@ -40,6 +40,12 @@
     <Filter Include="Header Files\Objects">
       <UniqueIdentifier>{f70d6634-1c54-4d99-9c1b-1c796c1e54c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Graphics\Room">
+      <UniqueIdentifier>{676af45d-000b-4fe5-bed2-394867364fb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Room">
+      <UniqueIdentifier>{fefa81e7-2d14-4e2c-b3c3-1015c17a2f40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sound.h">
@@ -126,6 +132,9 @@
     <ClInclude Include="PlankObject.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Header Files\Graphics\Room</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -208,6 +217,12 @@
     </ClCompile>
     <ClCompile Include="PlankObject.cpp">
       <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Source Files\Graphics\Room</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>Source Files\Graphics\Room</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,13 +13,14 @@
 #include "KetelObject.h"
 #include "PlankObject.h"
 #include "Pollspoon.h"
+#include "Wall.h"
 #include <vector>
 
 class GlobalCollector
 {
 public:
 	static GlobalCollector* Instance();
-	Room *room = new Room(100);
+	Room* room;
 	HologramScreen holoScreen;
 	StoryScreen storyScreen;
 	Book book;
