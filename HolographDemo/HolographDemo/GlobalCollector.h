@@ -15,6 +15,7 @@
 #include "Pollspoon.h"
 #include "Room.h"
 #include "Camera.h"
+#include "WorldObject.h"
 #include <vector>
 
 class GlobalCollector
@@ -32,6 +33,7 @@ public:
 	Camera camera;
 	std::vector<Ingredient> ingredients;
 	std::vector<Symptom> symptoms;
+	std::vector<tmp12::WorldObject> effects;
 
 private:
 	GlobalCollector();

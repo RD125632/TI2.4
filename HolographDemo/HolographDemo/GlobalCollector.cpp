@@ -16,12 +16,14 @@ GlobalCollector::GlobalCollector()
 {
 	holoScreen = HologramScreen();
 	storyScreen = StoryScreen();
-	room = new Room(400,200,100);
+	room = new Room(500,500,500);
+	plank = PlankObject();
+	
 	ingredients = RecipeLoader::loadIngredients();
 	symptoms = RecipeLoader::loadSymptoms();
 
 	std::vector<int> parse_IDs;
-
+	
 	for (Ingredient x : ingredients)
 	{
 		parse_IDs.push_back(x.ID);
@@ -34,5 +36,6 @@ GlobalCollector::GlobalCollector()
 		parse_IDs.push_back(x.ID);
 	}
 	wizard = Wizard(parse_IDs);
-
+	
+	
 }

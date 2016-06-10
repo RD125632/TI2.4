@@ -4,7 +4,7 @@
 
 PlankObject::PlankObject()
 {
-	model = new ObjModel("models/plank/plank.obj");
+	model = new ObjModel("models/plank/object.obj");
 }
 
 

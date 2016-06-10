@@ -62,7 +62,21 @@
 		GlobalCollector::Instance()->camera.MoveToTarget();
 		glutPostRedisplay();
 	}
-
+	void GameInit(void)
+	{
+		int counter = 0;
+		for (int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++)
+		{
+			GlobalCollector::Instance()->ingredients[i].posX = -25.0f + 5 * counter;
+			GlobalCollector::Instance()->ingredients[i].posY = 25.0f;
+			GlobalCollector::Instance()->ingredients[i].posZ = 45.0f;
+			counter++;
+		}
+		GlobalCollector::Instance()->plank.scale = 10;
+		GlobalCollector::Instance()->plank.posZ = 50;
+		GlobalCollector::Instance()->plank.posY = 20;
+		GlobalCollector::Instance()->plank.rotX = 90;
+	}
 	void HologramInit(void)
 	{
 		glEnable(GL_DEPTH_TEST);
@@ -228,7 +242,7 @@ int main(int argc, char *argv[])
 	glutReshapeFunc(StoryReshape);
 	StoryInit();
 	wglShareLists(hRCA, hRCB);
-
+	GameInit();
 
 
 
