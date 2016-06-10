@@ -68,14 +68,20 @@
 		for (int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++)
 		{
 			GlobalCollector::Instance()->ingredients[i].posX = -25.0f + 5 * counter;
-			GlobalCollector::Instance()->ingredients[i].posY = 25.0f;
+			GlobalCollector::Instance()->ingredients[i].posY = 15.0f;
 			GlobalCollector::Instance()->ingredients[i].posZ = 45.0f;
 			counter++;
 		}
 		GlobalCollector::Instance()->plank.scale = 10;
 		GlobalCollector::Instance()->plank.posZ = 50;
-		GlobalCollector::Instance()->plank.posY = 20;
+		GlobalCollector::Instance()->plank.posY = 10;
 		GlobalCollector::Instance()->plank.rotX = 90;
+		GlobalCollector::Instance()->wizard.posX = 25;
+		GlobalCollector::Instance()->wizard.posY = -25;
+		GlobalCollector::Instance()->wizard.posZ = 45;
+		GlobalCollector::Instance()->wizard.rotY = 180;
+		GlobalCollector::Instance()->wizard.rotX = 90;
+		GlobalCollector::Instance()->wizard.scale = 4;
 	}
 	void HologramInit(void)
 	{

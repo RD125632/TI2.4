@@ -31,7 +31,8 @@ int StoryScreen::Display()
 		ing.draw();
 		//glTranslated(5, 0, 0);
 	}
-	
+	GlobalCollector::Instance()->wizard.draw();
+
 	
 	glPopMatrix();
 	glFlush();
@@ -56,8 +57,8 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 	glLoadIdentity();
 
 
-	gluLookAt(0, 40, zoom,
-		0, 40, 20,
+	gluLookAt(0, 30, -10+zoom,
+		0, 20, 20,
 		0, 1, 0);
 	std::cout << camera.currentlocation[0] << camera.currentlocation[1] << camera.currentlocation[2] << endl;
 

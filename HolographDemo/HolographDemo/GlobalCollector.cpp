@@ -16,7 +16,7 @@ GlobalCollector::GlobalCollector()
 {
 	holoScreen = HologramScreen();
 	storyScreen = StoryScreen();
-	room = new Room(500,500,500);
+	room = new Room(100,100,100);
 	plank = PlankObject();
 	
 	ingredients = RecipeLoader::loadIngredients();
