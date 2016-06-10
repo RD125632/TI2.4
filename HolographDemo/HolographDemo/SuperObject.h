@@ -17,6 +17,7 @@ public:
 	GLfloat rotX = 0;
 	GLfloat rotY = 0;
 	GLfloat rotZ = 0;
+	GLfloat scale = 1;
 	ObjModel* model;
 	void draw()
 	{
@@ -24,9 +25,10 @@ public:
 		glRotatef(rotX, 1, 0, 0);		// Rotate X
 		glRotatef(rotY, 0, 1, 0);		// Rotate Y
 		glRotatef(rotZ, 0, 0, 1);		// Rotate Z
-		model->draw();					// Draw the object
+		glScalef(scale, scale, scale);
+		model->draw();	
+		glTranslatef(-posX, -posY, -posZ);// Draw the object
 		glPopMatrix();					// Clear Translate and rotation
-		glDisable(GL_TEXTURE_2D);
 	};
 };
 

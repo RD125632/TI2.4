@@ -14,6 +14,7 @@
 #include "PlankObject.h"
 #include "Pollspoon.h"
 #include "Room.h"
+#include "WorldObject.h"
 #include <vector>
 
 class GlobalCollector
@@ -30,6 +31,7 @@ public:
 	Pollspoon pollspoon;
 	std::vector<Ingredient> ingredients;
 	std::vector<Symptom> symptoms;
+	std::vector<tmp12::WorldObject> effects;
 
 private:
 	GlobalCollector();
