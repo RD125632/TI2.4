@@ -59,6 +59,7 @@
 			glutSetWindow(storyWindow);
 		}
 		GlobalCollector::Instance()->holoScreen.rotateY += 0.5;
+		GlobalCollector::Instance()->camera.MoveToTarget();
 		glutPostRedisplay();
 	}
 
@@ -167,10 +168,10 @@
 		switch(key)
 		{
 		case GLUT_KEY_LEFT:
-
+			GlobalCollector::Instance()->camera.MoveToLeft();
 			break;
 		case GLUT_KEY_RIGHT:
-
+			GlobalCollector::Instance()->camera.MoveToRight();
 			break; 
 		case GLUT_KEY_F11:
 			glutFullScreenToggle();

@@ -22,7 +22,7 @@ int StoryScreen::Display()
 	}
 	
 	GlobalCollector::Instance()->room->draw();
-	
+	GlobalCollector::Instance()->wizard.draw();
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -45,9 +45,10 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	gluLookAt(0, 0, -zoom,
+	gluLookAt(camera.currentlocation[0], camera.currentlocation[1], camera.currentlocation[2],
 		0, 0, 0,
 		0, 1, 0);
+	std::cout << camera.currentlocation[0] << camera.currentlocation[1] << camera.currentlocation[2] << endl;
 
 	return 1;
 }
