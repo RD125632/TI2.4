@@ -1,55 +1,51 @@
 #include "Camera.h"
 
-
-
 Camera::Camera()
 {
 }
 
 void Camera::MoveToLeft()
 {
-	if (targetlocation != location3)
+	if (targetlocation != locations3)
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < targetlocation.size(); i++)
 		{
-			targetlocation[i] = location1[i];
+			targetlocation[i] = locations1[i];
 		}
 	}
 	else
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < targetlocation.size(); i++)
 		{
-			targetlocation[i] = location2[i];
+			targetlocation[i] = locations2[i];
 		}
 	}
 }
 
 void Camera::MoveToRight()
 {
-	if (targetlocation != location1)
+	if (targetlocation != locations1)
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < targetlocation.size(); i++)
 		{
-			targetlocation[i] = location3[i];
+			targetlocation[i] = locations3[i];
 		}
 	}
 	else
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < targetlocation.size(); i++)
 		{
-			targetlocation[i] = location2[i];
+			targetlocation[i] = locations2[i];
 		}
 	}
 }
 
 void Camera::MoveToTarget()
 {
-	if (targetlocation != currentlocation)
+	
+	for (int i = 0; i < currentlocation.size(); i++)
 	{
-		for (int i = 0; i < 3; i++)
-		{
-			currentlocation[i] = targetlocation[i];
-		}
+		currentlocation[i] = targetlocation[i];
 	}
 }
 

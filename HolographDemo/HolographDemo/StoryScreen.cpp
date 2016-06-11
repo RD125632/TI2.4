@@ -57,10 +57,10 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 	glLoadIdentity();
 
 
-	gluLookAt(0, 30, -10+zoom,
+	gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0], GlobalCollector::Instance()->camera.currentlocation[1], GlobalCollector::Instance()->camera.currentlocation[2],
 		0, 20, 20,
 		0, 1, 0);
-	std::cout << camera.currentlocation[0] << camera.currentlocation[1] << camera.currentlocation[2] << endl;
+	std::cout << GlobalCollector::Instance()->camera.currentlocation[0] << GlobalCollector::Instance()->camera.currentlocation[1] << GlobalCollector::Instance()->camera.currentlocation[2] << endl;
 
 	return 1;
 }
