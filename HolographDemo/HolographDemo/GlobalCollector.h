@@ -15,6 +15,7 @@
 #include "Pollspoon.h"
 #include "Room.h"
 #include <vector>
+#include "Sound.h"
 
 class GlobalCollector
 {
@@ -30,6 +31,7 @@ public:
 	Pollspoon pollspoon;
 	std::vector<Ingredient> ingredients;
 	std::vector<Symptom> symptoms;
+	SoundEngine soundEngine;
 
 private:
 	GlobalCollector();

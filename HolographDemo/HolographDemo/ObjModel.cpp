@@ -122,10 +122,10 @@ ObjModel::ObjModel(std::string fileName)
 		else if(params[0] == "s")
 		{//smoothing
 		}
-        else if(params[0] == "mtllib")
-        {
-            loadMaterialFile(dirName + "/" + params[1], dirName);
-        }
+		else if(params[0] == "mtllib")
+		{
+			loadMaterialFile(dirName + "/" + params[1], dirName);
+		}
 		else if(params[0] == "usemtl")
 		{
 			if(currentGroup->faces.size() != 0)
@@ -187,7 +187,7 @@ void ObjModel::draw()
 				{
 					glTexCoord2f(texcoords[vertex.texcoord].x, texcoords[vertex.texcoord].y);
 				}
- 				glVertex3f(vertices[vertex.position].x, vertices[vertex.position].y, vertices[vertex.position].z);
+				glVertex3f(vertices[vertex.position].x, vertices[vertex.position].y, vertices[vertex.position].z);
 			}
 		}
 		glEnd();

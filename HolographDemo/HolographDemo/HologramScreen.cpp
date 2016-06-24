@@ -1,6 +1,5 @@
 #include "HologramScreen.h"
 #include <iostream>
-#include "GlobalCollector.h"
 
 HologramScreen::HologramScreen() : Screen()
 {
@@ -11,27 +10,41 @@ int HologramScreen::Display()
 {
 	//Models
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
-	glPushMatrix();
-	if (!isUpsideDown)
+	if (showBook)
 	{
-		glScalef(-1, 1, 1);
+		glPushMatrix();
+		GlobalCollector::Instance()->book.posX = 0;
+		GlobalCollector::Instance()->book.posY = 0;
+		GlobalCollector::Instance()->book.rotX += 0.1;
+		GlobalCollector::Instance()->book.draw();
+		glPopMatrix();
 	}
-	else
-	{
-		glScalef(-1, -1, 1);
+	else {
+		glPushMatrix();
+		if (!isUpsideDown)
+		{
+			glScalef(-1, 1, 1);
+		}
+		else
+		{
+			glScalef(-1, -1, 1);
+		}
+
+		glScalef(1.5, 1.5, 1);
+		GlobalCollector::Instance()->ketel.posY = -2;
+		GlobalCollector::Instance()->ketel.rotX = 30;
+		GlobalCollector::Instance()->ketel.draw();
+		glPopMatrix();
+		glPushMatrix();
+		if (currentObject != nullptr) {
+			glScalef(1, 1, 1);
+
+			// nog verdr uitwerken
+
+			currentObject->draw();
+		}
+		glPopMatrix();
 	}
-
-	/* SET POSITION AND ROTATION */
-	//GlobalCollector::Instance()->ingredients.at(2).rotZ = 50;
-	//GlobalCollector::Instance()->ingredients.at(2).posX = 2;
-	//GlobalCollector::Instance()->ingredients.at(0).draw();
-	glRotatef(rotateX, 1, 0, 0);
-	glRotatef(rotateY, 0, 1, 0);
-	/* ANOTHER OBJECT */
-	GlobalCollector::Instance()->ingredients.at(2).draw();
-	//GlobalCollector::Instance()->ketel.draw();
-
-	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
 
@@ -48,38 +61,39 @@ int HologramScreen::Setup(int windowWidth, int windowHeight)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	gluPerspective(90, (float)windowWidth / windowHeight, 0.1f, 200);
+	gluPerspective(90, float(windowWidth / windowHeight), 0.1f, 200);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	gluLookAt(0, 0, -zoom,
+	gluLookAt(0, 1, -zoom + 8,
 		0, 0, 0,
 		0, 1, 0);
 
 	return 1;
 }
 
-void HologramScreen::NextItem()
+void HologramScreen::SetCurrentItem(SuperObject* obj)
 {
-	if (currentModel < models.size() - 1)
+	this->currentObject = obj;
+	currentObject->posX = 0;
+	currentObject->posZ = 0;
+}
+
+void HologramScreen::Logic()
+{
+	if (currentObject != nullptr)
 	{
-		currentModel++;
-	}
-	else
-	{
-		currentModel = 0;
+		currentObject->posZ -= 0.1;
+		if (currentObject->posZ < GlobalCollector::Instance()->ketel.posZ - 4)
+		{
+			GlobalCollector::Instance()->ketel.AddIngredient(currentObject);
+			currentObject = nullptr;
+		}
 	}
 }
 
-void HologramScreen::PreviousItem()
+void HologramScreen::ShowBook(bool show)
 {
-	if (currentModel == 0)
-	{
-		currentModel = models.size() - 1;
-	}
-	else
-	{
-		currentModel--;
-	}
+	showBook = show;
 }

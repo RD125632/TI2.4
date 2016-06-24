@@ -19,6 +19,7 @@ GlobalCollector::GlobalCollector()
 	room = new Room(400,200,100);
 	ingredients = RecipeLoader::loadIngredients();
 	symptoms = RecipeLoader::loadSymptoms();
+	soundEngine = SoundEngine();
 
 	std::vector<int> parse_IDs;
 
