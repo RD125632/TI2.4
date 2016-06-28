@@ -4,8 +4,9 @@
 #define HOLOGRAMSCREEN_H_
 
 #include "Screen.h"
-#include "SuperObject.h"
-#include "GlobalCollector.h"
+
+
+class SuperObject;
 
 class HologramScreen : public Screen
 {

@@ -1,6 +1,7 @@
 #include "GlobalCollector.h"
 #include "GL\glut.h"
 
+
 GlobalCollector* GlobalCollector::instance = NULL;
 
 GlobalCollector * GlobalCollector::Instance()

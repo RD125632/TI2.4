@@ -144,6 +144,10 @@
 			break;
 		case 'a':
 			GlobalCollector::Instance()->holoScreen.rotateX -= 0.5;
+			GlobalCollector::Instance()->holoScreen.SetCurrentItem(&GlobalCollector::Instance()->book); //debug, verwijder wanneer af
+			break;
+		case 'd':
+			GlobalCollector::Instance()->holoScreen.ShowBook(true);
 			break;
 		case 't':
 			if (GlobalCollector::Instance()->holoScreen.mode == GL_FILL)

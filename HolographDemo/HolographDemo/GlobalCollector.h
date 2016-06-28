@@ -17,6 +17,7 @@
 #include <vector>
 #include "Sound.h"
 
+
 class GlobalCollector
 {
 public:

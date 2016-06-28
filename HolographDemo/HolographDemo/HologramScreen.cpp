@@ -1,6 +1,9 @@
 #include "HologramScreen.h"
 #include <iostream>
 
+#include "SuperObject.h"
+#include "GlobalCollector.h"
+
 HologramScreen::HologramScreen() : Screen()
 {
 	currentModel = 0;
@@ -12,10 +15,13 @@ int HologramScreen::Display()
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
 	if (showBook)
 	{
+		GLfloat position[4] = { GlobalCollector::Instance()->book.posX, GlobalCollector::Instance()->book.posY + 3, GlobalCollector::Instance()->book.posZ, 1 };
+		glLightfv(GL_LIGHT0, GL_POSITION, position);
 		glPushMatrix();
 		GlobalCollector::Instance()->book.posX = 0;
-		GlobalCollector::Instance()->book.posY = 0;
-		GlobalCollector::Instance()->book.rotX += 0.1;
+		GlobalCollector::Instance()->book.posY = cos(GlobalCollector::Instance()->book.rotY * 0.05);
+		GlobalCollector::Instance()->book.rotX = 10;
+		GlobalCollector::Instance()->book.rotY += 0.05;
 		GlobalCollector::Instance()->book.draw();
 		glPopMatrix();
 	}
@@ -30,14 +36,18 @@ int HologramScreen::Display()
 			glScalef(-1, -1, 1);
 		}
 
-		glScalef(1.5, 1.5, 1);
+		GLfloat position[4] = { GlobalCollector::Instance()->ketel.posX, GlobalCollector::Instance()->ketel.posY, GlobalCollector::Instance()->ketel.posZ, 0 };
+		glLightfv(GL_LIGHT0, GL_POSITION, position); //light misschien ergens anders
+
+		glScalef(1.5, 1.5, 1.5);
 		GlobalCollector::Instance()->ketel.posY = -2;
 		GlobalCollector::Instance()->ketel.rotX = 30;
 		GlobalCollector::Instance()->ketel.draw();
 		glPopMatrix();
+
 		glPushMatrix();
 		if (currentObject != nullptr) {
-			glScalef(1, 1, 1);
+			glScalef(0.5, 0.5, 0.5);
 
 			// nog verdr uitwerken
 
@@ -78,14 +88,15 @@ void HologramScreen::SetCurrentItem(SuperObject* obj)
 	this->currentObject = obj;
 	currentObject->posX = 0;
 	currentObject->posZ = 0;
+	currentObject->posY = 10;
 }
 
 void HologramScreen::Logic()
 {
 	if (currentObject != nullptr)
 	{
-		currentObject->posZ -= 0.1;
-		if (currentObject->posZ < GlobalCollector::Instance()->ketel.posZ - 4)
+		currentObject->posY -= 0.03;
+		if (currentObject->posY < GlobalCollector::Instance()->ketel.posY - 3)
 		{
 			GlobalCollector::Instance()->ketel.AddIngredient(currentObject);
 			currentObject = nullptr;
