@@ -178,6 +178,7 @@
     <ClInclude Include="SolidSphere.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="GlobalCollector.h" />
+    <ClInclude Include="Star.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="StoryScreen.h" />
     <ClInclude Include="SuperObject.h" />
@@ -210,15 +211,12 @@
     <ClCompile Include="SolidSphere.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="GlobalCollector.cpp" />
+    <ClCompile Include="Star.cpp" />
     <ClCompile Include="StoryScreen.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Wizard.cpp" />
     <ClCompile Include="WorldObject.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="shaders\lighting.fs" />
-    <None Include="shaders\lighting.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

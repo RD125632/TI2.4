@@ -2,6 +2,7 @@
 #include "Partical.h"
 #include "BubblePartical.h"
 #include "smokeParticle.h"
+#include "Star.h"
 #include <vector>
 class ParticalEmitter
 {

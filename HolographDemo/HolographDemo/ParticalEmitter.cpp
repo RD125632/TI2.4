@@ -67,6 +67,9 @@ void ParticalEmitter::Init()
 		case 2:
 			particalList.push_back(new smokeParticle(x + radius*rand() / 30000, y + radius * rand() / 30000, z + radius * rand() / 30000));
 			break;
+		case 3:
+			particalList.push_back(new Star(x + radius*rand() / 30000, y + radius * rand() / 30000, z + radius * rand() / 30000));
+			break;
 		}
 		
 		

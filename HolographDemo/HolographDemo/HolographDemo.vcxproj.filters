@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="shaders">
-      <UniqueIdentifier>{a57f7839-44eb-4f6b-a296-5079bfdd449d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Screens">
       <UniqueIdentifier>{de30ef39-36d5-4486-806f-d82b0bb6620f}</UniqueIdentifier>
     </Filter>
@@ -132,6 +129,9 @@
     <ClInclude Include="Wall.h">
       <Filter>Header Files\Graphics\Room</Filter>
     </ClInclude>
+    <ClInclude Include="Star.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -215,13 +215,8 @@
     <ClCompile Include="PlankObject.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="shaders\lighting.vs">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\lighting.fs">
-      <Filter>shaders</Filter>
-    </None>
+    <ClCompile Include="Star.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
