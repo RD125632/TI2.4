@@ -213,6 +213,7 @@
     <ClCompile Include="GlobalCollector.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="StoryScreen.cpp" />
+    <ClCompile Include="SuperObject.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Wizard.cpp" />

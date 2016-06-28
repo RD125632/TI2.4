@@ -3,6 +3,7 @@
 KetelObject::KetelObject()
 {
 	model = new ObjModel("models/ketel/ketel.obj");
+	type = none;
 }
 
 KetelObject::~KetelObject()

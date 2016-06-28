@@ -19,9 +19,9 @@ int HologramScreen::Display()
 		glLightfv(GL_LIGHT0, GL_POSITION, position);
 		glPushMatrix();
 		GlobalCollector::Instance()->book.posX = 0;
-		GlobalCollector::Instance()->book.posY = cos(GlobalCollector::Instance()->book.rotY * 0.05);
+		GlobalCollector::Instance()->book.posY = float(cos(GlobalCollector::Instance()->book.rotY * 0.05));
 		GlobalCollector::Instance()->book.rotX = 10;
-		GlobalCollector::Instance()->book.rotY += 0.05;
+		GlobalCollector::Instance()->book.rotY += 0.05f;
 		GlobalCollector::Instance()->book.draw();
 		glPopMatrix();
 	}
@@ -95,7 +95,7 @@ void HologramScreen::Logic()
 {
 	if (currentObject != nullptr)
 	{
-		currentObject->posY -= 0.03;
+		currentObject->posY -= 0.03f;
 		if (currentObject->posY < GlobalCollector::Instance()->ketel.posY - 3)
 		{
 			GlobalCollector::Instance()->ketel.AddIngredient(currentObject);
