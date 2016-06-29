@@ -48,6 +48,7 @@ int HologramScreen::Display()
 		glScalef(1.5, 1.5, 1.5);
 		
 		GlobalCollector::Instance()->ketel.draw();
+		//glScalef(1, 1, 1);
 		glDisable(GL_LIGHTING);
 		fire->draw();
 		particalEmitter->drawParticals();
@@ -127,6 +128,6 @@ void HologramScreen::init()
 	GlobalCollector::Instance()->ketel.posY = -2;
 	GlobalCollector::Instance()->ketel.rotX = 30;
 	fire = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX, GlobalCollector::Instance()->ketel.posY -10, GlobalCollector::Instance()->ketel.posZ+5, 10, "resources/fireAnimate.png", 4);
-	particalEmitter = new ParticalEmitter(1, 5, 1, 0.5f, GlobalCollector::Instance()->ketel.posX, GlobalCollector::Instance()->ketel.posY, GlobalCollector::Instance()->ketel.posZ);
+	particalEmitter = new ParticalEmitter(1, 5, 1, 1.0f, GlobalCollector::Instance()->ketel.posX-0.75f, GlobalCollector::Instance()->ketel.posY, GlobalCollector::Instance()->ketel.posZ);
 	
 }
