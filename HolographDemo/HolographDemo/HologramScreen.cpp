@@ -126,7 +126,7 @@ void HologramScreen::init()
 	GlobalCollector::Instance()->book.posX = 0;
 	GlobalCollector::Instance()->ketel.posY = -2;
 	GlobalCollector::Instance()->ketel.rotX = 30;
-	fire = new BillBordParticalEffects(GlobalCollector::Instance()->book.posX, GlobalCollector::Instance()->book.posY -10, GlobalCollector::Instance()->book.posZ+5, 10, "resources/fireAnimate.png", 4);
-	particalEmitter = new ParticalEmitter(1, 5, 1, 0.5f, GlobalCollector::Instance()->book.posX, GlobalCollector::Instance()->book.posY, GlobalCollector::Instance()->book.posZ);
+	fire = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX, GlobalCollector::Instance()->ketel.posY -10, GlobalCollector::Instance()->ketel.posZ+5, 10, "resources/fireAnimate.png", 4);
+	particalEmitter = new ParticalEmitter(1, 5, 1, 0.5f, GlobalCollector::Instance()->ketel.posX, GlobalCollector::Instance()->ketel.posY, GlobalCollector::Instance()->ketel.posZ);
 	
 }
