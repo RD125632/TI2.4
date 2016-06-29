@@ -19,7 +19,7 @@ public:
 	void SetCurrentItem(SuperObject*);
 	void Logic();
 	void ShowBook(bool);
-
+	void init();
 private:
 	SuperObject* currentObject = nullptr;
 	bool showBook = false;

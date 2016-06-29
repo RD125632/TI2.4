@@ -60,7 +60,10 @@
 		GlobalCollector::Instance()->holoScreen.Logic();
 		glutPostRedisplay();
 	}
-
+	void finalinit()
+	{
+		GlobalCollector::Instance()->holoScreen.init();
+	}
 	void HologramInit(void)
 	{
 		glEnable(GL_DEPTH_TEST);
@@ -74,6 +77,7 @@
 		//GLfloat LightPosition[] = { 0, 1, 3, 0 };
 		GLfloat LightPosition[] = { -1, -1, 0, 0 };
 		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
+		
 	}
 
 	void HologramPaintComponent(void)
@@ -230,8 +234,8 @@ int main(int argc, char *argv[])
 	glutReshapeFunc(StoryReshape);
 	StoryInit();
 	wglShareLists(hRCA, hRCB);
-
 	RegisterAllSounds();
+	finalinit();
 
 	glutMainLoop();
 	return 0;

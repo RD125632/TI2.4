@@ -7,7 +7,7 @@
 SYSTEMTIME newTime;
 SYSTEMTIME oldTime;
 unsigned int timeInterval;
-BillBordParticalEffects::BillBordParticalEffects(int X, int Y, int Z, unsigned int Size, char * TexturePath, unsigned int TextureGridWidthAndH)
+BillBordParticalEffects::BillBordParticalEffects(int X, int Y, int Z, int Size, char * TexturePath, unsigned int TextureGridWidthAndH)
 {
 	x = X;
 	y = Y;
@@ -56,6 +56,7 @@ void BillBordParticalEffects::draw()
 
 	glPushMatrix();
 	glTranslatef(x, y, z);
+	//glScaled(1, -1, 1);
 	float matrix[16];
 	glGetFloatv(GL_MODELVIEW_MATRIX, matrix);
 
@@ -87,6 +88,7 @@ void BillBordParticalEffects::draw()
 		{
 			frameCount = 0;
 		}
+		oldTime = newTime;
 	}
 	glPopMatrix();
 }

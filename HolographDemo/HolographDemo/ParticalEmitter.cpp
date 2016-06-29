@@ -56,7 +56,6 @@ void ParticalEmitter::update()
 
 void ParticalEmitter::Init()
 {
-	printf("%d,", rand());
 	for (int i = intensity; i > 0; i--)
 	{
 		switch (ID)

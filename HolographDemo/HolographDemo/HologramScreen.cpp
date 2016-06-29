@@ -3,6 +3,12 @@
 
 #include "SuperObject.h"
 #include "GlobalCollector.h"
+#include "WorldObject.h"
+#include "BillBordParticalEffects.h"
+#include "ParticalEmitter.h"
+
+BillBordParticalEffects *fire;
+ParticalEmitter *particalEmitter;
 
 HologramScreen::HologramScreen() : Screen()
 {
@@ -18,9 +24,9 @@ int HologramScreen::Display()
 		GLfloat position[4] = { GlobalCollector::Instance()->book.posX, GlobalCollector::Instance()->book.posY + 3, GlobalCollector::Instance()->book.posZ, 1 };
 		glLightfv(GL_LIGHT0, GL_POSITION, position);
 		glPushMatrix();
-		GlobalCollector::Instance()->book.posX = 0;
+		
 		GlobalCollector::Instance()->book.posY = float(cos(GlobalCollector::Instance()->book.rotY * 0.05));
-		GlobalCollector::Instance()->book.rotX = 10;
+		
 		GlobalCollector::Instance()->book.rotY += 0.05f;
 		GlobalCollector::Instance()->book.draw();
 		glPopMatrix();
@@ -40,9 +46,14 @@ int HologramScreen::Display()
 		glLightfv(GL_LIGHT0, GL_POSITION, position); //light misschien ergens anders
 
 		glScalef(1.5, 1.5, 1.5);
-		GlobalCollector::Instance()->ketel.posY = -2;
-		GlobalCollector::Instance()->ketel.rotX = 30;
+		
 		GlobalCollector::Instance()->ketel.draw();
+		glDisable(GL_LIGHTING);
+		fire->draw();
+		particalEmitter->drawParticals();
+		glEnable(GL_LIGHTING);
+		
+
 		glPopMatrix();
 
 		glPushMatrix();
@@ -107,4 +118,15 @@ void HologramScreen::Logic()
 void HologramScreen::ShowBook(bool show)
 {
 	showBook = show;
+}
+
+void HologramScreen::init()
+{
+	GlobalCollector::Instance()->book.rotX = 10;
+	GlobalCollector::Instance()->book.posX = 0;
+	GlobalCollector::Instance()->ketel.posY = -2;
+	GlobalCollector::Instance()->ketel.rotX = 30;
+	fire = new BillBordParticalEffects(GlobalCollector::Instance()->book.posX, GlobalCollector::Instance()->book.posY -10, GlobalCollector::Instance()->book.posZ+5, 10, "resources/fireAnimate.png", 4);
+	particalEmitter = new ParticalEmitter(1, 5, 1, 0.5f, GlobalCollector::Instance()->book.posX, GlobalCollector::Instance()->book.posY, GlobalCollector::Instance()->book.posZ);
+	
 }
