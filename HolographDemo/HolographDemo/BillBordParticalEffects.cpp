@@ -71,13 +71,13 @@ void BillBordParticalEffects::draw()
 	glBindTexture(GL_TEXTURE_2D, textureID);
 	glBegin(GL_QUADS);      //and draw a face
 	glNormal3f(0.0, 0.0, -1.0);
-	glTexCoord2f(bX, aY);
+	glTexCoord2f(bX, -aY);
 	glVertex3f(size / 2, size / 2, -size / 2);
-	glTexCoord2f(aX, aY);
+	glTexCoord2f(aX, -aY);
 	glVertex3f(-size / 2, size / 2, -size / 2);
-	glTexCoord2f(aX, bY);
+	glTexCoord2f(aX, -bY);
 	glVertex3f(-size / 2, -size / 2, -size / 2);
-	glTexCoord2f(bX, bY);
+	glTexCoord2f(bX, -bY);
 	glVertex3f(size / 2, -size / 2, -size / 2);
 	glEnd();
 

@@ -48,7 +48,8 @@ int HologramScreen::Display()
 		glScalef(1.5, 1.5, 1.5);
 		
 		GlobalCollector::Instance()->ketel.draw();
-		//glScalef(1, 1, 1);
+		glScalef(1, 1, 1);
+
 		glDisable(GL_LIGHTING);
 		fire->draw();
 		particalEmitter->drawParticals();
