@@ -6,15 +6,27 @@
 StoryScreen::StoryScreen() : Screen()
 {
 	
+	screenToDraw = &StoryScreen::drawIntroScreen;
 }
-
-int StoryScreen::Display()
+void StoryScreen::drawIntroScreen()
+{
+	glPushMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, 1000, 0, 1000, 0, 1);
+	glMatrixMode(GL_MODELVIEW);
+	glRasterPos2i(100, 120);
+	glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
+	glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '1');
+	glPopMatrix();
+}
+void StoryScreen::drawGameScreen()
 {
 	//Models
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
 	glPushMatrix();
 	GlobalCollector::Instance()->room->draw();
-	
+
 	if (!isUpsideDown)
 	{
 		glScalef(-1, 1, 1);
@@ -23,7 +35,7 @@ int StoryScreen::Display()
 	{
 		glScalef(-1, -1, 1);
 	}
-	
+
 	GlobalCollector::Instance()->plank.draw();
 	//glTranslated(-25, 25, 45);
 	for (Ingredient ing : GlobalCollector::Instance()->ingredients)
@@ -33,11 +45,16 @@ int StoryScreen::Display()
 	}
 	GlobalCollector::Instance()->wizard.draw();
 
-	
+
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
 
+	
+}
+int StoryScreen::Display()
+{
+	(this->*screenToDraw)();
 	return 0;
 }
 

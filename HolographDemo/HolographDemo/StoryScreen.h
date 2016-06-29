@@ -10,9 +10,15 @@ class StoryScreen: public Screen
 {
 public:
 	StoryScreen();
+
 	int Display() override;
 	int Setup(int,int) override;
 	bool isUpsideDown = false;
+	int Status = 0;
+private:
+	void (StoryScreen::*screenToDraw)();
+	void drawIntroScreen();
+	void drawGameScreen();
 };
 
 #endif
