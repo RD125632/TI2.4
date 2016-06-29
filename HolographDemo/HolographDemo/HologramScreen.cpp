@@ -19,6 +19,7 @@ int HologramScreen::Display()
 {
 	//Models
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
+	glDisable(GL_BLEND);
 	if (showBook)
 	{
 		GLfloat position[4] = { GlobalCollector::Instance()->book.posX, GlobalCollector::Instance()->book.posY + 3, GlobalCollector::Instance()->book.posZ, 1 };
@@ -129,6 +130,6 @@ void HologramScreen::init()
 	GlobalCollector::Instance()->ketel.posY = -2;
 	GlobalCollector::Instance()->ketel.rotX = 30;
 	fire = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX, GlobalCollector::Instance()->ketel.posY -10, GlobalCollector::Instance()->ketel.posZ+5, 10, "resources/fireAnimate.png", 4);
-	particalEmitter = new ParticalEmitter(1, 5, 1, 1.0f, GlobalCollector::Instance()->ketel.posX-0.75f, GlobalCollector::Instance()->ketel.posY, GlobalCollector::Instance()->ketel.posZ);
+	particalEmitter = new ParticalEmitter(3, 5, 1, 1.0f, GlobalCollector::Instance()->ketel.posX-0.75f, GlobalCollector::Instance()->ketel.posY, GlobalCollector::Instance()->ketel.posZ);
 	
 }
