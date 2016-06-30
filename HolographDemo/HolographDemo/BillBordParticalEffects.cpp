@@ -4,9 +4,6 @@
 #include <Windows.h>
 
 
-SYSTEMTIME newTime;
-SYSTEMTIME oldTime;
-unsigned int timeInterval;
 BillBordParticalEffects::BillBordParticalEffects(int X, int Y, int Z, int Size, char * TexturePath, unsigned int TextureGridWidthAndH)
 {
 	x = X;
@@ -50,6 +47,8 @@ void BillBordParticalEffects::draw()
 	glDisable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GEQUAL, 0.1f);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	glColor4f(1, 1, 1, 1);
@@ -91,4 +90,5 @@ void BillBordParticalEffects::draw()
 		oldTime = newTime;
 	}
 	glPopMatrix();
+	glDisable(GL_ALPHA_TEST);
 }

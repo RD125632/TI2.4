@@ -12,5 +12,8 @@ private:
 	unsigned int textureID;
 	unsigned int textureGridWidthAndH;
 	unsigned int frameCount = 0;
+	SYSTEMTIME newTime;
+	SYSTEMTIME oldTime;
+	unsigned int timeInterval;
 };
 

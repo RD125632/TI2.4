@@ -7,7 +7,7 @@
 #include "BillBordParticalEffects.h"
 #include "ParticalEmitter.h"
 
-BillBordParticalEffects* fire;
+BillBordParticalEffects* fire, *fire2;
 ParticalEmitter* particalEmitter;
 
 HologramScreen::HologramScreen() : Screen()
@@ -27,7 +27,8 @@ int HologramScreen::Display()
 	{
 		glPushMatrix();
 		glScalef(2, 2, 2);
-		GlobalCollector::Instance()->book.posY = float(cos(GlobalCollector::Instance()->book.rotY * 0.05));
+		GlobalCollector::Instance()->book.posY = 1;
+		GlobalCollector::Instance()->book.posY += float(cos(GlobalCollector::Instance()->book.rotY * 0.05));
 
 		GlobalCollector::Instance()->book.rotY += 0.05f;
 		GlobalCollector::Instance()->book.draw();
@@ -44,6 +45,8 @@ int HologramScreen::Display()
 
 		glDisable(GL_LIGHTING);
 		fire->draw();
+		fire2->draw();
+
 		if (particalEmitter != nullptr)
 		{
 			glScalef(1.5, 1.5, 1.5);
@@ -128,9 +131,10 @@ void HologramScreen::init()
 {
 	GlobalCollector::Instance()->book.rotX = 10;
 	GlobalCollector::Instance()->book.posX = 0;
-	GlobalCollector::Instance()->ketel.posY = -3;
+	GlobalCollector::Instance()->ketel.posY = -1;
 	GlobalCollector::Instance()->ketel.rotX = 15;
-	fire = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX, GlobalCollector::Instance()->ketel.posY - 5, GlobalCollector::Instance()->ketel.posZ + 5, 10, "resources/fireAnimate.png", 4);
+	fire = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX+3, GlobalCollector::Instance()->ketel.posY - 6, GlobalCollector::Instance()->ketel.posZ + 5, 10, "resources/fireAnimate.png", 4);
+	fire2 = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX-3, GlobalCollector::Instance()->ketel.posY - 6, GlobalCollector::Instance()->ketel.posZ + 5, 10, "resources/fireAnimate.png", 4);
 }
 
 void HologramScreen::changeParticel(int part, bool burst, int amount)
