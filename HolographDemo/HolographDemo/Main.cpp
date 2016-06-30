@@ -7,7 +7,6 @@
 #include "GlobalCollector.h"
 #include <vector>
 #include "Sound.h"
-#include "LeapHandler.h"
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */

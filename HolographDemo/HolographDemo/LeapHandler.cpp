@@ -166,24 +166,3 @@ void draw(void)
 	glutSwapBuffers();
 }
 
-int main(int argc, char** argv) {
-
-	SampleListener listener;
-	Controller controller;
-
-	controller.addListener(listener);
-	std::cout << "Press Enter to quit..." << std::endl;
-
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
-	glutCreateWindow(argv[0]);
-	init();
-	glutFullScreen();
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glutDisplayFunc(draw);
-	glutReshapeFunc(reshape);
-	glutIdleFunc(animation);
-	glutMainLoop();
-	return 0;
-}
-
