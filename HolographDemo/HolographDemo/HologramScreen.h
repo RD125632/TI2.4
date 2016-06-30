@@ -19,8 +19,8 @@ public:
 	void SetCurrentItem(SuperObject*);
 	void Logic();
 	void ShowBook(bool);
-	void init();
-	void changeParticel(int) const;
+	static void init();
+	static void changeParticel(int, bool, int);
 private:
 	SuperObject* currentObject = nullptr;
 	bool showBook = false;

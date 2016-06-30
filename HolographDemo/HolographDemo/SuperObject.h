@@ -22,7 +22,7 @@ public:
 	ObjModel* model;
 	IngredientType type;
 	void SetType(IngredientType);
-	IngredientType GetType();
+	IngredientType GetType() const;
 	void draw()
 	{
 		glTranslatef(posX, posY, posZ);	// Move the object in 3D space

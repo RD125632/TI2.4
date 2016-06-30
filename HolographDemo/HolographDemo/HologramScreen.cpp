@@ -7,8 +7,8 @@
 #include "BillBordParticalEffects.h"
 #include "ParticalEmitter.h"
 
-BillBordParticalEffects *fire;
-ParticalEmitter *particalEmitter;
+BillBordParticalEffects* fire;
+ParticalEmitter* particalEmitter;
 
 HologramScreen::HologramScreen() : Screen()
 {
@@ -20,52 +20,44 @@ int HologramScreen::Display()
 	//Models
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
 	glDisable(GL_BLEND);
+
+	glPushMatrix();
+
 	if (showBook)
 	{
-		GLfloat position[4] = { GlobalCollector::Instance()->book.posX, GlobalCollector::Instance()->book.posY + 3, GlobalCollector::Instance()->book.posZ, 1 };
-		glLightfv(GL_LIGHT0, GL_POSITION, position);
 		glPushMatrix();
-		
+		glScalef(2, 2, 2);
 		GlobalCollector::Instance()->book.posY = float(cos(GlobalCollector::Instance()->book.rotY * 0.05));
-		
+
 		GlobalCollector::Instance()->book.rotY += 0.05f;
 		GlobalCollector::Instance()->book.draw();
+		glScalef(1, 1, 1);
 		glPopMatrix();
 	}
-	else {
+	else
+	{
 		glPushMatrix();
-		if (!isUpsideDown)
-		{
-			glScalef(-1, 1, 1);
-		}
-		else
-		{
-			glScalef(-1, -1, 1);
-		}
-
-		GLfloat position[4] = { GlobalCollector::Instance()->ketel.posX, GlobalCollector::Instance()->ketel.posY -5, GlobalCollector::Instance()->ketel.posZ, 0 };
-		glLightfv(GL_LIGHT0, GL_POSITION, position); //light misschien ergens anders
-
 		glScalef(2, 2, 2);
-		
+
 		GlobalCollector::Instance()->ketel.draw();
 		glScalef(1, 1, 1);
 
 		glDisable(GL_LIGHTING);
 		fire->draw();
-		if (particalEmitter != nullptr) {
+		if (particalEmitter != nullptr)
+		{
 			glScalef(1.5, 1.5, 1.5);
 			particalEmitter->drawParticals();
 			glScalef(1, 1, 1);
 		}
 		glDisable(GL_BLEND);
 		glEnable(GL_LIGHTING);
-		
 
 		glPopMatrix();
 
 		glPushMatrix();
-		if (currentObject != nullptr) {
+		if (currentObject != nullptr)
+		{
 			glScalef(0.75, 0.75, 0.75);
 			currentObject->draw();
 		}
@@ -74,6 +66,7 @@ int HologramScreen::Display()
 		GlobalCollector::Instance()->ketel.posY = float(cos(GlobalCollector::Instance()->ketel.rotY * 0.1)) / 5 - 2;
 		GlobalCollector::Instance()->ketel.rotY += 0.01f;
 	}
+	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
 
@@ -89,6 +82,8 @@ int HologramScreen::Setup(int windowWidth, int windowHeight)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+	if (isUpsideDown)
+		glScalef(1, -1, 1);
 
 	gluPerspective(90, float(windowWidth) / windowHeight, 0.1f, 200);
 
@@ -96,8 +91,8 @@ int HologramScreen::Setup(int windowWidth, int windowHeight)
 	glLoadIdentity();
 
 	gluLookAt(0, 2, 10,
-		0, 0, 0,
-		0, 1, 0);
+	          0, 0, 0,
+	          0, 1, 0);
 
 	return 1;
 }
@@ -117,7 +112,8 @@ void HologramScreen::Logic()
 		currentObject->posY -= 0.03f;
 		if (currentObject->posY < GlobalCollector::Instance()->ketel.posY - 3)
 		{
-			GlobalCollector::Instance()->ketel.AddIngredient(currentObject);
+			GlobalCollector::Instance()->ketel.AddIngredient(currentObject->type);
+			changeParticel(1, true, 10);
 			currentObject = nullptr;
 		}
 	}
@@ -137,12 +133,7 @@ void HologramScreen::init()
 	fire = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX, GlobalCollector::Instance()->ketel.posY - 5, GlobalCollector::Instance()->ketel.posZ + 5, 10, "resources/fireAnimate.png", 4);
 }
 
-void HologramScreen::changeParticel(int part) const
+void HologramScreen::changeParticel(int part, bool burst, int amount)
 {
-	if (part > 0)
-		particalEmitter = new ParticalEmitter(part, 5, 1, 1.0f, GlobalCollector::Instance()->ketel.posX - 0.75f, GlobalCollector::Instance()->ketel.posY, GlobalCollector::Instance()->ketel.posZ);
-	else
-		particalEmitter = nullptr;
+	particalEmitter = new ParticalEmitter(part, 5, 1, 1.0f, GlobalCollector::Instance()->ketel.posX - 0.75f, GlobalCollector::Instance()->ketel.posY, GlobalCollector::Instance()->ketel.posZ, burst, amount);
 }
-
-

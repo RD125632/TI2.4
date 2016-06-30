@@ -5,7 +5,7 @@ void SuperObject::SetType(IngredientType a)
 	type = a;
 }
 
-IngredientType SuperObject::GetType()
+IngredientType SuperObject::GetType() const
 {
 	return type;
 }

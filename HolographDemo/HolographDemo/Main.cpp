@@ -68,15 +68,15 @@
 	{
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_LIGHTING);
-		glEnable(GL_LIGHT1);
+		glEnable(GL_LIGHT0);
 		glEnable(GL_TEXTURE_2D);
-		GLfloat LightAmbient[] = { 0.1f, 0.1f, 0.1f, 0.1f };
-		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); 
+		GLfloat LightAmbient[] = { 0.2f, 0.2f, 0.2f, 0.1f };
+		glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient); 
 		GLfloat LightDiffuse[] = { 0.1f, 0.5f, 1.0f, 1.0f };
-		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
+		glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
 		//GLfloat LightPosition[] = { 0, 1, 3, 0 };
-		GLfloat LightPosition[] = { -1, -1, 0, 0 };
-		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
+		GLfloat LightPosition[] = { 0, 3, 3, 0.1f };
+		glLightfv(GL_LIGHT0, GL_POSITION, LightPosition);
 		
 	}
 

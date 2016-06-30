@@ -10,12 +10,12 @@ KetelObject::~KetelObject()
 {
 }
 
-void KetelObject::AddIngredient(SuperObject* ingr)
+void KetelObject::AddIngredient(IngredientType ingr)
 {
 	addedIngedients.push_back(ingr);
 }
 
-std::vector<SuperObject *> KetelObject::GetIngedients() const
+std::vector<IngredientType> KetelObject::GetIngedients() const
 {
 	return addedIngedients;
 }

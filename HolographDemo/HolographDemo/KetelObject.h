@@ -7,9 +7,9 @@ class KetelObject :
 public:
 	KetelObject();
 	~KetelObject();
-	void AddIngredient(SuperObject *);
-	std::vector <SuperObject *> GetIngedients() const;
+	void AddIngredient(IngredientType);
+	std::vector <IngredientType> GetIngedients() const;
 
 private:
-	std::vector<SuperObject *> addedIngedients;
+	std::vector<IngredientType> addedIngedients;
 };
