@@ -7,6 +7,7 @@
 #include "GlobalCollector.h"
 #include <vector>
 #include "Sound.h"
+#include "LeapHandler.h"
 
 /*-------------------------------------------------------------------------*/
 /*				Local Variable                                             */
@@ -225,6 +226,7 @@
 
 int main(int argc, char *argv[])
 {
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 

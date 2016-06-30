@@ -17,6 +17,7 @@
 #include "Camera.h"
 #include "WorldObject.h"
 #include <vector>
+#include "LeapHandler.h"
 
 class GlobalCollector
 {
@@ -34,6 +35,7 @@ public:
 	std::vector<Ingredient> ingredients;
 	std::vector<Symptom> symptoms;
 	std::vector<tmp12::WorldObject> effects;
+	SampleListener leaphandler;
 
 private:
 	GlobalCollector();

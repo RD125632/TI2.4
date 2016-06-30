@@ -18,7 +18,12 @@ GlobalCollector::GlobalCollector()
 	storyScreen = StoryScreen();
 	room = new Room(100,100,100);
 	plank = PlankObject();
-	
+	leaphandler = SampleListener();
+	SampleListener listener;
+	Controller controller;
+
+	controller.addListener(listener);
+	std::cout << "Press Enter to quit..." << std::endl;
 	ingredients = RecipeLoader::loadIngredients();
 	symptoms = RecipeLoader::loadSymptoms();
 
