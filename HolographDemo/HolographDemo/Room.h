@@ -9,14 +9,14 @@ class Room
 {
 public:
 	Room(GLfloat, GLfloat, GLfloat);
-	GLuint Room::loadTexture(const char *);
+	//GLuint Room::loadTexture(const char *);
 	void draw();
 	GLfloat width;
 	GLfloat height;
 	GLfloat depth;
 private:
-	GLuint floorTexture;
-	GLuint sideWallTexture;
-	GLuint frontWallTexture;
+	Texture *floorTexture;
+	Texture *sideWallTexture;
+	Texture *frontWallTexture;
 };
 

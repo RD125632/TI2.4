@@ -9,7 +9,7 @@
 #include "Ingredient.h"
 #include "ObjModel.h"
 
-class Wizard : SuperObject
+class Wizard : public SuperObject
 {
 public:
 	Wizard();

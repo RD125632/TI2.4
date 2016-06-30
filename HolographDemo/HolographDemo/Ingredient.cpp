@@ -5,10 +5,11 @@ Ingredient::Ingredient()
 
 }
 
-Ingredient::Ingredient(int id, std::string newname, int s, ObjModel* modelwer)
+Ingredient::Ingredient(int id, std::string newname, int s, ObjModel* modelwer, IngredientType Itype)
 {
 	ID = id;
 	name = newname;
 	cures = s;
-	model = modelwer;	
+	model = modelwer;
+	type = Itype;
 }
