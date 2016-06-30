@@ -3,7 +3,7 @@
 Pollspoon::Pollspoon()
 {
 	model = new ObjModel("models/polspoon/polspoon.obj");
-	type = none;
+	type = "object";
 }
 
 Pollspoon::~Pollspoon()

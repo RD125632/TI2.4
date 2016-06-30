@@ -1,11 +1,11 @@
 #include "SuperObject.h"
 
-void SuperObject::SetType(IngredientType a)
+void SuperObject::SetType(std::string a)
 {
 	type = a;
 }
 
-IngredientType SuperObject::GetType() const
+std::string SuperObject::GetType() const
 {
 	return type;
 }

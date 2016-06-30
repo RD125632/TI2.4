@@ -6,8 +6,7 @@
 #include <string>
 #include <vector>
 #include "ObjModel.h"
-
-enum IngredientType { none, cheese, eye, slimeball }; //moet verder aangevuld worden (none is voor de niet-ingredienten). kan gebruikt worden voor de ingredienten in de lijst in de ketel (dat zijn namelijk alleen superobjecten)
+#include <string>
 
 class SuperObject
 {
@@ -20,9 +19,9 @@ public:
 	GLfloat rotY = 0;
 	GLfloat rotZ = 0;
 	ObjModel* model;
-	IngredientType type;
-	void SetType(IngredientType);
-	IngredientType GetType() const;
+	std::string type;
+	void SetType(std::string);
+	std::string GetType() const;
 	void draw()
 	{
 		glTranslatef(posX, posY, posZ);	// Move the object in 3D space

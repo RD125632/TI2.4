@@ -3,7 +3,7 @@
 PlankObject::PlankObject()
 {
 	model = new ObjModel("models/plank/plank.obj");
-	type = none;
+	type = "object";
 }
 
 PlankObject::~PlankObject()

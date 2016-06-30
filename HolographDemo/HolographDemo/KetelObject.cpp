@@ -3,19 +3,20 @@
 KetelObject::KetelObject()
 {
 	model = new ObjModel("models/ketel/ketel.obj");
-	type = none;
+	type = "object";
 }
 
 KetelObject::~KetelObject()
 {
 }
 
-void KetelObject::AddIngredient(IngredientType ingr)
+void KetelObject::AddIngredient(std::string ingr)
 {
-	addedIngedients.push_back(ingr);
+	if(!ingr.compare("object"))
+		addedIngedients.push_back(ingr);
 }
 
-std::vector<IngredientType> KetelObject::GetIngedients() const
+std::vector<std::string> KetelObject::GetIngedients() const
 {
 	return addedIngedients;
 }

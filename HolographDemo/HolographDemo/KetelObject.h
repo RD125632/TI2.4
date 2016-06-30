@@ -1,5 +1,6 @@
 #pragma once
 #include "SuperObject.h"
+#include <string>
 
 class KetelObject :
 	public SuperObject
@@ -7,9 +8,9 @@ class KetelObject :
 public:
 	KetelObject();
 	~KetelObject();
-	void AddIngredient(IngredientType);
-	std::vector <IngredientType> GetIngedients() const;
+	void AddIngredient(std::string);
+	std::vector <std::string> GetIngedients() const;
 
 private:
-	std::vector<IngredientType> addedIngedients;
+	std::vector<std::string> addedIngedients;
 };
