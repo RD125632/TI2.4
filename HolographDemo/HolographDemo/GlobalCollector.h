@@ -36,6 +36,7 @@ public:
 	std::vector<Symptom> symptoms;
 	std::vector<tmp12::WorldObject> effects;
 	SampleListener leaphandler;
+	Controller controller;
 
 private:
 	GlobalCollector();
