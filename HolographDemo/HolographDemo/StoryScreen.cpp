@@ -2,17 +2,32 @@
 #include "GlobalCollector.h"
 #include "Ingredient.h"
 #include <iostream>
+#include <vector>
 GLfloat UpwardsScrollVelocity = -10.0;
 float view = 20.0;
+std::vector<string> story;
 
-string quote[6];
-int numberOfQuotes = 0, i;
+void init()
+{
+	std::ifstream input("Text/StoryIntro.txt");
+
+
+	for (std::string line; getline(input, line); )
+	{
+		story.push_back(line);
+	}
+
+
+
+	
+}
 StoryScreen::StoryScreen() : Screen()
 {
 	
 	screenToDraw = &StoryScreen::drawIntroScreen;
-	
+	init();
 }
+
 void StoryScreen::drawIntroScreen()
 {
 	//glPushMatrix();
@@ -30,33 +45,35 @@ void StoryScreen::drawIntroScreen()
 	//	glutStrokeCharacter(GLUT_STROKE_ROMAN, speedtext[i]);
 	//}
 	 glMatrixMode(GL_PROJECTION);
-	 glPushMatrix();
+	 GLdouble *matrix = new GLdouble[16];
+	 glGetDoublev(GL_PROJECTION_MATRIX, matrix);
 	 glLoadIdentity();
-	 glEnable(GL_COLOR_MATERIAL);
-	 glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-	 glOrtho(-2000, 2000, -2000, 2000, 5, -5);
+	 glOrtho(0, 800, 0, 600, -5, 5);
 	 glMatrixMode(GL_MODELVIEW);
-	int l, lenghOfQuote, i;
-	for (l = 0;l<numberOfQuotes;l++)
-	{
-		lenghOfQuote = quote[l].length();
-		//glPushMatrix();
-		//glTranslated(10, 100, 10);
-		glTranslatef(-(lenghOfQuote * 37), -(l * 200), 0.0);
-		//glTranslatef(0, 1800, 0);
-		for (i = 0; i < lenghOfQuote; i++)
-		{
-			glColor3f((UpwardsScrollVelocity / 10) + 300 + (l * 10), (UpwardsScrollVelocity / 10) + 300 + (l * 10), 0.0);
-			glutStrokeCharacter(GLUT_STROKE_ROMAN, quote[l][i]);
-		}
-		glPopMatrix();
-	}
-	/*string scoretext = "Score: " + std::to_string(score);
-	for (int i = 0; i < scoretext.length(); i++)
-	{
-		glutStrokeCharacter(GLUT_STROKE_ROMAN, scoretext[i]);
-	}*/
-	
+	 glLoadIdentity();
+	 glPushMatrix();
+
+	 glLoadIdentity();
+	 glDisable(GL_TEXTURE_2D);
+	 glDisable(GL_LIGHTING);
+	 glEnable(GL_COLOR);
+	 glColor3f(1.0f, 1.0f, 1.0f);
+	 for (int i = 0; i < story.size() ; i++)
+	 {
+		 glRasterPos2i(10, 580-(i*12));
+		 for (int k = 0; k < story[i].length();k++)
+		 {
+			 glutBitmapCharacter(GLUT_BITMAP_9_BY_15, story[i][k]);
+		 }
+	 }
+	 glPopMatrix();
+	 glDisable(GL_COLOR);
+	 glEnable(GL_TEXTURE_2D);
+	 glEnable(GL_LIGHTING);
+	 glMatrixMode(GL_PROJECTION);
+	 glLoadMatrixd(matrix);
+	 glMatrixMode(GL_MODELVIEW);
+	 glColor3f(1.0f, 1.0f, 1.0f);
 
 
 	glPopMatrix();
@@ -121,11 +138,5 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 		0, 20, 20,
 		0, 1, 0);
 	std::cout << GlobalCollector::Instance()->camera.currentlocation[0] << GlobalCollector::Instance()->camera.currentlocation[1] << GlobalCollector::Instance()->camera.currentlocation[2] << endl;
-	quote[0] = "Luke, I am your father!.";
-	quote[1]=	"Obi-Wan has taught you well. ";
-	quote[2]= "The force is strong with this one. ";
-	quote[3]= "Alert all commands. Calculate every possible destination along their last known trajectory. ";
-	quote[4]= "The force is with you, young Skywalker, but you are not a Jedi yet.";
-	numberOfQuotes = 5;
 	return 1;
 }
