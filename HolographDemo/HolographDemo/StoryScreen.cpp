@@ -3,10 +3,11 @@
 #include "Ingredient.h"
 #include <iostream>
 #include <vector>
+#include "Texture.h"
 GLfloat UpwardsScrollVelocity = -10.0;
 float view = 20.0;
 std::vector<string> story;
-
+Texture * background;
 void init()
 {
 	std::ifstream input("Text/StoryIntro.txt");
@@ -17,7 +18,7 @@ void init()
 		story.push_back(line);
 	}
 
-
+	background = new Texture("resources/parchment.png");
 
 	
 }
@@ -27,9 +28,27 @@ StoryScreen::StoryScreen() : Screen()
 	screenToDraw = &StoryScreen::drawIntroScreen;
 	init();
 }
-
-void StoryScreen::drawIntroScreen()
+void drawBackground()
 {
+	int size = 800;
+	glEnable(GL_TEXTURE_2D);
+	background->bind();
+	glBegin(GL_QUADS);      //and draw a face
+	glNormal3f(0.0, 0.0, -1.0);
+	glTexCoord2f(1, 0);
+	glVertex3f(800, 600, -1);
+	glTexCoord2f(0, 0);
+	glVertex3f(0, 600, -1);
+	glTexCoord2f(0, 1);
+	glVertex3f(0, 0, -1);
+	glTexCoord2f(1, 1);
+	glVertex3f(800, 0, -1);
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+}
+void StoryScreen::drawIntroScreen()
+{	
+	
 	//glPushMatrix();
 	 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -51,18 +70,22 @@ void StoryScreen::drawIntroScreen()
 	 glOrtho(0, 800, 0, 600, -5, 5);
 	 glMatrixMode(GL_MODELVIEW);
 	 glLoadIdentity();
+	 
 	 glPushMatrix();
-
+	 
 	 glLoadIdentity();
 	 glDisable(GL_TEXTURE_2D);
 	 glDisable(GL_LIGHTING);
 	 glEnable(GL_COLOR);
 	 glColor3f(1.0f, 1.0f, 1.0f);
+	 drawBackground();
+	 glColor3f(0.0f, 0.0f, 0.0f);
 	 for (int i = 0; i < story.size() ; i++)
 	 {
 		 glRasterPos2i(10, 580-(i*12));
 		 for (int k = 0; k < story[i].length();k++)
 		 {
+			 glColor3f(0.0f, 0.0f, 0.0f);
 			 glutBitmapCharacter(GLUT_BITMAP_9_BY_15, story[i][k]);
 		 }
 	 }
@@ -139,4 +162,21 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 		0, 1, 0);
 	std::cout << GlobalCollector::Instance()->camera.currentlocation[0] << GlobalCollector::Instance()->camera.currentlocation[1] << GlobalCollector::Instance()->camera.currentlocation[2] << endl;
 	return 1;
+}
+
+void StoryScreen::SwitchScreens(int screen)
+{
+	switch (screen)
+	{
+		case 1:
+			screenToDraw = &StoryScreen::drawIntroScreen;
+		break;
+		case 2:
+			screenToDraw = &StoryScreen::drawGameScreen;
+		break;
+		case 3:
+		break;
+
+	}
+	
 }

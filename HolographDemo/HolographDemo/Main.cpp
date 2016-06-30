@@ -167,6 +167,12 @@
 		case 'a':
 			GlobalCollector::Instance()->holoScreen.rotateX -= 0.5;
 			break;
+		case '9':
+			GlobalCollector::Instance()->storyScreen.SwitchScreens(2);
+			break;
+		case'0':
+			GlobalCollector::Instance()->storyScreen.SwitchScreens(1);
+			break;
 		case 't':
 			if (GlobalCollector::Instance()->holoScreen.mode == GL_FILL)
 			{

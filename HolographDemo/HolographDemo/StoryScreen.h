@@ -15,6 +15,7 @@ public:
 	int Setup(int,int) override;
 	bool isUpsideDown = false;
 	int Status = 0;
+	void SwitchScreens(int screen);
 private:
 	void (StoryScreen::*screenToDraw)();
 	void drawIntroScreen();
