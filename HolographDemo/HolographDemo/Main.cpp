@@ -18,6 +18,7 @@
 	GLint hWindowWidth, hWindowHeight;
 	GLint sWindowWidth, sWindowHeight;
 	float zoom = 1;
+	
 
 
 /*-------------------------------------------------------------------------*/
@@ -58,11 +59,31 @@
 		}
 		GlobalCollector::Instance()->holoScreen.rotateY += 0.5;
 		GlobalCollector::Instance()->holoScreen.Logic();
+		GlobalCollector::Instance()->camera.MoveToTarget();
 		glutPostRedisplay();
 	}
-	void finalinit()
+	//void finalinit()
+	void GameInit(void)
 	{
 		GlobalCollector::Instance()->holoScreen.init();
+		int counter = 0;
+		for (int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++)
+		{
+			GlobalCollector::Instance()->ingredients[i].posX = -25.0f + 5 * counter;
+			GlobalCollector::Instance()->ingredients[i].posY = 15.0f;
+			GlobalCollector::Instance()->ingredients[i].posZ = 45.0f;
+			counter++;
+		}
+		GlobalCollector::Instance()->plank.scale = 10;
+		GlobalCollector::Instance()->plank.posZ = 50;
+		GlobalCollector::Instance()->plank.posY = 10;
+		GlobalCollector::Instance()->plank.rotX = 90;
+		GlobalCollector::Instance()->wizard.posX = 25;
+		GlobalCollector::Instance()->wizard.posY = -25;
+		GlobalCollector::Instance()->wizard.posZ = 45;
+		GlobalCollector::Instance()->wizard.rotY = 180;
+		GlobalCollector::Instance()->wizard.rotX = 90;
+		GlobalCollector::Instance()->wizard.scale = 4;
 	}
 	void HologramInit(void)
 	{
@@ -174,10 +195,10 @@
 		switch(key)
 		{
 		case GLUT_KEY_LEFT:
-
+			GlobalCollector::Instance()->camera.MoveToLeft();
 			break;
 		case GLUT_KEY_RIGHT:
-
+			GlobalCollector::Instance()->camera.MoveToRight();
 			break; 
 		case GLUT_KEY_F11:
 			glutFullScreenToggle();
@@ -234,8 +255,12 @@ int main(int argc, char *argv[])
 	glutReshapeFunc(StoryReshape);
 	StoryInit();
 	wglShareLists(hRCA, hRCB);
+	GameInit();
+
+
+
+
 	RegisterAllSounds();
-	finalinit();
 
 	glutMainLoop();
 	return 0;

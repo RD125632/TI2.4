@@ -14,9 +14,10 @@
 #include "PlankObject.h"
 #include "Pollspoon.h"
 #include "Room.h"
+#include "Camera.h"
+#include "WorldObject.h"
 #include <vector>
 #include "Sound.h"
-
 
 class GlobalCollector
 {
@@ -30,6 +31,7 @@ public:
 	KetelObject ketel;
 	PlankObject plank;
 	Pollspoon pollspoon;
+	Camera camera;
 	std::vector<Ingredient> ingredients;
 	std::vector<Symptom> symptoms;
 	SoundEngine soundEngine;

@@ -1,12 +1,17 @@
 #pragma once
+#include <array>
 
 class Camera
 {
 public:
-	double location1[3] = { 1,1,1 };
-	double location2[3] = { 1,1,1 };
-	double location3[3] = { 1,1,1 };
-	double currentlocation[3] = { 0,0,-2 };
+	std::array<double, 6> locations1 { 0, 20, 15, 0, 20, 20 };
+	std::array<double, 6> locations2 { -10,0,-1, 15, 0, 20 };
+	std::array<double, 6> locations3 { 10 ,0,-1, 0, 20, 20 };
+	std::array<double, 6> currentlocation = locations2;
+	std::array<double, 6> targetlocation = locations2;
 	Camera();
+	void MoveToLeft();
+	void MoveToRight();
+	void MoveToTarget();
 	~Camera();
 };

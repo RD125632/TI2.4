@@ -9,6 +9,6 @@ Wizard::Wizard()
 Wizard::Wizard(std::vector<int> list)
 {
 	symptoms = list;
-	model = new ObjModel("models/book/spellbook.obj");
 	type = "object";
+	model = new ObjModel("models/wizard/wizard.obj");
 }

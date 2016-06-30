@@ -1,5 +1,6 @@
 #include "StoryScreen.h"
 #include "GlobalCollector.h"
+#include "Ingredient.h"
 #include <iostream>
 
 StoryScreen::StoryScreen() : Screen()
@@ -12,6 +13,8 @@ int StoryScreen::Display()
 	//Models
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
 	glPushMatrix();
+	GlobalCollector::Instance()->room->draw();
+	
 	if (!isUpsideDown)
 	{
 		glScalef(-1, 1, 1);
@@ -21,7 +24,15 @@ int StoryScreen::Display()
 		glScalef(-1, -1, 1);
 	}
 	
-	GlobalCollector::Instance()->room->draw();
+	GlobalCollector::Instance()->plank.draw();
+	//glTranslated(-25, 25, 45);
+	for (Ingredient ing : GlobalCollector::Instance()->ingredients)
+	{
+		ing.draw();
+		//glTranslated(5, 0, 0);
+	}
+	GlobalCollector::Instance()->wizard.draw();
+
 	
 	glPopMatrix();
 	glFlush();
@@ -40,14 +51,16 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	gluPerspective(90, (float)windowWidth / windowHeight, 0.1f, 200);
+	gluPerspective(90, (float)windowWidth / windowHeight, 1, 1000);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	gluLookAt(0, 0, -zoom,
-		0, 0, 0,
+
+	gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0], GlobalCollector::Instance()->camera.currentlocation[1], GlobalCollector::Instance()->camera.currentlocation[2],
+		GlobalCollector::Instance()->camera.currentlocation[3], GlobalCollector::Instance()->camera.currentlocation[4], 20,
 		0, 1, 0);
+	std::cout << GlobalCollector::Instance()->camera.currentlocation[0] << GlobalCollector::Instance()->camera.currentlocation[1] << GlobalCollector::Instance()->camera.currentlocation[2] << endl;
 
 	return 1;
 }
