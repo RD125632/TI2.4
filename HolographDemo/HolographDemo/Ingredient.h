@@ -12,7 +12,7 @@ class Ingredient : public SuperObject
 {
 public:
 	Ingredient();
-	Ingredient(int, std::string, int, ObjModel*, IngredientType);
+	Ingredient(int, std::string, int, ObjModel*);
 	std::string name;
 	int cures;
 };
