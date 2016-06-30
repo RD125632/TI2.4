@@ -7,7 +7,7 @@
 class ParticalEmitter
 {
 public:
-	ParticalEmitter(int ID,int Intensity, float Interval,float Radius, float X, float Y, float Z);
+	ParticalEmitter(int ID,int Intensity, float Interval,float Radius, float X, float Y, float Z,bool burstmode, int burstcounter);
 	~ParticalEmitter();
 	void drawParticals();
 	float x;
@@ -17,6 +17,8 @@ public:
 	float interval;
 	float radius;
 	int counter = 0;
+	bool burstMode = false;
+	int burstCounter;
 private:
 	void update();
 	std::vector<Partical*> particalList;
