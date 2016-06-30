@@ -33,7 +33,13 @@ int StoryScreen::Display()
 	}
 	GlobalCollector::Instance()->wizard.draw();
 
-	
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glOrtho(-3000, 3000, 0, 5000, -1, 1);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	GlobalCollector::Instance()->leaphandler.DrawCube();
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();

@@ -22,6 +22,7 @@ class SampleListener : public Listener {
 public:
 	virtual void onConnect(const Controller&);
 	virtual void onFrame(const Controller&);
+	void DrawCube();
 };
 
 void SampleListener::onConnect(const Controller& controller) {
@@ -32,6 +33,8 @@ void SampleListener::onConnect(const Controller& controller) {
 	controller.enableGesture(Gesture::TYPE_SCREEN_TAP);
 	controller.enableGesture(Gesture::TYPE_INVALID);
 }
+
+
 
 void swipeGesture() {
 	std::cout << "Swipemovement!" << std::endl;
@@ -91,10 +94,12 @@ void readGestures() {
 
 		Vector swy = trackedGesture.direction();
 
-		if (swy.x > 0) {
+		std::cout << swy.x << " " << swy.y << " " << swy.z << std::endl;
+
+		if (swy.x > 0.0001) {
 			std::cout << "Right!" << std::endl;
 		}
-		else {
+		else if (swy.x < -0.1) {
 			std::cout << "Left!" << std::endl;
 		}
 
@@ -110,8 +115,8 @@ void SampleListener::onFrame(const Controller& controller) {
 	auto tools = frame.tools();
 	auto frontHand = hands.frontmost();
 	auto handPosition = frontHand.palmPosition();
-	xx = double(handPosition.x*0.05);
-	yy = double((handPosition.y - 300) / 50);
+	xx = double(handPosition.x * 0.002);
+	yy = double((handPosition.y * 0.003) - 0.8);
 
 	if (frontHand.pinchStrength() >0.8) {
 		pinching();
@@ -133,14 +138,17 @@ void init(void)
 	glTranslated(0, 0, -13);
 }
 
-void DrawCube(void)
+void SampleListener::DrawCube(void)
 {
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glBegin(GL_QUADS);
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(xx - 0.1, yy - 0.1, 0.0);
-	glVertex3f(xx + 0.1, yy - 0.1, 0.0);
-	glVertex3f(xx + 0.1, yy + 0.1, 0.0);
-	glVertex3f(xx - 0.1, yy + 0.1, 0.0);
+	//glColor3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(xx - 0.05, yy - 0.1, 0.0);
+	glVertex3f(xx + 0.05, yy - 0.1, 0.0);
+	glVertex3f(xx + 0.05, yy + 0.1, 0.0);
+	glVertex3f(xx - 0.05, yy + 0.1, 0.0);
+	//std::cout << "xx: " << xx << "yy: " << yy << std::endl;
+	//glColor3f(1.0f, 1.0f, 1.0f);
 	glEnd();            // End Drawing The Cube
 }
 
@@ -162,7 +170,6 @@ void reshape(int x, int y)
 void draw(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	DrawCube();
 	glutSwapBuffers();
 }
 

@@ -1,5 +1,6 @@
 #include "GlobalCollector.h"
 #include "GL\glut.h"
+#include <stdio.h> 
 
 GlobalCollector* GlobalCollector::instance = NULL;
 
@@ -31,6 +32,8 @@ GlobalCollector::GlobalCollector()
 	{
 		parse_IDs.push_back(x.ID);
 	}
+
+
 	book = Book(parse_IDs);
 	
 	parse_IDs.clear();

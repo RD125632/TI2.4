@@ -12,6 +12,7 @@ class SampleListener : public Listener
 public:
 	virtual void onConnect(const Controller&);
 	virtual void onFrame(const Controller&);
+	void DrawCube();
 	//virtual void onDisconnect(const Controller&);
 };
 #endif
