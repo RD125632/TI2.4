@@ -38,6 +38,8 @@ public:
 	SoundEngine soundEngine;
 	SampleListener leaphandler;
 	Controller controller;
+	std::vector<string> storyBegin;
+	std::vector<string> storyEnd;
 
 private:
 	GlobalCollector();

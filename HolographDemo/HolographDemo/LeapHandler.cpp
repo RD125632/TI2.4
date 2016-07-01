@@ -68,6 +68,7 @@ void pinching() {
 					oldX = GlobalCollector::Instance()->ingredients[i].posX;
 					selectedIngredient = &GlobalCollector::Instance()->ingredients[i];
 					slIng = i;
+					GlobalCollector::Instance()->soundEngine.Play_Sound("Pickup", false);
 				}
 			}
 		}
