@@ -128,7 +128,13 @@ void StoryScreen::drawGameScreen()
 	}
 	GlobalCollector::Instance()->wizard.draw();
 
-
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glOrtho(-3000, 3000, 0, 5000, -1, 1);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	GlobalCollector::Instance()->leaphandler.DrawCube();
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -160,7 +166,9 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 	gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0], GlobalCollector::Instance()->camera.currentlocation[1], GlobalCollector::Instance()->camera.currentlocation[2],
 		GlobalCollector::Instance()->camera.currentlocation[3], GlobalCollector::Instance()->camera.currentlocation[4], 20,
 		0, 1, 0);
-	std::cout << GlobalCollector::Instance()->camera.currentlocation[0] << GlobalCollector::Instance()->camera.currentlocation[1] << GlobalCollector::Instance()->camera.currentlocation[2] << endl;
+
+	//std::cout << GlobalCollector::Instance()->camera.currentlocation[0] << GlobalCollector::Instance()->camera.currentlocation[1] << GlobalCollector::Instance()->camera.currentlocation[2] << endl;
+
 	return 1;
 }
 
