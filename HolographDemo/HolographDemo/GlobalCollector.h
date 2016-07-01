@@ -7,6 +7,7 @@
 #include "HologramScreen.h"
 #include "StoryScreen.h"
 #include "Book.h"
+#include "StoryBook.h"
 #include "Wizard.h"
 #include "Ingredient.h"
 #include "RecipeLoader.h"
@@ -26,6 +27,7 @@ public:
 	HologramScreen holoScreen;
 	StoryScreen storyScreen;
 	Book book;
+	StoryBook storyBook;
 	Wizard wizard;
 	KetelObject ketel;
 	PlankObject plank;

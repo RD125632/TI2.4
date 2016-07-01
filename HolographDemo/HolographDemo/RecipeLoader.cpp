@@ -1,3 +1,5 @@
+#pragma once
+
 #include "RecipeLoader.h"
 
 std::vector<Ingredient> RecipeLoader::loadIngredients()

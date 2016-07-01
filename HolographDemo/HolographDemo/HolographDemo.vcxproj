@@ -179,6 +179,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="GlobalCollector.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="StoryBook.h" />
     <ClInclude Include="StoryScreen.h" />
     <ClInclude Include="SuperObject.h" />
     <ClInclude Include="Symptom.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="SolidSphere.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="GlobalCollector.cpp" />
+    <ClCompile Include="StoryBook.cpp" />
     <ClCompile Include="StoryScreen.cpp" />
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />

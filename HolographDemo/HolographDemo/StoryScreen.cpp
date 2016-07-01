@@ -5,7 +5,7 @@
 
 StoryScreen::StoryScreen() : Screen()
 {
-	
+
 }
 
 int StoryScreen::Display()
@@ -31,9 +31,9 @@ int StoryScreen::Display()
 		ing.draw();
 		//glTranslated(5, 0, 0);
 	}
+	GlobalCollector::Instance()->storyBook.draw();
 	GlobalCollector::Instance()->wizard.draw();
 
-	
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -53,12 +53,17 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 
 	gluPerspective(90, (float)windowWidth / windowHeight, 1, 1000);
 
+	glTranslated(GlobalCollector::Instance()->camera.currentlocation[0], GlobalCollector::Instance()->camera.currentlocation[1], GlobalCollector::Instance()->camera.currentlocation[2]);
+	glRotated(GlobalCollector::Instance()->camera.currentlocation[3], 1, 0, 0);
+	glRotated(GlobalCollector::Instance()->camera.currentlocation[4], 0, 1, 0);
+	glRotated(GlobalCollector::Instance()->camera.currentlocation[5], 0, 0, 1);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-
-	gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0], GlobalCollector::Instance()->camera.currentlocation[1], GlobalCollector::Instance()->camera.currentlocation[2],
-		GlobalCollector::Instance()->camera.currentlocation[3], GlobalCollector::Instance()->camera.currentlocation[4], 20,
+	gluLookAt(0, 0, 0,
+		0, 0, 1,
+	//gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0], GlobalCollector::Instance()->camera.currentlocation[1], GlobalCollector::Instance()->camera.currentlocation[2],
+	//	GlobalCollector::Instance()->camera.currentlocation[3], GlobalCollector::Instance()->camera.currentlocation[4], 20,
 		0, 1, 0);
 	std::cout << GlobalCollector::Instance()->camera.currentlocation[0] << GlobalCollector::Instance()->camera.currentlocation[1] << GlobalCollector::Instance()->camera.currentlocation[2] << endl;
 

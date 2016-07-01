@@ -18,7 +18,10 @@ GlobalCollector::GlobalCollector()
 	storyScreen = StoryScreen();
 	room = new Room(100,100,100);
 	plank = PlankObject();
-	
+	storyBook = StoryBook();
+	storyBook.posX = -30;
+	storyBook.posY = -10;
+	storyBook.posZ = 50;
 	ingredients = RecipeLoader::loadIngredients();
 	symptoms = RecipeLoader::loadSymptoms();
 
@@ -36,6 +39,5 @@ GlobalCollector::GlobalCollector()
 		parse_IDs.push_back(x.ID);
 	}
 	wizard = Wizard(parse_IDs);
-	
 	
 }
