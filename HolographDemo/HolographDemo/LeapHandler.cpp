@@ -15,8 +15,8 @@ void draw(void);
 double xx;
 double yy;
 Frame frame;
-Ingredient selectedIngredient;
-int slIng = NULL;
+Ingredient* selectedIngredient = nullptr;
+int slIng = -1;
 
 double xxx;
 double yyy;
@@ -64,12 +64,12 @@ void pinching() {
 	xxx = ((xx * -1) * 10) * 5 - 1;
 	yyy = ((yy * -1) * 50) - 13;
 
-	//if (selectedIngredient == nullptr) {
+	if (selectedIngredient == nullptr) {
 	for (int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++) {
-			if (-yyy + 10 > GlobalCollector::Instance()->ingredients[i].posY && yyy < GlobalCollector::Instance()->ingredients[i].posY) {
-				if (xxx > GlobalCollector::Instance()->ingredients[i].posX -0.5 && xxx < GlobalCollector::Instance()->ingredients[i].posX + 0.5) {
+			if (-yyy + 10 > GlobalCollector::Instance()->ingredients[i].posY -1 && -yyy + 10 < GlobalCollector::Instance()->ingredients[i].posY + 1) {
+				if (xxx > GlobalCollector::Instance()->ingredients[i].posX -1 && xxx < GlobalCollector::Instance()->ingredients[i].posX + 1) {
 
-					//selectedIngredient = GlobalCollector::Instance()->ingredients[i];
+					selectedIngredient = &GlobalCollector::Instance()->ingredients[i];
 					slIng = i;
 
 					
@@ -78,7 +78,7 @@ void pinching() {
 				}
 			}
 		}
-//	}
+	}
 	
 	std::cout << "IK: " << -yyy + 10 << " " << GlobalCollector::Instance()->ingredients[6].name << GlobalCollector::Instance()->ingredients[6].posY << std::endl;
 	//std::cout << GlobalCollector::Instance()->ingredients[5].name << GlobalCollector::Instance()->ingredients[5].posY << std::endl;
@@ -168,7 +168,8 @@ void SampleListener::onFrame(const Controller& controller) {
 	}
 	else {
 		drawIt = true;
-		
+		selectedIngredient = nullptr;
+		slIng = -1;
 	}
 
 	// x en y hebben standaard andere waarden, maar voor ons voorbeeldframe hebben we die aangepast hierboven, als je die weer terug wilt zetten moet je die regels even weghalen, want nu zijn die maximaal 8 volgens mij.
@@ -214,8 +215,10 @@ void SampleListener::DrawCube(void)
 		Cube();
 	}
 
-	GlobalCollector::Instance()->ingredients[slIng].posX = xxx;
-	GlobalCollector::Instance()->ingredients[slIng].posY = yyy *-1 ;
+	if (slIng >= 0) {
+		GlobalCollector::Instance()->ingredients[slIng].posX = xxx;
+		GlobalCollector::Instance()->ingredients[slIng].posY = yyy *-1;
+	}
 
 	//std::cout << "IK: " << yyy * -1 << " " << GlobalCollector::Instance()->ingredients[slIng].name << GlobalCollector::Instance()->ingredients[slIng].posY << std::endl;
 
