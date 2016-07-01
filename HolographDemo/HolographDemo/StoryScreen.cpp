@@ -34,6 +34,7 @@ void StoryScreen::drawIntroScreen()
 {	
 	
 	std::vector<string> toDraw;
+
 	toDraw.clear();
 	switch (storyStatus)
 	{
@@ -43,7 +44,7 @@ void StoryScreen::drawIntroScreen()
 	case 1:
 		for (Ingredient i : GlobalCollector::Instance()->ingredients)
 		{
-			toDraw.push_back(i.name);
+			toDraw.push_back(i.name + ":");
 			for (std::string line : i.description)
 			{
 				toDraw.push_back(line);
@@ -58,6 +59,7 @@ void StoryScreen::drawIntroScreen()
 	default:
 		break;
 	}
+
 	 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	 glMatrixMode(GL_PROJECTION);
 	 GLdouble *matrix = new GLdouble[16];
@@ -83,7 +85,14 @@ void StoryScreen::drawIntroScreen()
 		 for (unsigned int k = 0; k < toDraw[i].length();k++)
 		 {
 			 glColor3f(0.0f, 0.0f, 0.0f);
-			 glutBitmapCharacter(GLUT_BITMAP_9_BY_15, toDraw[i][k]);
+			 if (std::string::npos != toDraw[i].find(":"))
+			 {
+				 glutBitmapCharacter(GLUT_BITMAP_9_BY_15, toDraw[i][k]);
+			 }
+			 else
+			 {
+				 glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, toDraw[i][k]);
+			 }
 		 }
 	 }
 	 glPopMatrix();
