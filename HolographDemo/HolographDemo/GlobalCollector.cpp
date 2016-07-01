@@ -18,10 +18,14 @@ GlobalCollector::GlobalCollector()
 	room = new Room(100,100,100);
 	plank = PlankObject();
 	
-	ingredients = RecipeLoader::loadIngredients();
-	symptoms = RecipeLoader::loadSymptoms();
+	ingredients = FileLoader::loadIngredients();
+	symptoms = FileLoader::loadSymptoms();
+	storyBegin = FileLoader::loadStory("Text/StoryIntro.txt");
+	storyEnd = FileLoader::loadStory("Text/StoryEnding.txt");
+
 	soundEngine = SoundEngine();
 
+	/* Load Ingredients in book */
 	std::vector<int> parse_IDs;
 	
 	for (Ingredient x : ingredients)
@@ -30,13 +34,17 @@ GlobalCollector::GlobalCollector()
 	}
 	book = Book(parse_IDs);
 	
+	/* Load Wizard Symptoms */
 	parse_IDs.clear();
 	for (Symptom x : symptoms)
 	{
 		parse_IDs.push_back(x.ID);
 	}
 	wizard = Wizard(parse_IDs);
+
+
+
+
 	holoScreen = HologramScreen();
 	storyScreen = StoryScreen();
-	
 }

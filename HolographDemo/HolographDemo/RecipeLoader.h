@@ -9,7 +9,8 @@
 #include "Symptom.h"
 #include "Ingredient.h"
 
-namespace RecipeLoader {
+namespace FileLoader {
+	std::vector<string> loadStory(string);
 	std::vector<Ingredient> loadIngredients();
 	std::vector<Symptom> loadSymptoms();
 	std::vector<std::string> split(const std::string &s, char delim);

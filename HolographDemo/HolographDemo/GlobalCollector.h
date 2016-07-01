@@ -35,6 +35,8 @@ public:
 	std::vector<Ingredient> ingredients;
 	std::vector<Symptom> symptoms;
 	SoundEngine soundEngine;
+	std::vector<string> storyBegin;
+	std::vector<string> storyEnd;
 
 private:
 	GlobalCollector();

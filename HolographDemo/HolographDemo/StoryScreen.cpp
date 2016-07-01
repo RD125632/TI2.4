@@ -4,53 +4,15 @@
 #include <iostream>
 #include <vector>
 #include "Texture.h"
-GLfloat UpwardsScrollVelocity = -10.0;
-float view = 20.0;
-std::vector<string> story;
-std::vector<string> book;
-std::vector<string> ending;
-Texture * background;
-void init()
-{
-	std::ifstream input1("Text/StoryIntro.txt");
-	
-	//std::ifstream input3("Text/StoryEnding.txt");
 
-	for (std::string line; getline(input1, line); )
-	{
-		story.push_back(line);
-	}
-	/*std::ifstream input2("Text/ingredienteBoek.txt");
-	for (std::string line1; getline(input2, line1); )
-	{
-		book.push_back(line1);
-	}*/
-	/*for (std::string line; getline(input3, line); )
-	{
-		ending.push_back(line);
-	}*/
-	for (int y : GlobalCollector::Instance()->wizard.symptoms)
-	{
-		for (Symptom s : GlobalCollector::Instance()->symptoms)
-		{
-			if (s.ID == y)
-			{
-				story.push_back(s.description);
-			}
-		}
-		
-	}
-	background = new Texture("resources/parchment.png");
-
-	
-}
 StoryScreen::StoryScreen() : Screen()
 {
 	
 	screenToDraw = &StoryScreen::drawIntroScreen;
-	init();
+	background = new Texture("resources/parchment.png");
 }
-void drawBackground()
+
+void StoryScreen::drawBackground()
 {
 	int size = 800;
 	glEnable(GL_TEXTURE_2D);
@@ -76,13 +38,22 @@ void StoryScreen::drawIntroScreen()
 	switch (storyStatus)
 	{
 	case 0:
-		toDraw = story;
+		toDraw = GlobalCollector::Instance()->storyBegin;
 		break;
 	case 1:
-		toDraw = book;
+		for (Ingredient i : GlobalCollector::Instance()->ingredients)
+		{
+			toDraw.push_back(i.name);
+			for (std::string line : i.description)
+			{
+				toDraw.push_back(line);
+			}
+			toDraw.push_back("");
+			toDraw.push_back("");
+		}
 		break;
 	case 2:
-		toDraw = ending;
+		toDraw = GlobalCollector::Instance()->storyEnd;
 		break;
 	default:
 		break;
@@ -105,10 +76,11 @@ void StoryScreen::drawIntroScreen()
 	 glColor3f(1.0f, 1.0f, 1.0f);
 	 drawBackground();
 	 glColor3f(0.0f, 0.0f, 0.0f);
-	 for (int i = 0; i < toDraw.size() ; i++)
+
+	 for (unsigned int i = 0; i < toDraw.size() ; i++)
 	 {
 		 glRasterPos2i(10, 580-(i*12));
-		 for (int k = 0; k < toDraw[i].length();k++)
+		 for (unsigned int k = 0; k < toDraw[i].length();k++)
 		 {
 			 glColor3f(0.0f, 0.0f, 0.0f);
 			 glutBitmapCharacter(GLUT_BITMAP_9_BY_15, toDraw[i][k]);
