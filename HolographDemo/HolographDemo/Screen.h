@@ -1,12 +1,10 @@
-#pragma once
-
 #ifndef SCREEN_H_
 #define SCREEN_H_
 
 #include <string>
 #include <vector>
 #include "ObjModel.h"
-#include "GL\freeglut.h"
+#include <GL/freeglut.h>
 
 class Screen
 {

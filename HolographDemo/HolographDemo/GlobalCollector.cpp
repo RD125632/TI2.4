@@ -1,5 +1,6 @@
 #include "GlobalCollector.h"
 #include "GL\glut.h"
+#include <stdio.h> 
 
 GlobalCollector* GlobalCollector::instance = NULL;
 
@@ -14,30 +15,44 @@ GlobalCollector * GlobalCollector::Instance()
 
 GlobalCollector::GlobalCollector()
 {
-	holoScreen = HologramScreen();
-	storyScreen = StoryScreen();
+	
 	room = new Room(100,100,100);
 	plank = PlankObject();
 	storyBook = StoryBook();
 	storyBook.posX = -30;
 	storyBook.posY = -10;
 	storyBook.posZ = 50;
-	ingredients = RecipeLoader::loadIngredients();
-	symptoms = RecipeLoader::loadSymptoms();
 
+	leaphandler = SampleListener();
+
+	controller.addListener(leaphandler);
+	std::cout << "Press Enter to quit..." << std::endl;
+	
+	ingredients = FileLoader::loadIngredients();
+	symptoms = FileLoader::loadSymptoms();
+	storyBegin = FileLoader::loadStory("Text/StoryIntro.txt");
+	storyEnd = FileLoader::loadStory("Text/StoryEnding.txt");
+
+	soundEngine = SoundEngine();
+
+	/* Load Ingredients in book */
 	std::vector<int> parse_IDs;
 	
 	for (Ingredient x : ingredients)
 	{
 		parse_IDs.push_back(x.ID);
 	}
+
 	book = Book(parse_IDs);
 	
+	/* Load Wizard Symptoms */
 	parse_IDs.clear();
 	for (Symptom x : symptoms)
 	{
 		parse_IDs.push_back(x.ID);
 	}
 	wizard = Wizard(parse_IDs);
-	
+
+	holoScreen = HologramScreen();
+	storyScreen = StoryScreen();
 }

@@ -18,6 +18,8 @@
 #include "Camera.h"
 #include "WorldObject.h"
 #include <vector>
+#include "Sound.h"
+#include "LeapHandler.h"
 
 class GlobalCollector
 {
@@ -35,7 +37,11 @@ public:
 	Camera camera;
 	std::vector<Ingredient> ingredients;
 	std::vector<Symptom> symptoms;
-	std::vector<tmp12::WorldObject> effects;
+	SoundEngine soundEngine;
+	SampleListener leaphandler;
+	Controller controller;
+	std::vector<string> storyBegin;
+	std::vector<string> storyEnd;
 
 private:
 	GlobalCollector();
