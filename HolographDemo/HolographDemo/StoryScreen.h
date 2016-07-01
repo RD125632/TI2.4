@@ -16,10 +16,12 @@ public:
 	bool isUpsideDown = false;
 	int Status = 0;
 	void SwitchScreens(int screen);
+	void PrepareScoreScreen();
 private:
 	void (StoryScreen::*screenToDraw)();
 	void drawIntroScreen();
 	void drawGameScreen();
+	void drawScoreScreen();
 };
 
 #endif

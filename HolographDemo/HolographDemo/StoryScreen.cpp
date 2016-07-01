@@ -7,6 +7,8 @@
 GLfloat UpwardsScrollVelocity = -10.0;
 float view = 20.0;
 std::vector<string> story;
+vector<string> completeList;
+vector<string> usedList;
 Texture * background;
 void init()
 {
@@ -135,6 +137,62 @@ void StoryScreen::drawGameScreen()
 
 	
 }
+
+void StoryScreen::drawScoreScreen()
+{
+	//glPushMatrix();
+	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_PROJECTION);
+	GLdouble *matrix = new GLdouble[16];
+	glGetDoublev(GL_PROJECTION_MATRIX, matrix);
+	glLoadIdentity();
+	glOrtho(0, 800, 0, 600, -5, 5);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	glPushMatrix();
+
+	glLoadIdentity();
+	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_LIGHTING);
+	glEnable(GL_COLOR);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	drawBackground();
+	glColor3f(0.0f, 0.0f, 0.0f);
+	for (int i = 0; i < completeList.size(); i++)
+	{
+		glRasterPos2i(50, 580 - (i * 12));
+		for (int k = 0; k < completeList[i].length(); k++)
+		{
+			glColor3f(0.0f, 0.0f, 0.0f);
+			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, completeList[i][k]);
+		}
+	}
+	for (int i = 0; i < usedList.size(); i++)
+	{
+		glRasterPos2i(400, 580 - (i * 12));
+		for (int k = 0; k < usedList[i].length(); k++)
+		{
+			glColor3f(0.0f, 0.0f, 0.0f);
+			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, usedList[i][k]);
+		}
+	}
+	glPopMatrix();
+	glDisable(GL_COLOR);
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixd(matrix);
+	glMatrixMode(GL_MODELVIEW);
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+
+	glPopMatrix();
+	glFlush();
+	glutSwapBuffers();
+}
+
 int StoryScreen::Display()
 {
 	(this->*screenToDraw)();
@@ -175,8 +233,20 @@ void StoryScreen::SwitchScreens(int screen)
 			screenToDraw = &StoryScreen::drawGameScreen;
 		break;
 		case 3:
+			screenToDraw = &StoryScreen::drawScoreScreen;
 		break;
 
 	}
 	
+}
+
+void StoryScreen::PrepareScoreScreen()
+{
+	completeList.push_back("Goede Ingrediente:");
+	usedList.push_back("Jouw Ingrediente:");
+	for (string s: GlobalCollector::Instance()->ketel.GetIngedients())
+	{
+		completeList.push_back(s);
+		usedList.push_back(s);
+	}
 }
