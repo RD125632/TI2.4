@@ -143,13 +143,13 @@ void SampleListener::onFrame(const Controller& controller) {
 	else {
 		drawIt = true;
 		if (slIng >= 0) {
-			if (GlobalCollector::Instance()->ingredients[slIng].posY > 3 && selectedIngredient != nullptr) {
+			if (GlobalCollector::Instance()->ingredients[slIng].posY > 6 && selectedIngredient != nullptr) {
 				GlobalCollector::Instance()->ingredients[slIng].posY = 15;
 				GlobalCollector::Instance()->ingredients[slIng].posX = oldX;
 			}
 			else if (selectedIngredient != nullptr) {
 				while (GlobalCollector::Instance()->ingredients[slIng].posY > -15) {
-					GlobalCollector::Instance()->ingredients[slIng].posY -- ;
+					GlobalCollector::Instance()->ingredients[slIng].posY -= 0.000005 ;
 				}
 				GlobalCollector::Instance()->holoScreen.SetCurrentItem(&GlobalCollector::Instance()->ingredients[slIng]);
 			}

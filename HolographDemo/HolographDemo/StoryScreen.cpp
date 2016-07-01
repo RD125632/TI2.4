@@ -109,17 +109,9 @@ void StoryScreen::drawGameScreen()
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
 	glPushMatrix();
 	GlobalCollector::Instance()->room->draw();
-
-	if (!isUpsideDown)
-	{
-		glScalef(-1, 1, 1);
-	}
-	else
-	{
-		glScalef(-1, -1, 1);
-	}
-
+	glScalef(1.0, 1.0, 1.25);
 	GlobalCollector::Instance()->plank.draw();
+	glScalef(1, 1, 1);
 	//glTranslated(-25, 25, 45);
 	for (Ingredient ing : GlobalCollector::Instance()->ingredients)
 	{
