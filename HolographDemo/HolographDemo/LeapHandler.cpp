@@ -3,6 +3,9 @@
 #include "Leap.h"
 #include <stdio.h> 
 #include <GL/glut.h>
+#include "GlobalCollector.h"
+#include <windows.h>
+#include <time.h>
 
 using namespace Leap;
 
@@ -12,18 +15,25 @@ void draw(void);
 double xx;
 double yy;
 Frame frame;
+Ingredient selectedIngredient;
+int slIng = NULL;
+
+double xxx;
+double yyy;
 
 auto circle = 0;
 auto swipe = 0;
 auto keytap = 0;
 auto screentap = 0;
+bool drawIt = true;
 
-class SampleListener : public Listener {
-public:
-	virtual void onConnect(const Controller&);
-	virtual void onFrame(const Controller&);
-	void DrawCube();
-};
+//class SampleListener : public Listener {
+//public:
+//	virtual void onConnect(const Controller&);
+//	virtual void onFrame(const Controller&);
+//	void DrawCube();
+//	double getX();
+//};
 
 void SampleListener::onConnect(const Controller& controller) {
 	std::cout << "Connected" << std::endl;
@@ -49,7 +59,34 @@ void tapGesture() {
 }
 
 void pinching() {
-	std::cout << "Pinching!" << std::endl;
+	//std::cout << "Pinching!" << std::endl;
+
+	xxx = ((xx * -1) * 10) * 5;
+	yyy = ((yy * -1) * 100) -1;
+
+	//if (selectedIngredient == nullptr) {
+	for (int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++) {
+			if (yyy > GlobalCollector::Instance()->ingredients[i].posY - 1 && yyy < GlobalCollector::Instance()->ingredients[i].posY + 1) {
+				if (xxx > GlobalCollector::Instance()->ingredients[i].posX - 1 && xxx < GlobalCollector::Instance()->ingredients[i].posX + 1) {
+
+					selectedIngredient = GlobalCollector::Instance()->ingredients[i];
+					slIng = i;
+
+					//std::cout << "IK: " << yyy << " " << GlobalCollector::Instance()->ingredients[i].name << GlobalCollector::Instance()->ingredients[i].posY << std::endl;
+
+					
+				}
+			}
+		}
+//	}
+	
+
+	//std::cout << GlobalCollector::Instance()->ingredients[5].name << GlobalCollector::Instance()->ingredients[5].posY << std::endl;
+	//std::cout << "IK: " << yyy << std::endl;
+
+	//if(GlobalCollector::Instance()->storyScreen.)
+
+
 }
 
 void readGestures() {
@@ -94,7 +131,7 @@ void readGestures() {
 
 		Vector swy = trackedGesture.direction();
 
-		std::cout << swy.x << " " << swy.y << " " << swy.z << std::endl;
+		//std::cout << swy.x << " " << swy.y << " " << swy.z << std::endl;
 
 		if (swy.x > 0.0001) {
 			std::cout << "Right!" << std::endl;
@@ -102,6 +139,8 @@ void readGestures() {
 		else if (swy.x < -0.1) {
 			std::cout << "Left!" << std::endl;
 		}
+
+		
 
 
 	}
@@ -116,10 +155,20 @@ void SampleListener::onFrame(const Controller& controller) {
 	auto frontHand = hands.frontmost();
 	auto handPosition = frontHand.palmPosition();
 	xx = double(handPosition.x * 0.002);
-	yy = double((handPosition.y * 0.003) - 0.8);
+	yy = double((handPosition.y * 0.003) - 0.9);
 
-	if (frontHand.pinchStrength() >0.8) {
+
+
+	if (frontHand.pinchStrength() >0.3) {
 		pinching();
+		noPinchTimer = 100;
+		long tijd = 0;
+		drawIt = false;
+		
+	}
+	else {
+		drawIt = true;
+		
 	}
 
 	// x en y hebben standaard andere waarden, maar voor ons voorbeeldframe hebben we die aangepast hierboven, als je die weer terug wilt zetten moet je die regels even weghalen, want nu zijn die maximaal 8 volgens mij.
@@ -138,19 +187,41 @@ void init(void)
 	glTranslated(0, 0, -13);
 }
 
-void SampleListener::DrawCube(void)
-{
+void Cube() {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glBegin(GL_QUADS);
-	//glColor3f(0.0f, 1.0f, 0.0f);
 	glVertex3f(xx - 0.05, yy - 0.1, 0.0);
 	glVertex3f(xx + 0.05, yy - 0.1, 0.0);
 	glVertex3f(xx + 0.05, yy + 0.1, 0.0);
 	glVertex3f(xx - 0.05, yy + 0.1, 0.0);
-	//std::cout << "xx: " << xx << "yy: " << yy << std::endl;
-	//glColor3f(1.0f, 1.0f, 1.0f);
-	glEnd();            // End Drawing The Cube
+	glEnd();
 }
+
+void SampleListener::DrawCube(void)
+{
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glBegin(GL_QUADS);
+	////glColor3f(0.0f, 1.0f, 0.0f);
+	//glVertex3f(xx - 0.05, yy - 0.1, 0.0);
+	//glVertex3f(xx + 0.05, yy - 0.1, 0.0);
+	//glVertex3f(xx + 0.05, yy + 0.1, 0.0);
+	//glVertex3f(xx - 0.05, yy + 0.1, 0.0);
+	////std::cout << "xx: " << xx << "yy: " << yy << std::endl;
+	////glColor3f(1.0f, 1.0f, 1.0f);
+	//glEnd();            // End Drawing The Cube
+
+	if (drawIt) {
+		Cube();
+	}
+
+	GlobalCollector::Instance()->ingredients[slIng].posX = xxx;
+	GlobalCollector::Instance()->ingredients[slIng].posY = yyy *-1 ;
+
+	std::cout << "IK: " << yyy * -1 << " " << GlobalCollector::Instance()->ingredients[slIng].name << GlobalCollector::Instance()->ingredients[slIng].posY << std::endl;
+
+}
+
+
 
 void animation(void)
 {
@@ -171,5 +242,9 @@ void draw(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glutSwapBuffers();
+}
+
+double SampleListener::getX() {
+	return xx;
 }
 

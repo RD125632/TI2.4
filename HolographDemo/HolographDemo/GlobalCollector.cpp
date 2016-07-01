@@ -33,7 +33,6 @@ GlobalCollector::GlobalCollector()
 		parse_IDs.push_back(x.ID);
 	}
 
-
 	book = Book(parse_IDs);
 	
 	parse_IDs.clear();
@@ -42,6 +41,5 @@ GlobalCollector::GlobalCollector()
 		parse_IDs.push_back(x.ID);
 	}
 	wizard = Wizard(parse_IDs);
-	
 	
 }

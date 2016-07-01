@@ -9,10 +9,12 @@ using namespace Leap;
 
 class SampleListener : public Listener
 {
+	int noPinchTimer = 0;
 public:
 	virtual void onConnect(const Controller&);
 	virtual void onFrame(const Controller&);
 	void DrawCube();
+	double getX();
 	//virtual void onDisconnect(const Controller&);
 };
 #endif
