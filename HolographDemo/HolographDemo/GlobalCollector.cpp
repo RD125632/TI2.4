@@ -21,6 +21,7 @@ GlobalCollector::GlobalCollector()
 	
 	ingredients = RecipeLoader::loadIngredients();
 	symptoms = RecipeLoader::loadSymptoms();
+	soundEngine = SoundEngine();
 
 	std::vector<int> parse_IDs;
 	

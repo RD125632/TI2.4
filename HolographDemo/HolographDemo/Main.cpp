@@ -19,7 +19,6 @@
 	GLint sWindowWidth, sWindowHeight;
 	float zoom = 1;
 	
-	SoundEngine* S_Engine = NULL;
 
 
 /*-------------------------------------------------------------------------*/
@@ -59,11 +58,14 @@
 			glutSetWindow(storyWindow);
 		}
 		GlobalCollector::Instance()->holoScreen.rotateY += 0.5;
+		GlobalCollector::Instance()->holoScreen.Logic();
 		GlobalCollector::Instance()->camera.MoveToTarget();
 		glutPostRedisplay();
 	}
+	//void finalinit()
 	void GameInit(void)
 	{
+		GlobalCollector::Instance()->holoScreen.init();
 		int counter = 0;
 		for (int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++)
 		{
@@ -87,15 +89,16 @@
 	{
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_LIGHTING);
-		glEnable(GL_LIGHT1);
+		glEnable(GL_LIGHT0);
 		glEnable(GL_TEXTURE_2D);
-		GLfloat LightAmbient[] = { 0.1f, 0.1f, 0.1f, 0.1f };
-		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); 
+		GLfloat LightAmbient[] = { 0.2f, 0.2f, 0.2f, 0.1f };
+		glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient); 
 		GLfloat LightDiffuse[] = { 0.1f, 0.5f, 1.0f, 1.0f };
-		glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
+		glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
 		//GLfloat LightPosition[] = { 0, 1, 3, 0 };
-		GLfloat LightPosition[] = { -1, -1, 0, 0 };
-		glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
+		GLfloat LightPosition[] = { 0, 3, 3, 0.1f };
+		glLightfv(GL_LIGHT0, GL_POSITION, LightPosition);
+		
 	}
 
 	void HologramPaintComponent(void)
@@ -166,6 +169,10 @@
 			break;
 		case 'a':
 			GlobalCollector::Instance()->holoScreen.rotateX -= 0.5;
+			GlobalCollector::Instance()->holoScreen.SetCurrentItem(&GlobalCollector::Instance()->book); //debug, verwijder wanneer af
+			break;
+		case 'd':
+			GlobalCollector::Instance()->holoScreen.ShowBook(true);
 			break;
 		case '9':
 			GlobalCollector::Instance()->storyScreen.SwitchScreens(2);
@@ -216,17 +223,17 @@
 	void RegisterAllSounds() {
 		/**
 		In this function you can register your sounds.
-		example: S_Engine->RegisterSound("Magic", "sounds/magic.wav"); (1st parameter is name, 2nd parameter is path)
-		play a sound: S_Engine->Play_Sound("Magic", true); (1st parameter is name, 2nd parameter is looping)
-		stop a sound: S_Engine->Stop_Sound();
+		example: GlobalCollector::Instance()->soundEngine.RegisterSound("Magic", "sounds/magic.wav"); (1st parameter is name, 2nd parameter is path)
+		play a sound: GlobalCollector::Instance()->soundEngine.Play_Sound("Magic", true); (1st parameter is name, 2nd parameter is looping)
+		stop a sound: GlobalCollector::Instance()->soundEngine.Stop_Sound();
 		ONLY PLAYS WAV!
 		**/
-		S_Engine->RegisterSound("Magic", "sounds/magic.wav");
-		S_Engine->RegisterSound("Splash", "sounds/splash.wav");
-		S_Engine->RegisterSound("Pickup", "sounds/pickup.wav");
-		S_Engine->RegisterSound("Boil", "sounds/boil.wav");
-		S_Engine->RegisterSound("Book", "sounds/book.wav");
-		S_Engine->RegisterSound("Music", "sounds/music.wav");
+		GlobalCollector::Instance()->soundEngine.RegisterSound("Magic", "sounds/magic.wav");
+		GlobalCollector::Instance()->soundEngine.RegisterSound("Splash", "sounds/splash.wav");
+		GlobalCollector::Instance()->soundEngine.RegisterSound("Pickup", "sounds/pickup.wav");
+		GlobalCollector::Instance()->soundEngine.RegisterSound("Boil", "sounds/boil.wav");
+		GlobalCollector::Instance()->soundEngine.RegisterSound("Book", "sounds/book.wav");
+		GlobalCollector::Instance()->soundEngine.RegisterSound("Music", "sounds/music.wav");
 	}
 
 int main(int argc, char *argv[])
@@ -259,7 +266,6 @@ int main(int argc, char *argv[])
 
 
 
-	S_Engine = new SoundEngine();
 	RegisterAllSounds();
 
 	glutMainLoop();

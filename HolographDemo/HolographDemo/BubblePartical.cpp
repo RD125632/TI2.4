@@ -12,7 +12,7 @@ BubblePartical::BubblePartical(float X, float Y, float Z)
 	red = 0.1f;
 	blue = 0.1f;
 	green = 0.5f;
-	alpha = 0.1f;
+	alpha = 0.4f;
 	bubble = new SolidSphere(0.1, 20, 20,"resources/Bubble.png");
 }
 

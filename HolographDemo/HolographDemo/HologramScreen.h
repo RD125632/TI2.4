@@ -5,16 +5,25 @@
 
 #include "Screen.h"
 
-class HologramScreen: public Screen
+
+class SuperObject;
+
+class HologramScreen : public Screen
 {
 public:
 	HologramScreen();
 	int Display() override;
-	int Setup(int,int) override;
-	void NextItem();
-	void PreviousItem();
+	int Setup(int, int) override;
 	int currentModel;
 	bool isUpsideDown = false;
+	void SetCurrentItem(SuperObject*);
+	void Logic();
+	void ShowBook(bool);
+	static void init();
+	static void changeParticel(int, bool, int);
+private:
+	SuperObject* currentObject = nullptr;
+	bool showBook = false;
 };
 
 #endif
