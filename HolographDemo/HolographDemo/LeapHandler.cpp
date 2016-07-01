@@ -149,10 +149,12 @@ void SampleListener::onFrame(const Controller& controller) {
 			}
 			else if (selectedIngredient != nullptr) {
 				while (GlobalCollector::Instance()->ingredients[slIng].posY > -15) {
-					GlobalCollector::Instance()->ingredients[slIng].posY -= 0.0000005 ;
+					GlobalCollector::Instance()->ingredients[slIng].posY -- ;
 				}
+				GlobalCollector::Instance()->holoScreen.SetCurrentItem(&GlobalCollector::Instance()->ingredients[slIng]);
 			}
 		}
+		
 		selectedIngredient = nullptr;
 		slIng = -1;
 	}

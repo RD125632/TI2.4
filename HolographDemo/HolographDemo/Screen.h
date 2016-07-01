@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include "ObjModel.h"
-#include "GL\freeglut.h"
+#include <GL/freeglut.h>
 
 class Screen
 {
