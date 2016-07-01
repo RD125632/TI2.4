@@ -61,18 +61,18 @@ void tapGesture() {
 void pinching() {
 	//std::cout << "Pinching!" << std::endl;
 
-	xxx = ((xx * -1) * 10) * 5;
-	yyy = ((yy * -1) * 100) -1;
+	xxx = ((xx * -1) * 10) * 5 - 1;
+	yyy = ((yy * -1) * 50) - 13;
 
 	//if (selectedIngredient == nullptr) {
 	for (int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++) {
-			if (yyy > GlobalCollector::Instance()->ingredients[i].posY - 1 && yyy < GlobalCollector::Instance()->ingredients[i].posY + 1) {
-				if (xxx > GlobalCollector::Instance()->ingredients[i].posX - 1 && xxx < GlobalCollector::Instance()->ingredients[i].posX + 1) {
+			if (-yyy + 10 > GlobalCollector::Instance()->ingredients[i].posY && yyy < GlobalCollector::Instance()->ingredients[i].posY) {
+				if (xxx > GlobalCollector::Instance()->ingredients[i].posX -0.5 && xxx < GlobalCollector::Instance()->ingredients[i].posX + 0.5) {
 
-					selectedIngredient = GlobalCollector::Instance()->ingredients[i];
+					//selectedIngredient = GlobalCollector::Instance()->ingredients[i];
 					slIng = i;
 
-					//std::cout << "IK: " << yyy << " " << GlobalCollector::Instance()->ingredients[i].name << GlobalCollector::Instance()->ingredients[i].posY << std::endl;
+					
 
 					
 				}
@@ -80,7 +80,7 @@ void pinching() {
 		}
 //	}
 	
-
+	std::cout << "IK: " << -yyy + 10 << " " << GlobalCollector::Instance()->ingredients[6].name << GlobalCollector::Instance()->ingredients[6].posY << std::endl;
 	//std::cout << GlobalCollector::Instance()->ingredients[5].name << GlobalCollector::Instance()->ingredients[5].posY << std::endl;
 	//std::cout << "IK: " << yyy << std::endl;
 
@@ -217,7 +217,7 @@ void SampleListener::DrawCube(void)
 	GlobalCollector::Instance()->ingredients[slIng].posX = xxx;
 	GlobalCollector::Instance()->ingredients[slIng].posY = yyy *-1 ;
 
-	std::cout << "IK: " << yyy * -1 << " " << GlobalCollector::Instance()->ingredients[slIng].name << GlobalCollector::Instance()->ingredients[slIng].posY << std::endl;
+	//std::cout << "IK: " << yyy * -1 << " " << GlobalCollector::Instance()->ingredients[slIng].name << GlobalCollector::Instance()->ingredients[slIng].posY << std::endl;
 
 }
 
