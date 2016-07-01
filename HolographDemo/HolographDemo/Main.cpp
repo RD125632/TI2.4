@@ -175,10 +175,10 @@
 			GlobalCollector::Instance()->holoScreen.ShowBook(true);
 			break;
 		case '9':
-			GlobalCollector::Instance()->storyScreen.SwitchScreens(2);
+			GlobalCollector::Instance()->storyScreen.SwitchScreens(1);
 			break;
 		case'0':
-			GlobalCollector::Instance()->storyScreen.SwitchScreens(1);
+			GlobalCollector::Instance()->storyScreen.SwitchScreens(2);
 			break;
 		case 't':
 			if (GlobalCollector::Instance()->holoScreen.mode == GL_FILL)
