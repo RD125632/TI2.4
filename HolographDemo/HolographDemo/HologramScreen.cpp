@@ -112,7 +112,7 @@ void HologramScreen::Logic()
 {
 	if (currentObject != nullptr)
 	{
-		currentObject->posY -= 0.03f;
+		currentObject->posY -= 0.05f;
 		if (currentObject->posY < GlobalCollector::Instance()->ketel.posY - 3)
 		{
 			GlobalCollector::Instance()->ketel.AddIngredient(currentObject->type);
