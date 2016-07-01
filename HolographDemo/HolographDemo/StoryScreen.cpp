@@ -78,7 +78,7 @@ void StoryScreen::drawIntroScreen()
 	 glLoadIdentity();
 	 glDisable(GL_TEXTURE_2D);
 	 glDisable(GL_LIGHTING);
-	 glEnable(GL_COLOR);
+	 glEnable(GL_COLOR); 
 	 glColor3f(1.0f, 1.0f, 1.0f);
 	 drawBackground();
 	 glColor3f(0.0f, 0.0f, 0.0f);
@@ -227,6 +227,7 @@ void StoryScreen::SwitchScreens(int screen)
 	switch (screen)
 	{
 		case 1:
+			
 			screenToDraw = &StoryScreen::drawIntroScreen;
 		break;
 		case 2:

@@ -7,9 +7,10 @@ Room::Room(GLfloat w, GLfloat h, GLfloat d)
 	width = w;
 	height = h;
 	depth = d;
-	floorTexture = new Texture("resources/woodfloor.bmp");
-	sideWallTexture = new Texture("resources/frontwall.bmp");
-	frontWallTexture =  new Texture("resources/sidewall.bmp");
+	floorTexture = new Texture("resources/rug.jpg");
+	sideWallTexture = new Texture("resources/walls3.png");
+	frontWallTexture =  new Texture("resources/walls3.jpg");
+	seelingTexture = new Texture("resources/skyseling.jpg");
 	 
 }
 
@@ -100,7 +101,7 @@ void Room::draw()
 
 
 
-	floorTexture->bind();
+	seelingTexture->bind();
 	//Top face
 	glBegin(GL_QUADS);                      
 	glTexCoord2f(1, 0);		glVertex3f(width / 2, height / 2, depth / 2);
@@ -108,7 +109,7 @@ void Room::draw()
 	glTexCoord2f(0, 1);		glVertex3f(-width / 2, height / 2, -depth / 2);
 	glTexCoord2f(1, 1);		glVertex3f(width / 2, height / 2, -depth / 2);
 	glEnd();
-	
+	floorTexture->bind();
 	glBegin(GL_QUADS);
 	//bottom face
 	glTexCoord2f(1, 1);		glVertex3f(width / 2, -height / 2, depth / 2);

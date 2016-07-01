@@ -18,5 +18,6 @@ private:
 	Texture *floorTexture;
 	Texture *sideWallTexture;
 	Texture *frontWallTexture;
+	Texture *seelingTexture;
 };
 
