@@ -242,6 +242,8 @@ void StoryScreen::SwitchScreens(int screen)
 
 void StoryScreen::PrepareScoreScreen()
 {
+	completeList.clear();
+	usedList.clear();
 	completeList.push_back("Goede Ingrediente:");
 	usedList.push_back("Jouw Ingrediente:");
 	for (string s: GlobalCollector::Instance()->ketel.GetIngedients())
