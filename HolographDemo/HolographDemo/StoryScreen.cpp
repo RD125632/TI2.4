@@ -7,16 +7,28 @@
 GLfloat UpwardsScrollVelocity = -10.0;
 float view = 20.0;
 std::vector<string> story;
+std::vector<string> book;
+std::vector<string> ending;
 Texture * background;
 void init()
 {
-	std::ifstream input("Text/StoryIntro.txt");
+	std::ifstream input1("Text/StoryIntro.txt");
+	
+	//std::ifstream input3("Text/StoryEnding.txt");
 
-
-	for (std::string line; getline(input, line); )
+	for (std::string line; getline(input1, line); )
 	{
 		story.push_back(line);
 	}
+	std::ifstream input2("Text/ingredienteBoek.txt");
+	for (std::string line1; getline(input2, line1); )
+	{
+		book.push_back(line1);
+	}
+	/*for (std::string line; getline(input3, line); )
+	{
+		ending.push_back(line);
+	}*/
 
 	background = new Texture("resources/parchment.png");
 
@@ -49,20 +61,23 @@ void drawBackground()
 void StoryScreen::drawIntroScreen()
 {	
 	
-	//glPushMatrix();
+	std::vector<string> toDraw;
+	toDraw.clear();
+	switch (storyStatus)
+	{
+	case 0:
+		toDraw = story;
+		break;
+	case 1:
+		toDraw = book;
+		break;
+	case 2:
+		toDraw = ending;
+		break;
+	default:
+		break;
+	}
 	 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	//glOrtho(0, 4000, -50, 2000, 5, -5);
-	//glMatrixMode(GL_MODELVIEW);
-	//glEnable(GL_COLOR_MATERIAL);
-	//glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
-	//string speedtext = "test test test test test test test";
-	//glLoadIdentity();
-	//glTranslatef(0, 140, 0);
-	//for (int i = 0; i < speedtext.length(); i++)
-	//{
-	//	glutStrokeCharacter(GLUT_STROKE_ROMAN, speedtext[i]);
-	//}
 	 glMatrixMode(GL_PROJECTION);
 	 GLdouble *matrix = new GLdouble[16];
 	 glGetDoublev(GL_PROJECTION_MATRIX, matrix);
@@ -80,13 +95,13 @@ void StoryScreen::drawIntroScreen()
 	 glColor3f(1.0f, 1.0f, 1.0f);
 	 drawBackground();
 	 glColor3f(0.0f, 0.0f, 0.0f);
-	 for (int i = 0; i < story.size() ; i++)
+	 for (int i = 0; i < toDraw.size() ; i++)
 	 {
 		 glRasterPos2i(10, 580-(i*12));
-		 for (int k = 0; k < story[i].length();k++)
+		 for (int k = 0; k < toDraw[i].length();k++)
 		 {
 			 glColor3f(0.0f, 0.0f, 0.0f);
-			 glutBitmapCharacter(GLUT_BITMAP_9_BY_15, story[i][k]);
+			 glutBitmapCharacter(GLUT_BITMAP_9_BY_15, toDraw[i][k]);
 		 }
 	 }
 	 glPopMatrix();
