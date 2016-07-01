@@ -10,7 +10,7 @@ class StoryScreen: public Screen
 {
 public:
 	StoryScreen();
-
+	void init();
 	int Display() override;
 	int Setup(int,int) override;
 	bool isUpsideDown = false;

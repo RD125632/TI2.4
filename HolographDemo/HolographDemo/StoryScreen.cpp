@@ -8,7 +8,7 @@ GLfloat UpwardsScrollVelocity = -10.0;
 float view = 20.0;
 std::vector<string> story;
 Texture * background;
-void init()
+void StoryScreen::init()
 {
 	std::ifstream input("Text/StoryIntro.txt");
 
