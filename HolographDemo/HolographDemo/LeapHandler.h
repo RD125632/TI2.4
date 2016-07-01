@@ -15,6 +15,6 @@ public:
 	virtual void onFrame(const Controller&);
 	void DrawCube();
 	double getX();
-	//virtual void onDisconnect(const Controller&);
+	
 };
 #endif

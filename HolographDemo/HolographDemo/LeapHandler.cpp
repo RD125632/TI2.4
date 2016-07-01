@@ -1,3 +1,7 @@
+/*-------------------------------------------------------------------------*/
+/*				INCLUDES						                           */
+/*-------------------------------------------------------------------------*/
+
 #include <iostream>
 #include <string.h>
 #include "Leap.h"
@@ -8,6 +12,10 @@
 #include <time.h>
 
 using namespace Leap;
+
+/*-------------------------------------------------------------------------*/
+/*				Global Variable                                             */
+/*-------------------------------------------------------------------------*/
 
 GLfloat xRotated, yRotated, zRotated;
 GLfloat deltax, deltay, deltaz = 0;
@@ -20,20 +28,13 @@ int slIng = -1;
 
 double xxx;
 double yyy;
+double oldX;
 
 auto circle = 0;
 auto swipe = 0;
 auto keytap = 0;
 auto screentap = 0;
 bool drawIt = true;
-
-//class SampleListener : public Listener {
-//public:
-//	virtual void onConnect(const Controller&);
-//	virtual void onFrame(const Controller&);
-//	void DrawCube();
-//	double getX();
-//};
 
 void SampleListener::onConnect(const Controller& controller) {
 	std::cout << "Connected" << std::endl;
@@ -44,10 +45,8 @@ void SampleListener::onConnect(const Controller& controller) {
 	controller.enableGesture(Gesture::TYPE_INVALID);
 }
 
-
-
 void swipeGesture() {
-	std::cout << "Swipemovement!" << std::endl;
+	std::cout << "Swipemovement!" << std::endl;	
 }
 
 void circleGesture() {
@@ -59,37 +58,26 @@ void tapGesture() {
 }
 
 void pinching() {
-	//std::cout << "Pinching!" << std::endl;
-
 	xxx = ((xx * -1) * 10) * 5 - 1;
 	yyy = ((yy * -1) * 50) - 13;
 
 	if (selectedIngredient == nullptr) {
 	for (int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++) {
-			if (-yyy + 10 > GlobalCollector::Instance()->ingredients[i].posY -1 && -yyy + 10 < GlobalCollector::Instance()->ingredients[i].posY + 1) {
-				if (xxx > GlobalCollector::Instance()->ingredients[i].posX -1 && xxx < GlobalCollector::Instance()->ingredients[i].posX + 1) {
-
+			if (-yyy + 10 > GlobalCollector::Instance()->ingredients[i].posY -1.5 && -yyy + 10 < GlobalCollector::Instance()->ingredients[i].posY + 1.5) {
+				if (xxx > GlobalCollector::Instance()->ingredients[i].posX -1.5 && xxx < GlobalCollector::Instance()->ingredients[i].posX + 1.5) {
+					oldX = GlobalCollector::Instance()->ingredients[i].posX;
 					selectedIngredient = &GlobalCollector::Instance()->ingredients[i];
 					slIng = i;
-
-					
-
-					
 				}
 			}
 		}
 	}
-	
-	std::cout << "IK: " << -yyy + 10 << " " << GlobalCollector::Instance()->ingredients[6].name << GlobalCollector::Instance()->ingredients[6].posY << std::endl;
-	//std::cout << GlobalCollector::Instance()->ingredients[5].name << GlobalCollector::Instance()->ingredients[5].posY << std::endl;
-	//std::cout << "IK: " << yyy << std::endl;
-
-	//if(GlobalCollector::Instance()->storyScreen.)
-
-
 }
 
 void readGestures() {
+
+	Leap::SwipeGesture trackedGesture = frame.gesture(Leap::Gesture::TYPE_SWIPE);
+	Vector swy = trackedGesture.direction();
 
 	Leap::GestureList gestures = frame.gestures();
 	for (Leap::GestureList::const_iterator gl = gestures.begin(); gl != frame.gestures().end(); gl++)
@@ -118,7 +106,7 @@ void readGestures() {
 			break;
 		case Leap::Gesture::TYPE_SWIPE:
 			swipe++;
-			if (swipe >= 30) {
+			if (swipe >= 15) {
 				swipeGesture();
 				swipe = 0;
 			}
@@ -128,20 +116,9 @@ void readGestures() {
 		}
 
 		Leap::SwipeGesture trackedGesture = frame.gesture(Leap::Gesture::TYPE_SWIPE);
-
 		Vector swy = trackedGesture.direction();
 
-		//std::cout << swy.x << " " << swy.y << " " << swy.z << std::endl;
-
-		if (swy.x > 0.0001) {
-			std::cout << "Right!" << std::endl;
-		}
-		else if (swy.x < -0.1) {
-			std::cout << "Left!" << std::endl;
-		}
-
 		
-
 
 	}
 }
@@ -157,25 +134,29 @@ void SampleListener::onFrame(const Controller& controller) {
 	xx = double(handPosition.x * 0.002);
 	yy = double((handPosition.y * 0.003) - 0.9);
 
-
-
 	if (frontHand.pinchStrength() >0.3) {
 		pinching();
 		noPinchTimer = 100;
 		long tijd = 0;
 		drawIt = false;
-		
 	}
 	else {
 		drawIt = true;
+		if (slIng >= 0) {
+			if (GlobalCollector::Instance()->ingredients[slIng].posY > 3 && selectedIngredient != nullptr) {
+				GlobalCollector::Instance()->ingredients[slIng].posY = 15;
+				GlobalCollector::Instance()->ingredients[slIng].posX = oldX;
+			}
+			else if (selectedIngredient != nullptr) {
+				while (GlobalCollector::Instance()->ingredients[slIng].posY > -15) {
+					GlobalCollector::Instance()->ingredients[slIng].posY -= 0.0000005 ;
+				}
+			}
+		}
 		selectedIngredient = nullptr;
 		slIng = -1;
 	}
-
-	// x en y hebben standaard andere waarden, maar voor ons voorbeeldframe hebben we die aangepast hierboven, als je die weer terug wilt zetten moet je die regels even weghalen, want nu zijn die maximaal 8 volgens mij.
-
-
-	//std::cout << "X: " << int(handPosition.x) << " Y: " << int(handPosition.y) << " Z: " << int(handPosition.z) << " Pinch: " << frontHand.pinchStrength() << std::endl;
+	
 	readGestures();
 }
 
@@ -183,7 +164,6 @@ void init(void)
 {
 	glClearColor(0, 0, 0, 0);
 	glMatrixMode(GL_MODELVIEW);
-	// clear the drawing buffer.
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glTranslated(0, 0, -13);
 }
@@ -200,17 +180,6 @@ void Cube() {
 
 void SampleListener::DrawCube(void)
 {
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	//glBegin(GL_QUADS);
-	////glColor3f(0.0f, 1.0f, 0.0f);
-	//glVertex3f(xx - 0.05, yy - 0.1, 0.0);
-	//glVertex3f(xx + 0.05, yy - 0.1, 0.0);
-	//glVertex3f(xx + 0.05, yy + 0.1, 0.0);
-	//glVertex3f(xx - 0.05, yy + 0.1, 0.0);
-	////std::cout << "xx: " << xx << "yy: " << yy << std::endl;
-	////glColor3f(1.0f, 1.0f, 1.0f);
-	//glEnd();            // End Drawing The Cube
-
 	if (drawIt) {
 		Cube();
 	}
@@ -219,12 +188,7 @@ void SampleListener::DrawCube(void)
 		GlobalCollector::Instance()->ingredients[slIng].posX = xxx;
 		GlobalCollector::Instance()->ingredients[slIng].posY = yyy *-1;
 	}
-
-	//std::cout << "IK: " << yyy * -1 << " " << GlobalCollector::Instance()->ingredients[slIng].name << GlobalCollector::Instance()->ingredients[slIng].posY << std::endl;
-
 }
-
-
 
 void animation(void)
 {
