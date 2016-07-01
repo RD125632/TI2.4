@@ -20,16 +20,26 @@ void init()
 	{
 		story.push_back(line);
 	}
-	std::ifstream input2("Text/ingredienteBoek.txt");
+	/*std::ifstream input2("Text/ingredienteBoek.txt");
 	for (std::string line1; getline(input2, line1); )
 	{
 		book.push_back(line1);
-	}
+	}*/
 	/*for (std::string line; getline(input3, line); )
 	{
 		ending.push_back(line);
 	}*/
-
+	for (int y : GlobalCollector::Instance()->wizard.symptoms)
+	{
+		for (Symptom s : GlobalCollector::Instance()->symptoms)
+		{
+			if (s.ID == y)
+			{
+				story.push_back(s.description);
+			}
+		}
+		
+	}
 	background = new Texture("resources/parchment.png");
 
 	

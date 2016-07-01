@@ -14,8 +14,7 @@ GlobalCollector * GlobalCollector::Instance()
 
 GlobalCollector::GlobalCollector()
 {
-	holoScreen = HologramScreen();
-	storyScreen = StoryScreen();
+	
 	room = new Room(100,100,100);
 	plank = PlankObject();
 	
@@ -37,6 +36,7 @@ GlobalCollector::GlobalCollector()
 		parse_IDs.push_back(x.ID);
 	}
 	wizard = Wizard(parse_IDs);
-	
+	holoScreen = HologramScreen();
+	storyScreen = StoryScreen();
 	
 }
