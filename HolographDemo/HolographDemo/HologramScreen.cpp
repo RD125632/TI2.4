@@ -118,6 +118,7 @@ void HologramScreen::Logic()
 			GlobalCollector::Instance()->ketel.AddIngredient(currentObject->type);
 			GlobalCollector::Instance()->soundEngine.Play_Sound("Splash", false);
 			changeParticel(1, true, 10);
+			currentObject->posY = -300;
 			currentObject = nullptr;
 		}
 	}

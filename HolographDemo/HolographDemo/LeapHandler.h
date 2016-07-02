@@ -15,6 +15,7 @@ public:
 	virtual void onFrame(const Controller&);
 	void DrawCube();
 	double getX();
+	double getY();
 	
 };
 #endif

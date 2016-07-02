@@ -227,7 +227,7 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 	glLoadIdentity();
 
 
-	gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0], GlobalCollector::Instance()->camera.currentlocation[1], GlobalCollector::Instance()->camera.currentlocation[2],
+	gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0] += GlobalCollector::Instance()->leaphandler.getX() , GlobalCollector::Instance()->camera.currentlocation[1] += -GlobalCollector::Instance()->leaphandler.getY(), GlobalCollector::Instance()->camera.currentlocation[2],
 		GlobalCollector::Instance()->camera.currentlocation[3], GlobalCollector::Instance()->camera.currentlocation[4], 20,
 		0, 1, 0);
 

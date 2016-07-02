@@ -132,8 +132,8 @@ void SampleListener::onFrame(const Controller& controller) {
 	auto tools = frame.tools();
 	auto frontHand = hands.frontmost();
 	auto handPosition = frontHand.palmPosition();
-	xx = double(handPosition.x * 0.002);
-	yy = double((handPosition.y * 0.003) - 0.9);
+	xx = double(handPosition.x * 0.005);
+	yy = double((handPosition.y * 0.005) - 0.9);
 
 	if (frontHand.pinchStrength() >0.3) {
 		pinching();
@@ -150,12 +150,11 @@ void SampleListener::onFrame(const Controller& controller) {
 			}
 			else if (selectedIngredient != nullptr) {
 				while (GlobalCollector::Instance()->ingredients[slIng].posY > -15) {
-					GlobalCollector::Instance()->ingredients[slIng].posY -= 0.000005 ;
+					GlobalCollector::Instance()->ingredients[slIng].posY -= 0.000005;
 				}
 				GlobalCollector::Instance()->holoScreen.SetCurrentItem(&GlobalCollector::Instance()->ingredients[slIng]);
 			}
 		}
-		
 		selectedIngredient = nullptr;
 		slIng = -1;
 	}
@@ -218,5 +217,10 @@ void draw(void)
 
 double SampleListener::getX() {
 	return xx;
+}
+
+double SampleListener::getY()
+{
+	return yy;
 }
 
