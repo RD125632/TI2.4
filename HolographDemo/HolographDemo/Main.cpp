@@ -181,12 +181,15 @@
 			GlobalCollector::Instance()->storyScreen.SwitchScreens(2);
 			break;
 		case'-':
-			GlobalCollector::Instance()->storyScreen.PrepareScoreScreen();
 			GlobalCollector::Instance()->storyScreen.SwitchScreens(3);
 			break;
-		case ']':
+		case '[':
 			GlobalCollector::Instance()->storyScreen.SwitchScreens(4);
 			break;
+		case']':
+			GlobalCollector::Instance()->storyScreen.SwitchScreens(5);
+			break;
+
 		case 't':
 			if (GlobalCollector::Instance()->holoScreen.mode == GL_FILL)
 			{

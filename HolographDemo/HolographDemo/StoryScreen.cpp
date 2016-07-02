@@ -249,11 +249,15 @@ void StoryScreen::SwitchScreens(int screen)
 			screenToDraw = &StoryScreen::drawGameScreen;
 		break;
 		case 3:
-			screenToDraw = &StoryScreen::drawScoreScreen;
+			
 			storyStatus = 1;
 			screenToDraw = &StoryScreen::drawIntroScreen;
 		break;
 		case 4:
+			PrepareScoreScreen();
+			screenToDraw = &StoryScreen::drawScoreScreen;
+		break;
+		case 5:
 			storyStatus = 2;
 			screenToDraw = &StoryScreen::drawIntroScreen;
 		break;
