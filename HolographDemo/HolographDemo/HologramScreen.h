@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef HOLOGRAMSCREEN_H_
 #define HOLOGRAMSCREEN_H_
 

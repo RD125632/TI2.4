@@ -4,33 +4,32 @@
 #include <iostream>
 #include <vector>
 #include "Texture.h"
+
 GLfloat UpwardsScrollVelocity = -10.0;
 float view = 20.0;
 std::vector<string> story;
 vector<string> completeList;
 vector<string> usedList;
 Texture * background;
-void init()
+
+void StoryScreen::init()
 {
 	std::ifstream input("Text/StoryIntro.txt");
-
 
 	for (std::string line; getline(input, line); )
 	{
 		story.push_back(line);
 	}
-
-	background = new Texture("resources/parchment.png");
-
-	
 }
+
 StoryScreen::StoryScreen() : Screen()
 {
 	
 	screenToDraw = &StoryScreen::drawIntroScreen;
-	init();
+	background = new Texture("resources/parchment.png");
 }
-void drawBackground()
+
+void StoryScreen::drawBackground()
 {
 	int size = 800;
 	glEnable(GL_TEXTURE_2D);
@@ -51,20 +50,34 @@ void drawBackground()
 void StoryScreen::drawIntroScreen()
 {	
 	
-	//glPushMatrix();
+	std::vector<string> toDraw;
+
+	toDraw.clear();
+	switch (storyStatus)
+	{
+	case 0:
+		toDraw = GlobalCollector::Instance()->storyBegin;
+		break;
+	case 1:
+		for (Ingredient i : GlobalCollector::Instance()->ingredients)
+		{
+			toDraw.push_back(i.name + ":");
+			for (std::string line : i.description)
+			{
+				toDraw.push_back(line);
+			}
+			toDraw.push_back("");
+			toDraw.push_back("");
+		}
+		break;
+	case 2:
+		toDraw = GlobalCollector::Instance()->storyEnd;
+		break;
+	default:
+		break;
+	}
+
 	 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	//glOrtho(0, 4000, -50, 2000, 5, -5);
-	//glMatrixMode(GL_MODELVIEW);
-	//glEnable(GL_COLOR_MATERIAL);
-	//glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
-	//string speedtext = "test test test test test test test";
-	//glLoadIdentity();
-	//glTranslatef(0, 140, 0);
-	//for (int i = 0; i < speedtext.length(); i++)
-	//{
-	//	glutStrokeCharacter(GLUT_STROKE_ROMAN, speedtext[i]);
-	//}
 	 glMatrixMode(GL_PROJECTION);
 	 GLdouble *matrix = new GLdouble[16];
 	 glGetDoublev(GL_PROJECTION_MATRIX, matrix);
@@ -82,13 +95,21 @@ void StoryScreen::drawIntroScreen()
 	 glColor3f(1.0f, 1.0f, 1.0f);
 	 drawBackground();
 	 glColor3f(0.0f, 0.0f, 0.0f);
-	 for (int i = 0; i < story.size() ; i++)
+
+	 for (unsigned int i = 0; i < toDraw.size() ; i++)
 	 {
 		 glRasterPos2i(10, 580-(i*12));
-		 for (int k = 0; k < story[i].length();k++)
+		 for (unsigned int k = 0; k < toDraw[i].length();k++)
 		 {
 			 glColor3f(0.0f, 0.0f, 0.0f);
-			 glutBitmapCharacter(GLUT_BITMAP_9_BY_15, story[i][k]);
+			 if (std::string::npos != toDraw[i].find(":"))
+			 {
+				 glutBitmapCharacter(GLUT_BITMAP_9_BY_15, toDraw[i][k]);
+			 }
+			 else
+			 {
+				 glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, toDraw[i][k]);
+			 }
 		 }
 	 }
 	 glPopMatrix();
@@ -111,17 +132,9 @@ void StoryScreen::drawGameScreen()
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
 	glPushMatrix();
 	GlobalCollector::Instance()->room->draw();
-
-	if (!isUpsideDown)
-	{
-		glScalef(-1, 1, 1);
-	}
-	else
-	{
-		glScalef(-1, -1, 1);
-	}
-
+	glScalef(1.0, 1.0, 1.25);
 	GlobalCollector::Instance()->plank.draw();
+	glScalef(1, 1, 1);
 	//glTranslated(-25, 25, 45);
 	for (Ingredient ing : GlobalCollector::Instance()->ingredients)
 	{
@@ -130,7 +143,13 @@ void StoryScreen::drawGameScreen()
 	}
 	GlobalCollector::Instance()->wizard.draw();
 
-
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glOrtho(-3000, 3000, 0, 5000, -1, 1);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	GlobalCollector::Instance()->leaphandler.DrawCube();
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -218,7 +237,9 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 	gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0], GlobalCollector::Instance()->camera.currentlocation[1], GlobalCollector::Instance()->camera.currentlocation[2],
 		GlobalCollector::Instance()->camera.currentlocation[3], GlobalCollector::Instance()->camera.currentlocation[4], 20,
 		0, 1, 0);
-	std::cout << GlobalCollector::Instance()->camera.currentlocation[0] << GlobalCollector::Instance()->camera.currentlocation[1] << GlobalCollector::Instance()->camera.currentlocation[2] << endl;
+
+	//std::cout << GlobalCollector::Instance()->camera.currentlocation[0] << GlobalCollector::Instance()->camera.currentlocation[1] << GlobalCollector::Instance()->camera.currentlocation[2] << endl;
+
 	return 1;
 }
 

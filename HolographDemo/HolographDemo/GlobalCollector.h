@@ -18,6 +18,7 @@
 #include "WorldObject.h"
 #include <vector>
 #include "Sound.h"
+#include "LeapHandler.h"
 
 class GlobalCollector
 {
@@ -35,6 +36,10 @@ public:
 	std::vector<Ingredient> ingredients;
 	std::vector<Symptom> symptoms;
 	SoundEngine soundEngine;
+	SampleListener leaphandler;
+	Controller controller;
+	std::vector<string> storyBegin;
+	std::vector<string> storyEnd;
 
 private:
 	GlobalCollector();
