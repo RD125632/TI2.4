@@ -65,7 +65,7 @@ void pinching() {
 		yyy = ((yy * -1) * 50) - 13;
 
 		if (selectedIngredient == nullptr) {
-			for (int i = 0; i < GlobalCollector::Instance()->ingredients.size(); i++) {
+			for (unsigned int i = 0; i < GlobalCollector::Instance()->ingredients.size(); i++) {
 				if (-yyy + 10 > GlobalCollector::Instance()->ingredients[i].posY - 1.5 && -yyy + 10 < GlobalCollector::Instance()->ingredients[i].posY + 1.5) {
 					if (xxx > GlobalCollector::Instance()->ingredients[i].posX - 1.5 && xxx < GlobalCollector::Instance()->ingredients[i].posX + 1.5) {
 						oldX = GlobalCollector::Instance()->ingredients[i].posX;

@@ -67,7 +67,7 @@
 	{
 		GlobalCollector::Instance()->holoScreen.init();
 		int counter = 0;
-		for (int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++)
+		for (unsigned int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++)
 		{
 			GlobalCollector::Instance()->ingredients[i].posX = -25.0f + 5 * counter;
 			GlobalCollector::Instance()->ingredients[i].posY = 15.0f;

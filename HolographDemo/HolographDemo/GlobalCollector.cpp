@@ -26,7 +26,7 @@ GlobalCollector::GlobalCollector()
 	ingredients = FileLoader::loadIngredients();
 	symptoms = FileLoader::loadSymptoms();
 	storyBegin = FileLoader::loadStory("Text/StoryIntro.txt");
-	storyEnd = FileLoader::loadStory("Text/StoryEnding.txt");
+	storyEnd = FileLoader::loadStory("Text/StoryOutro.txt");
 	
 	
 

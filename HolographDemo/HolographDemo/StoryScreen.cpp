@@ -172,19 +172,19 @@ void StoryScreen::drawScoreScreen()
 	glColor3f(1.0f, 1.0f, 1.0f);
 	drawBackground();
 	glColor3f(0.0f, 0.0f, 0.0f);
-	for (int i = 0; i < completeList.size(); i++)
+	for (unsigned int i = 0; i < completeList.size(); i++)
 	{
 		glRasterPos2i(50, 580 - (i * 12));
-		for (int k = 0; k < completeList[i].length(); k++)
+		for (unsigned int k = 0; k < completeList[i].length(); k++)
 		{
 			glColor3f(0.0f, 0.0f, 0.0f);
 			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, completeList[i][k]);
 		}
 	}
-	for (int i = 0; i < usedList.size(); i++)
+	for (unsigned int i = 0; i < usedList.size(); i++)
 	{
 		glRasterPos2i(400, 580 - (i * 12));
-		for (int k = 0; k < usedList[i].length(); k++)
+		for (unsigned int k = 0; k < usedList[i].length(); k++)
 		{
 			glColor3f(0.0f, 0.0f, 0.0f);
 			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, usedList[i][k]);
@@ -270,8 +270,8 @@ void StoryScreen::PrepareScoreScreen()
 {
 	completeList.clear();
 	usedList.clear();
-	completeList.push_back("Goede Ingrediente:");
-	usedList.push_back("Jouw Ingrediente:");
+	completeList.push_back("Goede Ingredienten:");
+	usedList.push_back("Jouw Ingredienten:");
 	for (string s: GlobalCollector::Instance()->ketel.GetIngedients())
 	{
 		completeList.push_back(s);

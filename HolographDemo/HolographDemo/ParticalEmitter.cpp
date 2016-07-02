@@ -39,7 +39,7 @@ void ParticalEmitter::update()
 {
 	if (burstMode)
 	{
-		for (int i = 0; i < particalList_size; i++)
+		for (unsigned int i = 0; i < particalList_size; i++)
 		{
 			if (particalList[i]->y >= 10)
 			{

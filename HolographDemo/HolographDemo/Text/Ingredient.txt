@@ -1,11 +1,11 @@
-0:Slijmbal:1:slimeball:De slijmbal helpt bij het verhelpen van obsessie's.
+0:Slijmbal:1:slimeball:De slijmbal helpt bij het verhelpen van obsessies.
 1:Bot:0:bone:Het bot helpt tegen het verouderen of verjongen van een lichaam.
-2:Brood:2:bread:Dit speciale brood helpt bij een verminderend gezichtvermogen.
+2:Brood:2:bread:Dit speciale brood helpt bij een verminderend gezichtsvermogen.
 3:Kaas:4:cheese:Kaas is een product dat helpt tegen een brandend effect.
-4:Diamand:6:diamond:De schoonheid van de diamand zorgt het verdwijnen van viezigheid.
-5:Ei:4:egg:De combinatie van ei-geel met ei-wit zorgt voor het verminderen van een brandend gevoel.
-6:Oog:1:eye:Door een nieuw oog kan een obsessie naar iets worden tegengegaan.
-7:Bloem:7:flower:Bloemen worden beschouwt als een domme levensvorm.Het is juist het tegenovergestelde, zo word je door het mixen van dit ingredient een stuk slimmer.
+4:Diamant:6:diamond:De schoonheid van de diamant zorgt voor het verdwijnen van viezigheid.
+5:Ei:4:egg:De combinatie van eigeel met eiwit zorgt voor het verminderen van een brandend gevoel.
+6:Oog:1:eye:Door een nieuw oog kan een obsessie voor iets worden tegengegaan.
+7:Bloem:7:flower:Bloemen worden beschouwd als een domme levensvorm.Het is juist het tegenovergestelde, zo wordt je door het mixen van dit ingredient een stuk slimmer.
 8:Tand:6:tooth:Nieuwe tanden helpen bij het verminderen van een slechte adem.
-9:Parel:0:pearl:De parel van een ouders zijn toch wel de kinderen.Daarom verhelpt de parel het verjongings effect.
-10:Paddestoel:5:shroom:Door sommige paddestoelen ga je juist extra hard lachen.Niet met deze paddestoel deze maakt je eerder depressief.
+9:Parel:0:pearl:De parel van ouders zijn toch wel hun kinderen.Daarom verhelpt de parel het verjongingseffect.
+10:Paddestoel:5:shroom:Door sommige paddestoelen ga je juist extra hard lachen.Niet met deze paddestoel; deze maakt je eerder depressief.
