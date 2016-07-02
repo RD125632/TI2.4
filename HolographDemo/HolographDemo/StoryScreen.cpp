@@ -175,12 +175,20 @@ void StoryScreen::SwitchScreens(int screen)
 	switch (screen)
 	{
 		case 1:
+			storyStatus = 0;
 			screenToDraw = &StoryScreen::drawIntroScreen;
+			
 		break;
 		case 2:
 			screenToDraw = &StoryScreen::drawGameScreen;
 		break;
 		case 3:
+			storyStatus = 1;
+			screenToDraw = &StoryScreen::drawIntroScreen;
+		break;
+		case 4:
+			storyStatus = 2;
+			screenToDraw = &StoryScreen::drawIntroScreen;
 		break;
 
 	}

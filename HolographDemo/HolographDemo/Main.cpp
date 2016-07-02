@@ -180,6 +180,12 @@
 		case'0':
 			GlobalCollector::Instance()->storyScreen.SwitchScreens(2);
 			break;
+		case '=':
+			GlobalCollector::Instance()->storyScreen.SwitchScreens(3);
+			break;
+		case ']':
+			GlobalCollector::Instance()->storyScreen.SwitchScreens(4);
+			break;
 		case 't':
 			if (GlobalCollector::Instance()->holoScreen.mode == GL_FILL)
 			{
