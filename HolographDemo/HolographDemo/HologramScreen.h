@@ -1,10 +1,7 @@
-#pragma once
-
 #ifndef HOLOGRAMSCREEN_H_
 #define HOLOGRAMSCREEN_H_
 
 #include "Screen.h"
-
 
 class SuperObject;
 

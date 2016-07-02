@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef STORYSCREEN_H_
 #define STORYSCREEN_H_
 
