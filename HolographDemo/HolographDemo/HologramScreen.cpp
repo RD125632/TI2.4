@@ -139,6 +139,7 @@ void HologramScreen::ShowBook(bool show)
 void HologramScreen::init()
 {
 	GlobalCollector::Instance()->book.rotX = 10;
+	GlobalCollector::Instance()->book.rotY = 180;
 	GlobalCollector::Instance()->book.posX = 0;
 	GlobalCollector::Instance()->ketel.posY = -1;
 	GlobalCollector::Instance()->ketel.rotX = 15;

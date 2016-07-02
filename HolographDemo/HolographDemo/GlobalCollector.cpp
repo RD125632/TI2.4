@@ -50,7 +50,9 @@ GlobalCollector::GlobalCollector()
 		storyBook.push_back("");
 	}
 	book = Book(parse_IDs);
-	
+	storyBookObject = StoryBook();
+	storyBookObject.posZ = 10;
+	storyBookObject.posX = -10;
 	/* Load Wizard Symptoms */
 	parse_IDs.clear();
 	for (Symptom x : symptoms)

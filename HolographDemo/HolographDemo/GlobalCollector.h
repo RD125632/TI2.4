@@ -19,6 +19,7 @@
 #include <vector>
 #include "Sound.h"
 #include "LeapHandler.h"
+#include "StoryBook.h"
 
 class GlobalCollector
 {
@@ -28,6 +29,7 @@ public:
 	HologramScreen holoScreen;
 	StoryScreen storyScreen;
 	Book book;
+	StoryBook storyBookObject;
 	Wizard wizard;
 	KetelObject ketel;
 	PlankObject plank;

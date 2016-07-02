@@ -132,6 +132,9 @@ void StoryScreen::drawGameScreen()
 		ing.draw();
 		//glTranslated(5, 0, 0);
 	}
+	glDisable(GL_BLEND);
+	GlobalCollector::Instance()->storyBookObject.draw();
+	glEnable(GL_BLEND);
 	GlobalCollector::Instance()->wizard.draw();
 
 	glPopMatrix();

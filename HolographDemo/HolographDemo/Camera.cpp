@@ -1,6 +1,8 @@
 #include "Camera.h"
 #include <iostream>
 
+bool same = false;
+
 Camera::Camera()
 {
 }
@@ -25,8 +27,13 @@ void Camera::MoveToLeft()
 
 void Camera::MoveToRight()
 {
+	same = false;
 	if (targetlocation != locations1)
 	{
+		for (unsigned int i = 0; i < targetlocation.size(); i++)
+		{
+			steps[i] = (targetlocation[i] - locations3[i]) / 60;
+		}
 		for (unsigned int i = 0; i < targetlocation.size(); i++)
 		{
 			targetlocation[i] = locations3[i];
@@ -36,6 +43,10 @@ void Camera::MoveToRight()
 	{
 		for (unsigned int i = 0; i < targetlocation.size(); i++)
 		{
+			steps[i] = (targetlocation[i] - locations2[i]) / 60;
+		}
+		for (unsigned int i = 0; i < targetlocation.size(); i++)
+		{
 			targetlocation[i] = locations2[i];
 		}
 	}
@@ -43,10 +54,21 @@ void Camera::MoveToRight()
 
 void Camera::MoveToTarget()
 {
-	
-	for (unsigned int i = 0; i < currentlocation.size(); i++)
+	if (!same)
 	{
-		currentlocation[i] = targetlocation[i];
+		same = true;
+		for (unsigned int i = 0; i < currentlocation.size(); i++)
+		{
+			if (currentlocation[i] < targetlocation[i] - steps[i] * 4 || currentlocation[i] > targetlocation[i] + steps[i] * 4)
+			{
+				same = false;
+				currentlocation[i] -= steps[i];
+			}
+			else
+			{
+				currentlocation[i] = targetlocation[i];
+			}
+		}
 	}
 }
 
@@ -72,5 +94,10 @@ void Camera::moveCamera()
 		break;
 	default:
 		break;
+	}
+	same = false;
+	for (unsigned int i = 0; i < targetlocation.size(); i++)
+	{
+		steps[i] = (targetlocation[i] - currentlocation[i]) / 600;
 	}
 }

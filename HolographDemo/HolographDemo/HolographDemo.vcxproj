@@ -185,6 +185,7 @@
     <ClInclude Include="GlobalCollector.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="StoryBook.h" />
     <ClInclude Include="StoryScreen.h" />
     <ClInclude Include="SuperObject.h" />
     <ClInclude Include="Symptom.h" />
@@ -217,6 +218,7 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="GlobalCollector.cpp" />
     <ClCompile Include="Star.cpp" />
+    <ClCompile Include="StoryBook.cpp" />
     <ClCompile Include="StoryScreen.cpp" />
     <ClCompile Include="SuperObject.cpp" />
     <ClCompile Include="Symptom.cpp" />
