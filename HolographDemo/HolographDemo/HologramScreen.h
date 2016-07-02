@@ -3,7 +3,6 @@
 
 #include "Screen.h"
 
-
 class SuperObject;
 
 class HologramScreen : public Screen

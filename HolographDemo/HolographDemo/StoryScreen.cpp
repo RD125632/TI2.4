@@ -59,16 +59,7 @@ void StoryScreen::drawIntroScreen()
 		toDraw = GlobalCollector::Instance()->storyBegin;
 		break;
 	case 1:
-		for (Ingredient i : GlobalCollector::Instance()->ingredients)
-		{
-			toDraw.push_back(i.name + ":");
-			for (std::string line : i.description)
-			{
-				toDraw.push_back(line);
-			}
-			toDraw.push_back("");
-			toDraw.push_back("");
-		}
+		toDraw = GlobalCollector::Instance()->storyBook;
 		break;
 	case 2:
 		toDraw = GlobalCollector::Instance()->storyEnd;
@@ -131,10 +122,10 @@ void StoryScreen::drawGameScreen()
 	//Models
 	glPolygonMode(GL_FRONT_AND_BACK, mode);
 	glPushMatrix();
+	glScalef(1, 1, 1);
 	GlobalCollector::Instance()->room->draw();
 	glScalef(1.0, 1.0, 1.25);
 	GlobalCollector::Instance()->plank.draw();
-	glScalef(1, 1, 1);
 	//glTranslated(-25, 25, 45);
 	for (Ingredient ing : GlobalCollector::Instance()->ingredients)
 	{
@@ -150,6 +141,8 @@ void StoryScreen::drawGameScreen()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	GlobalCollector::Instance()->leaphandler.DrawCube();
+	/*glDisable(GL_LINE);
+	glDisable(GL_FRONT_AND_BACK);*/
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -248,14 +241,21 @@ void StoryScreen::SwitchScreens(int screen)
 	switch (screen)
 	{
 		case 1:
-			
+			storyStatus = 0;
 			screenToDraw = &StoryScreen::drawIntroScreen;
+			
 		break;
 		case 2:
 			screenToDraw = &StoryScreen::drawGameScreen;
 		break;
 		case 3:
 			screenToDraw = &StoryScreen::drawScoreScreen;
+			storyStatus = 1;
+			screenToDraw = &StoryScreen::drawIntroScreen;
+		break;
+		case 4:
+			storyStatus = 2;
+			screenToDraw = &StoryScreen::drawIntroScreen;
 		break;
 
 	}

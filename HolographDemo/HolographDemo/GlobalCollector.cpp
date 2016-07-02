@@ -27,6 +27,8 @@ GlobalCollector::GlobalCollector()
 	symptoms = FileLoader::loadSymptoms();
 	storyBegin = FileLoader::loadStory("Text/StoryIntro.txt");
 	storyEnd = FileLoader::loadStory("Text/StoryEnding.txt");
+	
+	
 
 	soundEngine = SoundEngine();
 
@@ -37,7 +39,16 @@ GlobalCollector::GlobalCollector()
 	{
 		parse_IDs.push_back(x.ID);
 	}
-
+	for (Ingredient i : ingredients)
+	{
+		storyBook.push_back(i.name + ":");
+		for (std::string line : i.description)
+		{
+			storyBook.push_back(line);
+		}
+		storyBook.push_back("");
+		storyBook.push_back("");
+	}
 	book = Book(parse_IDs);
 	
 	/* Load Wizard Symptoms */
