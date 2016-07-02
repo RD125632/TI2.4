@@ -40,6 +40,7 @@ public:
 	Controller controller;
 	std::vector<string> storyBegin;
 	std::vector<string> storyEnd;
+	std::vector<string> storyBook;
 
 private:
 	GlobalCollector();

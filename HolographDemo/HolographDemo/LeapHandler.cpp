@@ -179,6 +179,8 @@ void Cube() {
 	glVertex3f(xx + 0.05, yy + 0.1, 0.0);
 	glVertex3f(xx - 0.05, yy + 0.1, 0.0);
 	glEnd();
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	
 }
 
 void SampleListener::DrawCube(void)
