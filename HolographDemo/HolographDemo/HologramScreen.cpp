@@ -127,6 +127,13 @@ void HologramScreen::Logic()
 void HologramScreen::ShowBook(bool show)
 {
 	showBook = show;
+	if(show)
+	{
+		GlobalCollector::Instance()->soundEngine.Play_Sound("Book", true);
+	} else
+	{
+		GlobalCollector::Instance()->soundEngine.Stop_Sound();
+	}
 }
 
 void HologramScreen::init()
@@ -142,4 +149,9 @@ void HologramScreen::init()
 void HologramScreen::changeParticel(int part, bool burst, int amount)
 {
 	particalEmitter = new ParticalEmitter(part, 5, 1, 1.0f, GlobalCollector::Instance()->ketel.posX - 0.75f, GlobalCollector::Instance()->ketel.posY, GlobalCollector::Instance()->ketel.posZ, burst, amount);
+}
+
+bool HologramScreen::GetShowBook()
+{
+	return showBook;
 }

@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string.h>
 #include "Leap.h"
-#include <stdio.h> 
+#include <stdio.h>
 #include <GL/glut.h>
 #include "GlobalCollector.h"
 #include <windows.h>
@@ -46,7 +46,9 @@ void SampleListener::onConnect(const Controller& controller) {
 }
 
 void swipeGesture() {
-	std::cout << "Swipemovement!" << std::endl;	
+	std::cout << "Swipemovement!" << std::endl;
+	GlobalCollector::Instance()->camera.x++;
+	GlobalCollector::Instance()->camera.moveCamera();
 }
 
 void circleGesture() {
@@ -58,17 +60,19 @@ void tapGesture() {
 }
 
 void pinching() {
-	xxx = ((xx * -1) * 10) * 5 - 1;
-	yyy = ((yy * -1) * 50) - 13;
+	if (GlobalCollector::Instance()->camera.x == 2) {
+		xxx = ((xx * -1) * 10) * 5 - 1;
+		yyy = ((yy * -1) * 50) - 13;
 
-	if (selectedIngredient == nullptr) {
-	for (int i = 0; i < GlobalCollector::Instance()->ingredients.size();i++) {
-			if (-yyy + 10 > GlobalCollector::Instance()->ingredients[i].posY -1.5 && -yyy + 10 < GlobalCollector::Instance()->ingredients[i].posY + 1.5) {
-				if (xxx > GlobalCollector::Instance()->ingredients[i].posX -1.5 && xxx < GlobalCollector::Instance()->ingredients[i].posX + 1.5) {
-					oldX = GlobalCollector::Instance()->ingredients[i].posX;
-					selectedIngredient = &GlobalCollector::Instance()->ingredients[i];
-					slIng = i;
-					GlobalCollector::Instance()->soundEngine.Play_Sound("Pickup", false);
+		if (selectedIngredient == nullptr) {
+			for (int i = 0; i < GlobalCollector::Instance()->ingredients.size(); i++) {
+				if (-yyy + 10 > GlobalCollector::Instance()->ingredients[i].posY - 1.5 && -yyy + 10 < GlobalCollector::Instance()->ingredients[i].posY + 1.5) {
+					if (xxx > GlobalCollector::Instance()->ingredients[i].posX - 1.5 && xxx < GlobalCollector::Instance()->ingredients[i].posX + 1.5) {
+						oldX = GlobalCollector::Instance()->ingredients[i].posX;
+						selectedIngredient = &GlobalCollector::Instance()->ingredients[i];
+						slIng = i;
+						GlobalCollector::Instance()->soundEngine.Play_Sound("Pickup", false);
+					}
 				}
 			}
 		}
@@ -76,12 +80,11 @@ void pinching() {
 }
 
 void readGestures() {
-
 	Leap::SwipeGesture trackedGesture = frame.gesture(Leap::Gesture::TYPE_SWIPE);
 	Vector swy = trackedGesture.direction();
 
 	Leap::GestureList gestures = frame.gestures();
-	for (Leap::GestureList::const_iterator gl = gestures.begin(); gl != frame.gestures().end(); gl++)
+	for (Leap::GestureList::const_iterator gl = gestures.begin(); gl != frame.gestures().end(); ++gl)
 	{
 		switch ((*gl).type()) {
 		case Leap::Gesture::TYPE_CIRCLE:
@@ -107,7 +110,7 @@ void readGestures() {
 			break;
 		case Leap::Gesture::TYPE_SWIPE:
 			swipe++;
-			if (swipe >= 15) {
+			if (swipe >= 14) { // was 15
 				swipeGesture();
 				swipe = 0;
 			}
@@ -118,9 +121,6 @@ void readGestures() {
 
 		Leap::SwipeGesture trackedGesture = frame.gesture(Leap::Gesture::TYPE_SWIPE);
 		Vector swy = trackedGesture.direction();
-
-		
-
 	}
 }
 
@@ -135,7 +135,7 @@ void SampleListener::onFrame(const Controller& controller) {
 	xx = double(handPosition.x * 0.005);
 	yy = double((handPosition.y * 0.005) - 0.9);
 
-	if (frontHand.pinchStrength() >0.3) {
+	if (frontHand.pinchStrength() > 0.4) {
 		pinching();
 		noPinchTimer = 100;
 		long tijd = 0;
@@ -158,7 +158,7 @@ void SampleListener::onFrame(const Controller& controller) {
 		selectedIngredient = nullptr;
 		slIng = -1;
 	}
-	
+
 	readGestures();
 }
 
@@ -179,7 +179,6 @@ void Cube() {
 	glVertex3f(xx - 0.05, yy + 0.1, 0.0);
 	glEnd();
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	
 }
 
 void SampleListener::DrawCube(void)
@@ -223,4 +222,3 @@ double SampleListener::getY()
 {
 	return yy;
 }
-

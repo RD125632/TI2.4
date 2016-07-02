@@ -172,7 +172,7 @@
 			GlobalCollector::Instance()->holoScreen.SetCurrentItem(&GlobalCollector::Instance()->book); //debug, verwijder wanneer af
 			break;
 		case 'd':
-			GlobalCollector::Instance()->holoScreen.ShowBook(true);
+			GlobalCollector::Instance()->holoScreen.ShowBook(!GlobalCollector::Instance()->holoScreen.GetShowBook());
 			break;
 		case '9':
 			GlobalCollector::Instance()->storyScreen.SwitchScreens(1);
@@ -211,7 +211,8 @@
 		switch(key)
 		{
 		case GLUT_KEY_LEFT:
-			GlobalCollector::Instance()->camera.MoveToLeft();
+			GlobalCollector::Instance()->camera.x++;
+			GlobalCollector::Instance()->camera.moveCamera();
 			break;
 		case GLUT_KEY_RIGHT:
 			GlobalCollector::Instance()->camera.MoveToRight();
@@ -244,6 +245,7 @@
 		GlobalCollector::Instance()->soundEngine.RegisterSound("Boil", "sounds/boil.wav");
 		GlobalCollector::Instance()->soundEngine.RegisterSound("Book", "sounds/book.wav");
 		GlobalCollector::Instance()->soundEngine.RegisterSound("Music", "sounds/music.wav");
+		GlobalCollector::Instance()->soundEngine.RegisterSound("Swipe", "sounds/swipe.wav");
 	}
 
 int main(int argc, char *argv[])

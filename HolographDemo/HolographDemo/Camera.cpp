@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include <iostream>
 
 Camera::Camera()
 {
@@ -52,4 +53,24 @@ void Camera::MoveToTarget()
 
 Camera::~Camera()
 {
+}
+
+void Camera::moveCamera()
+{
+	x = (x % 3) + 1;
+	std::cout << x << "\n";
+	switch (x)
+	{
+	case 1:
+		targetlocation = locations1;
+		break;
+	case 2:
+		targetlocation = locations2;
+		break;
+	case 3:
+		targetlocation = locations3;
+		break;
+	default:
+		break;
+	}
 }

@@ -18,6 +18,7 @@ public:
 	void ShowBook(bool);
 	static void init();
 	static void changeParticel(int, bool, int);
+	bool GetShowBook();
 private:
 	SuperObject* currentObject = nullptr;
 	bool showBook = false;
