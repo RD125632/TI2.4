@@ -206,6 +206,8 @@ void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
 
 	MaterialInfo* currentMaterial = NULL;
 
+	float alpha = 0;
+
 	while(!pFile.eof())
 	{
 		std::string line;
@@ -268,6 +270,10 @@ void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
 			currentMaterial->emission[1] = std::stof(params[2]);
 			currentMaterial->emission[2] = std::stof(params[3]);
 		}
+		else if (params[0] == "d")
+		{
+			alpha = std::stof(params[1]);
+		}
 		else if (params[0] == "ns")
 		{
 			currentMaterial->shininess[0] = std::stof(params[1]);
@@ -275,9 +281,26 @@ void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
 		else
 			std::cout<<"Didn't parse "<<params[0]<<" in material file"<<std::endl;
 	}
-	if(currentMaterial != NULL)
+	if (currentMaterial != NULL)
+	{
+		if (currentMaterial->ambient != NULL)
+		{
+			currentMaterial->ambient[3] = alpha;
+		}
+		if (currentMaterial->diffuse != NULL)
+		{
+			currentMaterial->diffuse[3] = alpha;
+		}
+		if (currentMaterial->specular != NULL)
+		{
+			currentMaterial->specular[3] = alpha;
+		}
+		if (currentMaterial->emission != NULL)
+		{
+			currentMaterial->emission[3] = alpha;
+		}
 		materials.push_back(currentMaterial);
-
+	}
 }
 
 ObjModel::MaterialInfo::MaterialInfo()

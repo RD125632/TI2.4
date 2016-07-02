@@ -91,6 +91,8 @@
 		glEnable(GL_LIGHTING);
 		glEnable(GL_LIGHT0);
 		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		GLfloat LightAmbient[] = { 0.2f, 0.2f, 0.2f, 0.1f };
 		glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient); 
 		GLfloat LightDiffuse[] = { 0.1f, 0.5f, 1.0f, 1.0f };
@@ -113,6 +115,8 @@
 		glEnable(GL_LIGHTING);
 		glEnable(GL_LIGHT1);
 		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		GLfloat LightAmbient[] = { 0.1f, 0.1f, 0.1f, 0.1f };
 		glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);
 		GLfloat LightDiffuse[] = { 0.1f, 0.5f, 1.0f, 1.0f };
