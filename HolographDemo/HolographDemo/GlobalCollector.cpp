@@ -54,6 +54,7 @@ GlobalCollector::GlobalCollector()
 	storyBookObject.posZ = 30;
 	storyBookObject.posX = -15;
 	potion = Potion();
+	storyBookObject.posY = -5;
 	/* Load Wizard Symptoms */
 	parse_IDs.clear();
 	for (Symptom x : symptoms)
@@ -65,4 +66,24 @@ GlobalCollector::GlobalCollector()
 	holoScreen = HologramScreen();
 	storyScreen = StoryScreen();
 	holoWizzard = HologramWizzard();
+}
+
+bool GlobalCollector::CompareArrays(std::array<double, 6> array1, std::array<double, 6> array2)
+{
+	for (unsigned int i = 0; i < array1.size(); ++i)
+	{
+		if (array1[i] != array2[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+void GlobalCollector::CopyArray(std::array<double, 6>* toCopy, std::array<double, 6>* copyTo)
+{
+	for(unsigned int i = 0; i < toCopy->size(); ++i)
+	{
+		copyTo->at(i) = toCopy->at(i);
+	}
 }

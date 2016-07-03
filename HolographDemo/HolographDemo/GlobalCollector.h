@@ -47,6 +47,8 @@ public:
 	std::vector<string> storyEnd;
 	std::vector<string> storyBook;
 	HologramWizzard holoWizzard;
+	static bool CompareArrays(std::array<double, 6>, std::array<double, 6>);
+	static void CopyArray(std::array<double, 6>*, std::array<double, 6>*);
 
 private:
 	GlobalCollector();

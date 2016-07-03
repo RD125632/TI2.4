@@ -274,6 +274,10 @@ void ObjModel::loadMaterialFile( std::string fileName, std::string dirName )
 		{
 			alpha = std::stof(params[1]);
 		}
+		else if (params[0] == "tr")
+		{
+			alpha = 1 - std::stof(params[1]);
+		}
 		else if (params[0] == "ns")
 		{
 			currentMaterial->shininess[0] = std::stof(params[1]);

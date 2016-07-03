@@ -79,20 +79,18 @@ void Camera::MoveToTarget()
 				currentlocation[i] = targetlocation[i];
 				same = true;
 			}
-			bool isThree = true;
-			for (unsigned int i = 0; i < currentlocation.size(); i++)
-			{
-				if (currentlocation[i] != locations3[i])
-					isThree = false;
-			}
-			GlobalCollector::Instance()->holoScreen.ShowBook(isThree);
-			if (isThree)
-				GlobalCollector::Instance()->storyScreen.SwitchScreens(3);
+
+
+			int camPos = 0;
+			GlobalCollector::CompareArrays(currentlocation, locations3) ? camPos = 3 : camPos;
+			GlobalCollector::CompareArrays(currentlocation, locations1) ? camPos = 1 : camPos;
+			GlobalCollector::Instance()->holoScreen.ShowBook(camPos == 3);
+			GlobalCollector::Instance()->holoScreen.ShowWizzard(camPos == 1);
+			camPos == 3 ? GlobalCollector::Instance()->storyScreen.SwitchScreens(3) : camPos;
 		}
 		amountofsteps++;
 	}
 }
-
 
 Camera::~Camera()
 {
@@ -101,7 +99,6 @@ Camera::~Camera()
 void Camera::moveCamera()
 {
 	x = (x % 3) + 1;
-	std::cout << x << "\n";
 	switch (x)
 	{
 	case 1:
@@ -117,7 +114,7 @@ void Camera::moveCamera()
 	default:
 		break;
 	}
-	totalSteps = 60;
+	totalSteps = 100;
 	amountofsteps = 0;
 	same = false;
 	for (unsigned int i = 0; i < targetlocation.size(); i++)
