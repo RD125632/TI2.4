@@ -100,13 +100,13 @@ void StoryScreen::drawSubtitles(std::string toDraw)
 	glDisable(GL_LIGHTING);
 	background->bind();
 	glBegin(GL_QUADS);      //and draw a face
-	glTexCoord2f(0.6f, 0);
+	glTexCoord2f(0.5f, 0.1f);
 	glVertex3f(400, 30, -1);
-	glTexCoord2f(0, 0);
+	glTexCoord2f(0.1f, 0.1f);
 	glVertex3f(0, 30, -1);
-	glTexCoord2f(0, 0.1f);
+	glTexCoord2f(0.1f, 0.2f);
 	glVertex3f(0, 0, -1);
-	glTexCoord2f(0.6f, 0.1f);
+	glTexCoord2f(0.5f, 0.2f);
 	glVertex3f(400, 0, -1);
 	glEnd();
 	glEnable(GL_COLOR);
