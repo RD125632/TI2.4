@@ -5,8 +5,8 @@
 #include <vector>
 #include "Texture.h"
 
-GLfloat UpwardsScrollVelocity = -10.0;
-float view = 20.0;
+GLfloat UpwardsScrollVelocity = -10.0f;
+float view = 20.0f;
 std::vector<string> story;
 vector<string> completeList;
 vector<string> usedList;
@@ -66,7 +66,6 @@ void StoryScreen::drawGameScreen()
 	GlobalCollector::Instance()->storyBookObject.draw();
 	glEnable(GL_BLEND);
 	GlobalCollector::Instance()->wizard.draw();
-
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
 	glOrtho(-3000, 3000, 0, 5000, -1, 1);
@@ -77,10 +76,56 @@ void StoryScreen::drawGameScreen()
 	/*glDisable(GL_LINE);
 	glDisable(GL_FRONT_AND_BACK);*/
 	glPopMatrix();
+	if (GlobalCollector::Instance()->camera.x == 1)
+		drawSubtitles(GlobalCollector::Instance()->symptomSentence);
 	glFlush();
 	glutSwapBuffers();
 
 	
+}
+
+void StoryScreen::drawSubtitles(std::string toDraw)
+{
+	glMatrixMode(GL_PROJECTION);
+	GLdouble *matrix = new GLdouble[16];
+	glGetDoublev(GL_PROJECTION_MATRIX, matrix);
+	glLoadIdentity();
+	glOrtho(0, 800, 0, 600, -5, 5);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	glPushMatrix();
+
+	glLoadIdentity();
+	glDisable(GL_LIGHTING);
+	background->bind();
+	glBegin(GL_QUADS);      //and draw a face
+	glTexCoord2f(0.6f, 0);
+	glVertex3f(400, 30, -1);
+	glTexCoord2f(0, 0);
+	glVertex3f(0, 30, -1);
+	glTexCoord2f(0, 0.1f);
+	glVertex3f(0, 0, -1);
+	glTexCoord2f(0.6f, 0.1f);
+	glVertex3f(400, 0, -1);
+	glEnd();
+	glEnable(GL_COLOR);
+	glDisable(GL_TEXTURE_2D);
+	glColor3f(0.0f, 0.0f, 0.0f);
+
+	glRasterPos2i(10, 10);
+	for (unsigned int k = 0; k < toDraw.length(); k++)
+	{
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, toDraw[k]);
+	}
+	glPopMatrix();
+	glDisable(GL_COLOR);
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixd(matrix);
+	glMatrixMode(GL_MODELVIEW);
+	glColor3f(1.0f, 1.0f, 1.0f);
 }
 
 void StoryScreen::drawBookScreens()
