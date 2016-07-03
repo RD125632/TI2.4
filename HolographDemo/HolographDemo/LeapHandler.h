@@ -16,6 +16,5 @@ public:
 	void DrawCube();
 	double getX();
 	double getY();
-	
 };
 #endif

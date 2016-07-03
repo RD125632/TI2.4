@@ -46,16 +46,21 @@ void SampleListener::onConnect(const Controller& controller) {
 }
 
 void swipeGesture() {
-	std::cout << "Swipemovement!" << std::endl;
-	GlobalCollector::Instance()->camera.x++;
-	GlobalCollector::Instance()->camera.moveCamera();
-	if(GlobalCollector::Instance()->camera.x == 3)
-	{
-		GlobalCollector::Instance()->holoScreen.ShowBook(true);
-	} else
-	{
-		GlobalCollector::Instance()->holoScreen.ShowBook(false);
+	time_t newTime;
+	time(&newTime);
+	if (newTime != GlobalCollector::Instance()->oldTimeForSwipe) {
+		GlobalCollector::Instance()->camera.x++;
+		GlobalCollector::Instance()->camera.moveCamera();
+		if (GlobalCollector::Instance()->camera.x == 3)
+		{
+			GlobalCollector::Instance()->holoScreen.ShowBook(true);
+		}
+		else
+		{
+			GlobalCollector::Instance()->holoScreen.ShowBook(false);
+		}
 	}
+	GlobalCollector::Instance()->oldTimeForSwipe = newTime;
 }
 
 void circleGesture() {

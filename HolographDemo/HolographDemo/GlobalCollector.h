@@ -22,6 +22,7 @@
 #include "LeapHandler.h"
 #include "StoryBook.h"
 #include "HologramWizzard.h"
+#include <time.h>
 
 class GlobalCollector
 {
@@ -49,6 +50,7 @@ public:
 	HologramWizzard holoWizzard;
 	static bool CompareArrays(std::array<double, 6>, std::array<double, 6>);
 	static void CopyArray(std::array<double, 6>*, std::array<double, 6>*);
+	time_t oldTimeForSwipe = 0;
 
 private:
 	GlobalCollector();
