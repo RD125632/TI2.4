@@ -10,7 +10,6 @@
 #include "GlobalCollector.h"
 #include <windows.h>
 #include <time.h>
-#include <shellapi.h>
 
 using namespace Leap;
 
@@ -77,7 +76,6 @@ void circleGesture() {
 		break;
 	case 5:
 		//add functionality
-		ShellExecuteA(NULL, "open", "HolographDemo.exe", NULL, NULL, SW_NORMAL);
 		break;
 	default:
 		break;
