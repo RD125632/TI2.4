@@ -27,6 +27,7 @@ private:
 	void (StoryScreen::*screenToDraw)();
 	void drawIntroScreen();
 	void drawGameScreen();
+	void drawSubtitles(std::string);
 	void drawScoreScreen();
 	int screen;
 };

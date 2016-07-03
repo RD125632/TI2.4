@@ -27,8 +27,6 @@ GlobalCollector::GlobalCollector()
 	symptoms = FileLoader::loadSymptoms();
 	storyBegin = FileLoader::loadStory("Text/StoryIntro.txt");
 	storyEnd = FileLoader::loadStory("Text/StoryOutro.txt");
-	
-	
 
 	soundEngine = SoundEngine();
 
@@ -62,6 +60,21 @@ GlobalCollector::GlobalCollector()
 		parse_IDs.push_back(x.ID);
 	}
 	wizard = Wizard(parse_IDs);
+
+	symptomSentence = "Ik heb last van ";
+	vector<string> symptomslist = vector<string>();
+	for (unsigned int i = 0; i < wizard.symptoms.size(); i++)
+	{
+		int symptomnr = wizard.symptoms[i];
+		for (unsigned int t = 0; i < symptoms.size(); i++)
+		{
+			if (wizard.symptoms[i] == symptoms[i].ID)
+			{
+				symptomslist.push_back(symptoms[i].name);
+			}
+		}
+	}
+	symptomSentence += symptomslist[0] + ", " + symptomslist[1] + " en " + symptomslist[2] + ".";
 
 	holoScreen = HologramScreen();
 	storyScreen = StoryScreen();

@@ -1,4 +1,5 @@
 #include "RecipeLoader.h"
+#include <time.h>
 
 std::vector<string> FileLoader::loadStory(string filePath)
 {
@@ -43,7 +44,7 @@ std::vector<Symptom> FileLoader::loadSymptoms()
 		Symptom ing = Symptom(std::stoi(parts.at(0), &sz), parts.at(1), parts.at(2));
 		list.push_back(ing);
 	}
-	
+	srand(time(NULL));
 	int v1, v2, v3;
 	v1 = rand() % list.size();
 	v2 = rand() % list.size();
