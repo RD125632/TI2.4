@@ -49,6 +49,13 @@ void swipeGesture() {
 	std::cout << "Swipemovement!" << std::endl;
 	GlobalCollector::Instance()->camera.x++;
 	GlobalCollector::Instance()->camera.moveCamera();
+	if(GlobalCollector::Instance()->camera.x == 3)
+	{
+		GlobalCollector::Instance()->holoScreen.ShowBook(true);
+	} else
+	{
+		GlobalCollector::Instance()->holoScreen.ShowBook(false);
+	}
 }
 
 void circleGesture() {
