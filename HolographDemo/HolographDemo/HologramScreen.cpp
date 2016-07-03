@@ -22,8 +22,15 @@ int HologramScreen::Display()
 	glDisable(GL_BLEND);
 
 	glPushMatrix();
-
-	if (showBook)
+	if(showWizzard)
+	{
+		glPushMatrix();
+		glScalef(2, 2, 2);
+		GlobalCollector::Instance()->holoWizzard.draw();
+		glScalef(1, 1, 1);
+		glPopMatrix();
+	}
+	else if (showBook)
 	{
 		glPushMatrix();
 		glScalef(2, 2, 2);
@@ -143,6 +150,10 @@ void HologramScreen::init()
 	GlobalCollector::Instance()->book.posX = 0;
 	GlobalCollector::Instance()->ketel.posY = -1;
 	GlobalCollector::Instance()->ketel.rotX = 15;
+	GlobalCollector::Instance()->holoWizzard.rotX = -90;
+	GlobalCollector::Instance()->holoWizzard.posX = 0;
+	GlobalCollector::Instance()->holoWizzard.posY = -1;
+	GlobalCollector::Instance()->holoWizzard.posZ = -5;
 	fire = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX+3, GlobalCollector::Instance()->ketel.posY - 6, GlobalCollector::Instance()->ketel.posZ + 5, 10, "resources/fireAnimate.png", 4);
 	fire2 = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX-3, GlobalCollector::Instance()->ketel.posY - 6, GlobalCollector::Instance()->ketel.posZ + 5, 10, "resources/fireAnimate.png", 4);
 }
@@ -155,4 +166,9 @@ void HologramScreen::changeParticel(int part, bool burst, int amount)
 bool HologramScreen::GetShowBook()
 {
 	return showBook;
+}
+
+void HologramScreen::ShowWizzard(bool show)
+{
+	showWizzard = show;
 }

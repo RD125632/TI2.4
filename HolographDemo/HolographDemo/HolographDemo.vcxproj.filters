@@ -136,6 +136,9 @@
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Potion.h">
+	 <Filter>Header Files\Objects</Filter>
+	</ClInclude>
+    <ClInclude Include="HologramWizzard.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
@@ -231,6 +234,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Potion.cpp">
+	  <Filter>Source Files\Objects</Filter>
+	</ClCompile>
+    <ClCompile Include="HologramWizzard.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>

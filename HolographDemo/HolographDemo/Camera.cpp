@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include <iostream>
+#include "GlobalCollector.h"
 
 bool same = false;
 
@@ -78,6 +79,15 @@ void Camera::MoveToTarget()
 				currentlocation[i] = targetlocation[i];
 				same = true;
 			}
+			bool isThree = true;
+			for (unsigned int i = 0; i < currentlocation.size(); i++)
+			{
+				if (currentlocation[i] != locations3[i])
+					isThree = false;
+			}
+			GlobalCollector::Instance()->holoScreen.ShowBook(isThree);
+			if (isThree)
+				GlobalCollector::Instance()->storyScreen.SwitchScreens(3);
 		}
 		amountofsteps++;
 	}
@@ -99,6 +109,7 @@ void Camera::moveCamera()
 		break;
 	case 2:
 		targetlocation = locations2;
+		GlobalCollector::Instance()->storyScreen.SwitchScreens(2);
 		break;
 	case 3:
 		targetlocation = locations3;
