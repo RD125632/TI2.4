@@ -10,6 +10,7 @@
 #include "GlobalCollector.h"
 #include <windows.h>
 #include <time.h>
+#include <shellapi.h>
 
 using namespace Leap;
 
@@ -46,21 +47,23 @@ void SampleListener::onConnect(const Controller& controller) {
 }
 
 void swipeGesture() {
-	time_t newTime;
-	time(&newTime);
-	if (newTime != GlobalCollector::Instance()->oldTimeForSwipe) {
-		GlobalCollector::Instance()->camera.x++;
-		GlobalCollector::Instance()->camera.moveCamera();
-		if (GlobalCollector::Instance()->camera.x == 3)
-		{
-			GlobalCollector::Instance()->holoScreen.ShowBook(true);
+	if (GlobalCollector::Instance()->storyScreen.getScreen() == 2 || GlobalCollector::Instance()->storyScreen.getScreen() == 3) {
+		time_t newTime;
+		time(&newTime);
+		if (newTime != GlobalCollector::Instance()->oldTimeForSwipe) {
+			GlobalCollector::Instance()->camera.x++;
+			GlobalCollector::Instance()->camera.moveCamera();
+			if (GlobalCollector::Instance()->camera.x == 3)
+			{
+				GlobalCollector::Instance()->holoScreen.ShowBook(true);
+			}
+			else
+			{
+				GlobalCollector::Instance()->holoScreen.ShowBook(false);
+			}
 		}
-		else
-		{
-			GlobalCollector::Instance()->holoScreen.ShowBook(false);
-		}
+		GlobalCollector::Instance()->oldTimeForSwipe = newTime;
 	}
-	GlobalCollector::Instance()->oldTimeForSwipe = newTime;
 }
 
 void circleGesture() {
@@ -74,6 +77,7 @@ void circleGesture() {
 		break;
 	case 5:
 		//add functionality
+		ShellExecuteA(NULL, "open", "HolographDemo.exe", NULL, NULL, SW_NORMAL);
 		break;
 	default:
 		break;
