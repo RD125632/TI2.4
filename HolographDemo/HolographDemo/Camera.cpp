@@ -27,12 +27,14 @@ void Camera::MoveToLeft()
 
 void Camera::MoveToRight()
 {
+	totalSteps = 60;
+	amountofsteps = 0;
 	same = false;
 	if (targetlocation != locations1)
 	{
 		for (unsigned int i = 0; i < targetlocation.size(); i++)
 		{
-			steps[i] = (targetlocation[i] - locations3[i]) / 60;
+			steps[i] = (targetlocation[i] - locations3[i]) / totalSteps;
 		}
 		for (unsigned int i = 0; i < targetlocation.size(); i++)
 		{
@@ -43,7 +45,7 @@ void Camera::MoveToRight()
 	{
 		for (unsigned int i = 0; i < targetlocation.size(); i++)
 		{
-			steps[i] = (targetlocation[i] - locations2[i]) / 60;
+			steps[i] = (targetlocation[i] - locations2[i]) / totalSteps;
 		}
 		for (unsigned int i = 0; i < targetlocation.size(); i++)
 		{
@@ -69,6 +71,15 @@ void Camera::MoveToTarget()
 				currentlocation[i] = targetlocation[i];
 			}
 		}
+		if (amountofsteps >= totalSteps)
+		{
+			for (unsigned int i = 0; i < currentlocation.size(); i++)
+			{
+				currentlocation[i] = targetlocation[i];
+				same = true;
+			}
+		}
+		amountofsteps++;
 	}
 }
 
@@ -95,9 +106,11 @@ void Camera::moveCamera()
 	default:
 		break;
 	}
+	totalSteps = 60;
+	amountofsteps = 0;
 	same = false;
 	for (unsigned int i = 0; i < targetlocation.size(); i++)
 	{
-		steps[i] = (targetlocation[i] - currentlocation[i]) / 600;
+		steps[i] = -(targetlocation[i] - currentlocation[i]) / totalSteps;
 	}
 }

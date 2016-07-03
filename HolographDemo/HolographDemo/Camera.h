@@ -11,7 +11,8 @@ public:
 	std::array<double, 6> currentlocation = locations1;
 	std::array<double, 6> targetlocation = locations1;
 	std::array<double, 6> steps{ 0,0,0,0,0,0 };
-
+	int totalSteps = 0;
+	int amountofsteps = 0;
 	Camera();
 	void MoveToLeft();
 	void MoveToRight();
