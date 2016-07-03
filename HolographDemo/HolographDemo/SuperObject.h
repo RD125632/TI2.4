@@ -29,10 +29,9 @@ public:
 		glRotatef(rotX, 1, 0, 0);		// Rotate X
 		glRotatef(rotY, 0, 1, 0);		// Rotate Y
 		glRotatef(rotZ, 0, 0, 1);		// Rotate Z
-		model->draw();					// Draw the object
 		glScalef(scale, scale, scale);
-		model->draw();	
-		glTranslatef(-posX, -posY, -posZ);// Draw the object
+		model->draw();					// Draw the object
+		glTranslatef(-posX, -posY, -posZ);
 		glPopMatrix();					// Clear Translate and rotation
 	};
 };
