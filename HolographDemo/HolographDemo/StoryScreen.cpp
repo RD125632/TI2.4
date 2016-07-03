@@ -229,7 +229,7 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0] += GlobalCollector::Instance()->leaphandler.getX() , GlobalCollector::Instance()->camera.currentlocation[1] += -GlobalCollector::Instance()->leaphandler.getY(), GlobalCollector::Instance()->camera.currentlocation[2],
+	gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0] + GlobalCollector::Instance()->leaphandler.getX() , GlobalCollector::Instance()->camera.currentlocation[1] - GlobalCollector::Instance()->leaphandler.getY(), GlobalCollector::Instance()->camera.currentlocation[2],
 		GlobalCollector::Instance()->camera.currentlocation[3], GlobalCollector::Instance()->camera.currentlocation[4], GlobalCollector::Instance()->camera.currentlocation[5],
 		0, 1, 0);
 
@@ -238,6 +238,7 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 
 void StoryScreen::SwitchScreens(int screen)
 {
+	this->screen = screen;
 	switch (screen)
 	{
 		case 1:

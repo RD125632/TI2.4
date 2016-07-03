@@ -27,6 +27,7 @@ private:
 	void drawIntroScreen();
 	void drawGameScreen();
 	void drawScoreScreen();
+	int screen;
 };
 
 #endif
