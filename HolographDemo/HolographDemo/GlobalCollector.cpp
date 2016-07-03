@@ -21,7 +21,6 @@ GlobalCollector::GlobalCollector()
 	leaphandler = SampleListener();
 
 	controller.addListener(leaphandler);
-	std::cout << "Press Enter to quit..." << std::endl;
 	
 	ingredients = FileLoader::loadIngredients();
 	symptoms = FileLoader::loadSymptoms();

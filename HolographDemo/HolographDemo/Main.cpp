@@ -86,6 +86,7 @@
 		GlobalCollector::Instance()->wizard.rotX = 90;
 		GlobalCollector::Instance()->wizard.scale = 4;
 	}
+
 	void HologramInit(void)
 	{
 		glEnable(GL_DEPTH_TEST);
@@ -218,14 +219,6 @@
 		case GLUT_KEY_LEFT:
 			GlobalCollector::Instance()->camera.x++;
 			GlobalCollector::Instance()->camera.moveCamera();
-			if (GlobalCollector::Instance()->camera.x == 3)
-			{
-				GlobalCollector::Instance()->holoScreen.ShowBook(true);
-			}
-			else
-			{
-				GlobalCollector::Instance()->holoScreen.ShowBook(false);
-			}
 			break;
 		case GLUT_KEY_RIGHT:
 			GlobalCollector::Instance()->camera.MoveToRight();
@@ -288,9 +281,6 @@ int main(int argc, char *argv[])
 	StoryInit();
 	wglShareLists(hRCA, hRCB);
 	GameInit();
-
-
-
 
 	RegisterAllSounds();
 
