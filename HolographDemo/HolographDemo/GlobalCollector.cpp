@@ -53,7 +53,6 @@ GlobalCollector::GlobalCollector()
 	storyBookObject = StoryBook();
 	storyBookObject.posZ = 30;
 	storyBookObject.posX = -15;
-	storyBookObject.scale = 2;
 	/* Load Wizard Symptoms */
 	parse_IDs.clear();
 	for (Symptom x : symptoms)
