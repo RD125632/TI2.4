@@ -6,4 +6,5 @@ class StoryBook :
 public:
 	StoryBook();
 	~StoryBook();
+	float heightmodifier = 0;
 };

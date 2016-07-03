@@ -60,6 +60,7 @@
 		GlobalCollector::Instance()->holoScreen.rotateY += 0.5;
 		GlobalCollector::Instance()->holoScreen.Logic();
 		GlobalCollector::Instance()->camera.MoveToTarget();
+		GlobalCollector::Instance()->storyScreen.Logic();
 		glutPostRedisplay();
 	}
 	//void finalinit()

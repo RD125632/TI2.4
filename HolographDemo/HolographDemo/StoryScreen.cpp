@@ -25,7 +25,7 @@ void StoryScreen::init()
 StoryScreen::StoryScreen() : Screen()
 {
 	
-	screenToDraw = &StoryScreen::drawIntroScreen;
+	SwitchScreens(1);
 	background = new Texture("resources/parchment.png");
 }
 
@@ -231,7 +231,7 @@ int StoryScreen::Setup(int windowWidth, int windowHeight)
 
 
 	gluLookAt(GlobalCollector::Instance()->camera.currentlocation[0] += GlobalCollector::Instance()->leaphandler.getX() , GlobalCollector::Instance()->camera.currentlocation[1] += -GlobalCollector::Instance()->leaphandler.getY(), GlobalCollector::Instance()->camera.currentlocation[2],
-		GlobalCollector::Instance()->camera.currentlocation[3], GlobalCollector::Instance()->camera.currentlocation[4], 20,
+		GlobalCollector::Instance()->camera.currentlocation[3], GlobalCollector::Instance()->camera.currentlocation[4], GlobalCollector::Instance()->camera.currentlocation[5],
 		0, 1, 0);
 
 	//std::cout << GlobalCollector::Instance()->camera.currentlocation[0] << GlobalCollector::Instance()->camera.currentlocation[1] << GlobalCollector::Instance()->camera.currentlocation[2] << endl;
@@ -280,4 +280,11 @@ void StoryScreen::PrepareScoreScreen()
 		completeList.push_back(s);
 		usedList.push_back(s);
 	}
+}
+
+void StoryScreen::Logic()
+{
+	GlobalCollector::Instance()->storyBookObject.heightmodifier += 0.2f;
+	GlobalCollector::Instance()->storyBookObject.posY = 1;
+	GlobalCollector::Instance()->storyBookObject.posY += float(cos(GlobalCollector::Instance()->storyBookObject.heightmodifier * 0.05));
 }

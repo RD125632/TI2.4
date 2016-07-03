@@ -115,7 +115,7 @@ void Camera::moveCamera()
 	default:
 		break;
 	}
-	totalSteps = 60;
+	totalSteps = 100;
 	amountofsteps = 0;
 	same = false;
 	for (unsigned int i = 0; i < targetlocation.size(); i++)

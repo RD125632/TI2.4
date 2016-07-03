@@ -33,13 +33,11 @@ int HologramScreen::Display()
 	else if (showBook)
 	{
 		glPushMatrix();
-		glScalef(2, 2, 2);
 		GlobalCollector::Instance()->book.posY = 1;
 		GlobalCollector::Instance()->book.posY += float(cos(GlobalCollector::Instance()->book.rotY * 0.05));
 
 		GlobalCollector::Instance()->book.rotY += 0.05f;
 		GlobalCollector::Instance()->book.draw();
-		glScalef(1, 1, 1);
 		glPopMatrix();
 	}
 	else

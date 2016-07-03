@@ -20,6 +20,7 @@ public:
 	int storyStatus = 0;
 	void SwitchScreens(int screen);
 	void PrepareScoreScreen();
+	void Logic();
 private:
 	void drawBackground();
 	void (StoryScreen::*screenToDraw)();
