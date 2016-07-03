@@ -59,7 +59,20 @@ void swipeGesture() {
 }
 
 void circleGesture() {
-	std::cout << "Circlemovement!" << std::endl;
+	switch (GlobalCollector::Instance()->storyScreen.getScreen())
+	{
+	case 1:
+		GlobalCollector::Instance()->storyScreen.SwitchScreens(2);
+		break;
+	case 4:
+		GlobalCollector::Instance()->storyScreen.SwitchScreens(5);
+		break;
+	case 5:
+		//add functionality
+		break;
+	default:
+		break;
+	}
 }
 
 void tapGesture() {

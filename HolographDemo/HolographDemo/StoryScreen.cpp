@@ -286,3 +286,8 @@ void StoryScreen::Logic()
 	GlobalCollector::Instance()->storyBookObject.posY = 1;
 	GlobalCollector::Instance()->storyBookObject.posY += float(cos(GlobalCollector::Instance()->storyBookObject.heightmodifier * 0.05));
 }
+
+int StoryScreen::getScreen() const
+{
+	return screen;
+}

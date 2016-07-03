@@ -21,6 +21,7 @@ public:
 	void SwitchScreens(int screen);
 	void PrepareScoreScreen();
 	void Logic();
+	int getScreen() const;
 private:
 	void drawBackground();
 	void (StoryScreen::*screenToDraw)();
