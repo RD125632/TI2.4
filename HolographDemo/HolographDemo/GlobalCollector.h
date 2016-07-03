@@ -11,6 +11,7 @@
 #include "Ingredient.h"
 #include "RecipeLoader.h"
 #include "KetelObject.h"
+#include "Potion.h"
 #include "PlankObject.h"
 #include "Pollspoon.h"
 #include "Room.h"
@@ -32,6 +33,7 @@ public:
 	StoryBook storyBookObject;
 	Wizard wizard;
 	KetelObject ketel;
+	Potion potion;
 	PlankObject plank;
 	Pollspoon pollspoon;
 	Camera camera;

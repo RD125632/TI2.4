@@ -176,6 +176,7 @@
     <ClInclude Include="ParticalEmitter.h" />
     <ClInclude Include="PlankObject.h" />
     <ClInclude Include="Pollspoon.h" />
+    <ClInclude Include="Potion.h" />
     <ClInclude Include="RecipeLoader.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Screen.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="ParticalEmitter.cpp" />
     <ClCompile Include="PlankObject.cpp" />
     <ClCompile Include="Pollspoon.cpp" />
+    <ClCompile Include="Potion.cpp" />
     <ClCompile Include="RecipeLoader.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Screen.cpp" />

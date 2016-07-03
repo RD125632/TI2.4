@@ -1,4 +1,5 @@
 #include "KetelObject.h"
+#include "GlobalCollector.h"
 
 KetelObject::KetelObject()
 {
@@ -13,10 +14,12 @@ KetelObject::~KetelObject()
 void KetelObject::AddIngredient(std::string ingr)
 {
 	if(!ingr.compare("object"))
-		addedIngedients.push_back(ingr);
+		addedIngredients.push_back(ingr);
+	if (GlobalCollector::Instance()->potion.checkIngredients(GlobalCollector::Instance()->wizard.symptoms, GetIngredients()))
+		GlobalCollector::Instance()->storyScreen.SwitchScreens(4);
 }
 
-std::vector<std::string> KetelObject::GetIngedients() const
+std::vector<std::string> KetelObject::GetIngredients() const
 {
-	return addedIngedients;
+	return addedIngredients;
 }

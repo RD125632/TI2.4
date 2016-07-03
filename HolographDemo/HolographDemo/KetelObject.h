@@ -9,8 +9,8 @@ public:
 	KetelObject();
 	~KetelObject();
 	void AddIngredient(std::string);
-	std::vector <std::string> GetIngedients() const;
+	std::vector <std::string> GetIngredients() const;
 
 private:
-	std::vector<std::string> addedIngedients;
+	std::vector<std::string> addedIngredients;
 };

@@ -275,7 +275,7 @@ void StoryScreen::PrepareScoreScreen()
 	usedList.clear();
 	completeList.push_back("Goede Ingredienten:");
 	usedList.push_back("Jouw Ingredienten:");
-	for (string s: GlobalCollector::Instance()->ketel.GetIngedients())
+	for (string s: GlobalCollector::Instance()->ketel.GetIngredients())
 	{
 		completeList.push_back(s);
 		usedList.push_back(s);
