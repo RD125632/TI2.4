@@ -11,6 +11,7 @@ std::vector<string> story;
 vector<string> completeList;
 vector<string> usedList;
 Texture * background;
+HDC hDC = NULL;
 
 void StoryScreen::init()
 {
@@ -26,97 +27,26 @@ StoryScreen::StoryScreen() : Screen()
 {
 	
 	SwitchScreens(1);
-	background = new Texture("resources/parchment.png");
+	background = new Texture("resources/book.png");
 }
 
 void StoryScreen::drawBackground()
 {
-	int size = 800;
+	int height = 500;
+	int width = 550;
 	glEnable(GL_TEXTURE_2D);
 	background->bind();
-	glBegin(GL_QUADS);      //and draw a face
-	glNormal3f(0.0, 0.0, -1.0);
-	glTexCoord2f(1, 0);
-	glVertex3f(800, 600, -1);
-	glTexCoord2f(0, 0);
-	glVertex3f(0, 600, -1);
-	glTexCoord2f(0, 1);
-	glVertex3f(0, 0, -1);
-	glTexCoord2f(1, 1);
-	glVertex3f(800, 0, -1);
+	glTranslatef(125, 50, 0);
+	glBegin(GL_QUADS);    
+	glNormal3f(0.0, 0.0, -1.0);		
+	glTexCoord2f(1, 1);				glVertex3f(width, height ,-1);
+	glTexCoord2f(1, 0);				glVertex3f(width, 0, -1);
+	glTexCoord2f(0, 0);				glVertex3f(0, 0, -1);			
+	glTexCoord2f(0, 1);				glVertex3f(0, height, -1);
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 }
-void StoryScreen::drawIntroScreen()
-{	
-	
-	std::vector<string> toDraw;
 
-	toDraw.clear();
-	switch (storyStatus)
-	{
-	case 0:
-		toDraw = GlobalCollector::Instance()->storyBegin;
-		break;
-	case 1:
-		toDraw = GlobalCollector::Instance()->storyBook;
-		break;
-	case 2:
-		toDraw = GlobalCollector::Instance()->storyEnd;
-		break;
-	default:
-		break;
-	}
-
-	 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	 glMatrixMode(GL_PROJECTION);
-	 GLdouble *matrix = new GLdouble[16];
-	 glGetDoublev(GL_PROJECTION_MATRIX, matrix);
-	 glLoadIdentity();
-	 glOrtho(0, 800, 0, 600, -5, 5);
-	 glMatrixMode(GL_MODELVIEW);
-	 glLoadIdentity();
-	 
-	 glPushMatrix();
-	 
-	 glLoadIdentity();
-	 glDisable(GL_TEXTURE_2D);
-	 glDisable(GL_LIGHTING);
-	 glEnable(GL_COLOR); 
-	 glColor3f(1.0f, 1.0f, 1.0f);
-	 drawBackground();
-	 glColor3f(0.0f, 0.0f, 0.0f);
-
-	 for (unsigned int i = 0; i < toDraw.size() ; i++)
-	 {
-		 glRasterPos2i(10, 580-(i*12));
-		 for (unsigned int k = 0; k < toDraw[i].length();k++)
-		 {
-			 glColor3f(0.0f, 0.0f, 0.0f);
-			 if (std::string::npos != toDraw[i].find(":"))
-			 {
-				 glutBitmapCharacter(GLUT_BITMAP_9_BY_15, toDraw[i][k]);
-			 }
-			 else
-			 {
-				 glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, toDraw[i][k]);
-			 }
-		 }
-	 }
-	 glPopMatrix();
-	 glDisable(GL_COLOR);
-	 glEnable(GL_TEXTURE_2D);
-	 glEnable(GL_LIGHTING);
-	 glMatrixMode(GL_PROJECTION);
-	 glLoadMatrixd(matrix);
-	 glMatrixMode(GL_MODELVIEW);
-	 glColor3f(1.0f, 1.0f, 1.0f);
-
-
-	glPopMatrix();
-	glFlush();
-	glutSwapBuffers();
-}
 void StoryScreen::drawGameScreen()
 {
 	//Models
@@ -153,10 +83,8 @@ void StoryScreen::drawGameScreen()
 	
 }
 
-void StoryScreen::drawScoreScreen()
+void StoryScreen::drawBookScreens()
 {
-	//glPushMatrix();
-	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_PROJECTION);
 	GLdouble *matrix = new GLdouble[16];
@@ -175,24 +103,129 @@ void StoryScreen::drawScoreScreen()
 	glColor3f(1.0f, 1.0f, 1.0f);
 	drawBackground();
 	glColor3f(0.0f, 0.0f, 0.0f);
-	for (unsigned int i = 0; i < completeList.size(); i++)
+
+	std::vector<string> bookPageLeft;
+	std::vector<string> bookPageRight;
+	int z = 0;
+
+	switch (storyStatus)
 	{
-		glRasterPos2i(50, 580 - (i * 12));
-		for (unsigned int k = 0; k < completeList[i].length(); k++)
+	case 0:
+		bookPageLeft = GlobalCollector::Instance()->storyBegin;
+		break;
+	case 1:
+
+		for (std::string s : GlobalCollector::Instance()->storyBook)
+		{
+			if (std::string::npos != s.find(":"))
+			{
+				z++;
+			}
+
+			if (z < 8)
+			{
+				bookPageLeft.push_back(s);
+			}
+			else
+			{
+				bookPageRight.push_back(s);
+			}		
+		}
+		
+		break;
+	case 2:
+			bookPageLeft = GlobalCollector::Instance()->storyEnd;
+			
+			completeList.clear();
+			usedList.clear();
+			completeList.push_back("Goede Ingredienten:");
+			usedList.push_back("Foute Ingredienten:");
+
+			for (int z : GlobalCollector::Instance()->wizard.symptoms)
+			{
+				for (string s : GlobalCollector::Instance()->ketel.GetIngredients())
+				{
+					Ingredient curIng;
+					for (Ingredient ing : GlobalCollector::Instance()->ingredients)
+					{
+						if (ing.name == s)
+						{
+							curIng = ing;
+							break;
+						}
+					}
+
+					if (curIng.cures == z)
+					{
+						completeList.push_back(curIng.name);
+					}
+					else
+					{
+						usedList.push_back(curIng.name);
+					}
+				}
+			}
+			completeList.push_back("");
+			usedList.push_back("");
+
+			for (string s : completeList)
+			{
+				bookPageRight.push_back(s);
+			}
+
+			for (string s : usedList)
+			{
+				bookPageRight.push_back(s);
+			}
+
+
+		break;
+	default:
+		break;
+	}
+
+	for (unsigned int i = 0; i < bookPageLeft.size(); i++)
+	{
+		glRasterPos2i(40, 425 - (i * 18)); 
+		
+		for (unsigned int k = 0; k < bookPageLeft[i].length();k++)
 		{
 			glColor3f(0.0f, 0.0f, 0.0f);
-			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, completeList[i][k]);
+			if (std::string::npos != bookPageLeft[i].find(":"))
+			{
+				glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, bookPageLeft[i][k]);
+			}
+			else if (std::string::npos != bookPageLeft[i].find("~"))
+			{
+				if (k > 0)
+				{
+					glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, bookPageLeft[i][k]);
+				}
+			}
+			else
+			{
+				glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, bookPageLeft[i][k]);
+			}
 		}
 	}
-	for (unsigned int i = 0; i < usedList.size(); i++)
+
+	for (unsigned int i = 0; i < bookPageRight.size(); i++)
 	{
-		glRasterPos2i(400, 580 - (i * 12));
-		for (unsigned int k = 0; k < usedList[i].length(); k++)
+		glRasterPos2i(300, 425 - (i * 18));
+		for (unsigned int k = 0; k < bookPageRight[i].length();k++)
 		{
 			glColor3f(0.0f, 0.0f, 0.0f);
-			glutBitmapCharacter(GLUT_BITMAP_9_BY_15, usedList[i][k]);
+			if (std::string::npos != bookPageRight[i].find(":"))
+			{
+				glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, bookPageRight[i][k]);
+			}
+			else
+			{
+				glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, bookPageRight[i][k]);
+			}
 		}
 	}
+	
 	glPopMatrix();
 	glDisable(GL_COLOR);
 	glEnable(GL_TEXTURE_2D);
@@ -202,11 +235,12 @@ void StoryScreen::drawScoreScreen()
 	glMatrixMode(GL_MODELVIEW);
 	glColor3f(1.0f, 1.0f, 1.0f);
 
-
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
 }
+
+
 
 int StoryScreen::Display()
 {
@@ -242,8 +276,8 @@ void StoryScreen::SwitchScreens(int screen)
 	switch (screen)
 	{
 		case 1:
-			storyStatus = 0;
-			screenToDraw = &StoryScreen::drawIntroScreen;
+			storyStatus = 2;
+			screenToDraw = &StoryScreen::drawBookScreens;
 			
 		break;
 		case 2:
@@ -252,32 +286,17 @@ void StoryScreen::SwitchScreens(int screen)
 		case 3:
 			
 			storyStatus = 1;
-			screenToDraw = &StoryScreen::drawIntroScreen;
+			screenToDraw = &StoryScreen::drawBookScreens;
 		break;
-		case 4:
-			PrepareScoreScreen();
-			screenToDraw = &StoryScreen::drawScoreScreen;
+			screenToDraw = &StoryScreen::drawBookScreens;
 		break;
 		case 5:
 			storyStatus = 2;
-			screenToDraw = &StoryScreen::drawIntroScreen;
+			screenToDraw = &StoryScreen::drawBookScreens;
 		break;
 
 	}
 	
-}
-
-void StoryScreen::PrepareScoreScreen()
-{
-	completeList.clear();
-	usedList.clear();
-	completeList.push_back("Goede Ingredienten:");
-	usedList.push_back("Jouw Ingredienten:");
-	for (string s: GlobalCollector::Instance()->ketel.GetIngredients())
-	{
-		completeList.push_back(s);
-		usedList.push_back(s);
-	}
 }
 
 void StoryScreen::Logic()

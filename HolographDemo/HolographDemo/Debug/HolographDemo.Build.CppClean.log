@@ -6,6 +6,7 @@ c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\partical.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\particalemitter.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\plankobject.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\pollspoon.obj
+c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\recipeloader.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\room.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\screen.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\smokeparticle.obj
@@ -13,6 +14,7 @@ c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\solidsphere.o
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\sound.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\globalcollector.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\star.obj
+c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\storyscreen.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\superobject.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\symptom.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\texture.obj
@@ -27,11 +29,6 @@ c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\hologramscree
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\ingredient.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\ketelobject.obj
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\leaphandler.obj
-c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\recipeloader.obj
-c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\storyscreen.obj
-c:\users\richard\documents\ti2.4\holographdemo\debug\holographdemo.ilk
-c:\users\richard\documents\ti2.4\holographdemo\debug\holographdemo.exe
-c:\users\richard\documents\ti2.4\holographdemo\debug\holographdemo.pdb
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\holographdemo.tlog\cl.command.1.tlog
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\holographdemo.tlog\cl.read.1.tlog
 c:\users\richard\documents\ti2.4\holographdemo\holographdemo\debug\holographdemo.tlog\cl.write.1.tlog

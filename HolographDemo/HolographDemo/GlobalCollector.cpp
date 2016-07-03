@@ -47,7 +47,6 @@ GlobalCollector::GlobalCollector()
 			storyBook.push_back(line);
 		}
 		storyBook.push_back("");
-		storyBook.push_back("");
 	}
 	book = Book(parse_IDs);
 	storyBookObject = StoryBook();

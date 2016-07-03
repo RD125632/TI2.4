@@ -17,17 +17,15 @@ public:
 	float view = 20.0;
 	Texture * background;
 	int Status = 0;
-	int storyStatus = 0;
+	int storyStatus = 2;
 	void SwitchScreens(int screen);
-	void PrepareScoreScreen();
 	void Logic();
 	int getScreen() const;
 private:
 	void drawBackground();
 	void (StoryScreen::*screenToDraw)();
-	void drawIntroScreen();
+	void drawBookScreens();
 	void drawGameScreen();
-	void drawScoreScreen();
 	int screen;
 };
 
