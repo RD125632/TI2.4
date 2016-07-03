@@ -20,6 +20,7 @@
 #include "Sound.h"
 #include "LeapHandler.h"
 #include "StoryBook.h"
+#include "HologramWizzard.h"
 
 class GlobalCollector
 {
@@ -43,6 +44,7 @@ public:
 	std::vector<string> storyBegin;
 	std::vector<string> storyEnd;
 	std::vector<string> storyBook;
+	HologramWizzard holoWizzard;
 
 private:
 	GlobalCollector();

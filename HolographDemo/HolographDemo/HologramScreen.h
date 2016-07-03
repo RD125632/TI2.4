@@ -19,9 +19,10 @@ public:
 	static void init();
 	static void changeParticel(int, bool, int);
 	bool GetShowBook();
+	void ShowWizzard(bool);
 private:
 	SuperObject* currentObject = nullptr;
-	bool showBook = false;
+	bool showBook = false, showWizzard = false;
 };
 
 #endif

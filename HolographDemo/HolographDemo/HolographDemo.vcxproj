@@ -168,6 +168,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="HologramScreen.h" />
+    <ClInclude Include="HologramWizzard.h" />
     <ClInclude Include="Ingredient.h" />
     <ClInclude Include="KetelObject.h" />
     <ClInclude Include="LeapHandler.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="Symptom.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Wizard.cpp" />
+    <ClCompile Include="HologramWizzard.cpp" />
     <ClCompile Include="WorldObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

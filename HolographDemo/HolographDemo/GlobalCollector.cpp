@@ -63,4 +63,5 @@ GlobalCollector::GlobalCollector()
 
 	holoScreen = HologramScreen();
 	storyScreen = StoryScreen();
+	holoWizzard = HologramWizzard();
 }
