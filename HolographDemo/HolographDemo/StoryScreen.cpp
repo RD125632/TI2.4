@@ -222,26 +222,19 @@ void StoryScreen::drawBookScreens()
 					ketelIng.push_back(ing);
 				}
 			}
-
-
-			/*std::vector<Ingredient> difference;
-			std::set_difference(
-				ketelIng.begin(), ketelIng.end(),
-				curesIng.begin(), curesIng.end(),
-				std::back_inserter(difference)
-			);*/
-			std::vector<Ingredient> difference = compareVectors(&ketelIng, &curesIng);
-
-			for (Ingredient ing : curesIng)
-			{
-				completeList.push_back(ing.name);
-			}
-
-			for (Ingredient ing : difference)
-			{
-				usedList.push_back(ing.name);
-			}
 		}
+		std::vector<Ingredient> difference = compareVectors(&ketelIng, &curesIng);
+
+		for (Ingredient ing : curesIng)
+		{
+			completeList.push_back(ing.name);
+		}
+
+		for (Ingredient ing : difference)
+		{
+			usedList.push_back(ing.name);
+		}
+
 		completeList.push_back("");
 		usedList.push_back("");
 
@@ -254,10 +247,6 @@ void StoryScreen::drawBookScreens()
 		{
 			bookPageRight.push_back(s);
 		}
-
-
-		break;
-	default:
 		break;
 	}
 
@@ -353,7 +342,7 @@ void StoryScreen::SwitchScreens(int screen)
 	switch (screen)
 	{
 		case 1:
-			storyStatus = 2;
+			storyStatus = 0;
 			screenToDraw = &StoryScreen::drawBookScreens;
 			break;
 		case 2:
