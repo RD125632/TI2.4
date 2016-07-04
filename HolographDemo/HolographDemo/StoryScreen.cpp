@@ -355,6 +355,7 @@ void StoryScreen::SwitchScreens(int screen)
 		case 4:
 			screenToDraw = &StoryScreen::drawBookScreens;
 			storyStatus = 2;
+			GlobalCollector::Instance()->holoScreen.ShowWizzard(true);
 			break;
 	}
 	
