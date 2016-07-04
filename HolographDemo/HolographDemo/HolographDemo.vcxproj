@@ -167,6 +167,7 @@
     <ClInclude Include="BubblePartical.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="HologramPotion.h" />
     <ClInclude Include="HologramScreen.h" />
     <ClInclude Include="HologramWizzard.h" />
     <ClInclude Include="Ingredient.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="BubblePartical.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="HologramPotion.cpp" />
     <ClCompile Include="HologramScreen.cpp" />
     <ClCompile Include="Ingredient.cpp" />
     <ClCompile Include="KetelObject.cpp" />

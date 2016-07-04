@@ -172,7 +172,18 @@ void StoryScreen::drawBookScreens()
 	switch (storyStatus)
 	{
 	case 0:
-		bookPageLeft = GlobalCollector::Instance()->storyBegin;
+		for (std::string s : GlobalCollector::Instance()->storyBegin)
+		{
+			if (z < 16)
+			{
+				bookPageLeft.push_back(s);
+			}
+			else
+			{
+				bookPageRight.push_back(s);
+			}
+			z++;
+		}
 		break;
 	case 1:
 
@@ -355,7 +366,8 @@ void StoryScreen::SwitchScreens(int screen)
 		case 4:
 			screenToDraw = &StoryScreen::drawBookScreens;
 			storyStatus = 2;
-			GlobalCollector::Instance()->holoScreen.ShowWizzard(true);
+			GlobalCollector::Instance()->holoScreen.ShowPotion(true);
+			GlobalCollector::Instance()->soundEngine.Play_Sound("Magic", false);
 			break;
 	}
 	
