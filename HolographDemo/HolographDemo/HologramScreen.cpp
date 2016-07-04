@@ -22,7 +22,21 @@ int HologramScreen::Display()
 	glDisable(GL_BLEND);
 
 	glPushMatrix();
-	if(showWizzard)
+	if(showPotion)
+	{
+		glPushMatrix();
+		glDisable(GL_LIGHTING);
+		fire->draw();
+		fire2->draw();
+		glDisable(GL_BLEND);
+		glEnable(GL_LIGHTING);
+		glScalef(3, 3, 3);
+		GlobalCollector::Instance()->holoPotion.rotY += 0.05;
+		GlobalCollector::Instance()->holoPotion.draw();
+		glScalef(1, 1, 1);
+		glPopMatrix();
+	}
+	else if(showWizzard)
 	{
 		glPushMatrix();
 		glScalef(2, 2, 2);
@@ -152,6 +166,7 @@ void HologramScreen::init()
 	GlobalCollector::Instance()->holoWizzard.posX = 0;
 	GlobalCollector::Instance()->holoWizzard.posY = -1;
 	GlobalCollector::Instance()->holoWizzard.posZ = -5;
+	GlobalCollector::Instance()->holoPotion.posY = -1;
 	fire = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX+3, GlobalCollector::Instance()->ketel.posY - 6, GlobalCollector::Instance()->ketel.posZ + 5, 10, "resources/fireAnimate.png", 4);
 	fire2 = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX-3, GlobalCollector::Instance()->ketel.posY - 6, GlobalCollector::Instance()->ketel.posZ + 5, 10, "resources/fireAnimate.png", 4);
 }
@@ -169,4 +184,18 @@ bool HologramScreen::GetShowBook()
 void HologramScreen::ShowWizzard(bool show)
 {
 	showWizzard = show;
+}
+
+void HologramScreen::ShowPotion(bool a)
+{
+	showPotion = a;
+	if(a)
+	{
+		fire = new BillBordParticalEffects(GlobalCollector::Instance()->holoPotion.posX + 3, GlobalCollector::Instance()->holoPotion.posY - 5, GlobalCollector::Instance()->holoPotion.posZ + 5, 10, "resources/fireAnimate.png", 4);
+		fire2 = new BillBordParticalEffects(GlobalCollector::Instance()->holoPotion.posX - 3, GlobalCollector::Instance()->holoPotion.posY - 5, GlobalCollector::Instance()->holoPotion.posZ + 5, 10, "resources/fireAnimate.png", 4);
+	} else
+	{
+		fire = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX + 3, GlobalCollector::Instance()->ketel.posY - 6, GlobalCollector::Instance()->ketel.posZ + 5, 10, "resources/fireAnimate.png", 4);
+		fire2 = new BillBordParticalEffects(GlobalCollector::Instance()->ketel.posX - 3, GlobalCollector::Instance()->ketel.posY - 6, GlobalCollector::Instance()->ketel.posZ + 5, 10, "resources/fireAnimate.png", 4);
+	}
 }

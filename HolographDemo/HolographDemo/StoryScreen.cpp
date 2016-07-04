@@ -355,7 +355,8 @@ void StoryScreen::SwitchScreens(int screen)
 		case 4:
 			screenToDraw = &StoryScreen::drawBookScreens;
 			storyStatus = 2;
-			GlobalCollector::Instance()->holoScreen.ShowWizzard(true);
+			GlobalCollector::Instance()->holoScreen.ShowPotion(true);
+			GlobalCollector::Instance()->soundEngine.Play_Sound("Magic", false);
 			break;
 	}
 	

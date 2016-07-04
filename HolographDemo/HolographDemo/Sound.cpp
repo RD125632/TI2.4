@@ -8,6 +8,7 @@ SoundEngine::SoundEngine()
 
 SoundEngine::~SoundEngine()
 {
+	Stop_Sound();
 	sounds.clear();
 }
 

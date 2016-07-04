@@ -23,6 +23,7 @@
 #include "StoryBook.h"
 #include "HologramWizzard.h"
 #include <time.h>
+#include "HologramPotion.h"
 
 class GlobalCollector
 {
@@ -48,6 +49,7 @@ public:
 	std::vector<string> storyEnd;
 	std::vector<string> storyBook;
 	HologramWizzard holoWizzard;
+	HologramPotion holoPotion;
 	std::string symptomSentence;
 	static bool CompareArrays(std::array<double, 6>, std::array<double, 6>);
 	static void CopyArray(std::array<double, 6>*, std::array<double, 6>*);

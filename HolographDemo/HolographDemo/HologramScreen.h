@@ -20,9 +20,10 @@ public:
 	static void changeParticel(int, bool, int);
 	bool GetShowBook();
 	void ShowWizzard(bool);
+	void ShowPotion(bool);
 private:
 	SuperObject* currentObject = nullptr;
-	bool showBook = false, showWizzard = false;
+	bool showBook = false, showWizzard = false, showPotion = false;
 };
 
 #endif

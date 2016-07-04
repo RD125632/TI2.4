@@ -77,6 +77,7 @@ GlobalCollector::GlobalCollector()
 	holoScreen = HologramScreen();
 	storyScreen = StoryScreen();
 	holoWizzard = HologramWizzard();
+	holoPotion = HologramPotion();
 }
 
 bool GlobalCollector::CompareArrays(std::array<double, 6> array1, std::array<double, 6> array2)
