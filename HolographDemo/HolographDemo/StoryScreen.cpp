@@ -172,7 +172,18 @@ void StoryScreen::drawBookScreens()
 	switch (storyStatus)
 	{
 	case 0:
-		bookPageLeft = GlobalCollector::Instance()->storyBegin;
+		for (std::string s : GlobalCollector::Instance()->storyBegin)
+		{
+			if (z < 16)
+			{
+				bookPageLeft.push_back(s);
+			}
+			else
+			{
+				bookPageRight.push_back(s);
+			}
+			z++;
+		}
 		break;
 	case 1:
 
