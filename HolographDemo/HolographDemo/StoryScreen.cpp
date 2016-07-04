@@ -128,6 +128,21 @@ void StoryScreen::drawSubtitles(std::string toDraw)
 	glColor3f(1.0f, 1.0f, 1.0f);
 }
 
+vector<Ingredient> compareVectors(vector<Ingredient> *vec1, vector<Ingredient> *vec2)
+{
+	vector<Ingredient> vec3;
+	for(int i = 0; i < vec1->size(); ++i)
+	{
+		auto it = find(vec2->begin(), vec2->end(), vec1->at(i));
+		if(it == vec2->end())
+		{
+			vec3.push_back(vec1->at(i));
+		}
+	}
+
+	return vec3;
+}
+
 void StoryScreen::drawBookScreens()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -152,6 +167,7 @@ void StoryScreen::drawBookScreens()
 	std::vector<string> bookPageLeft;
 	std::vector<string> bookPageRight;
 	int z = 0;
+	vector<Ingredient> curesIng, ketelIng;
 
 	switch (storyStatus)
 	{
@@ -179,49 +195,65 @@ void StoryScreen::drawBookScreens()
 		
 		break;
 	case 2:
-			bookPageLeft = GlobalCollector::Instance()->storyEnd;
-			
-			completeList.clear();
-			usedList.clear();
-			completeList.push_back("Goede Ingredienten:");
-			usedList.push_back("Foute Ingredienten:");
+		bookPageLeft = GlobalCollector::Instance()->storyEnd;
 
-			for (int z : GlobalCollector::Instance()->wizard.symptoms)
+		completeList.clear();
+		usedList.clear();
+		completeList.push_back("Goede Ingredienten:");
+		usedList.push_back("Foute Ingredienten:");
+
+		for (int z : GlobalCollector::Instance()->wizard.symptoms)
+		{
+			for (Ingredient ing : GlobalCollector::Instance()->ingredients)
 			{
-				for (string s : GlobalCollector::Instance()->ketel.GetIngredients())
+				if (ing.cures == z)
 				{
-					Ingredient curIng;
-					for (Ingredient ing : GlobalCollector::Instance()->ingredients)
-					{
-						if (ing.name == s)
-						{
-							curIng = ing;
-							break;
-						}
-					}
-
-					if (curIng.cures == z)
-					{
-						completeList.push_back(curIng.name);
-					}
-					else
-					{
-						usedList.push_back(curIng.name);
-					}
+					curesIng.push_back(ing);
 				}
 			}
-			completeList.push_back("");
-			usedList.push_back("");
+		}
 
-			for (string s : completeList)
+		for (string s : GlobalCollector::Instance()->ketel.GetIngredients())
+		{
+			for (Ingredient ing : GlobalCollector::Instance()->ingredients)
 			{
-				bookPageRight.push_back(s);
+				if (ing.name == s)
+				{
+					ketelIng.push_back(ing);
+				}
 			}
 
-			for (string s : usedList)
+
+			/*std::vector<Ingredient> difference;
+			std::set_difference(
+				ketelIng.begin(), ketelIng.end(),
+				curesIng.begin(), curesIng.end(),
+				std::back_inserter(difference)
+			);*/
+			std::vector<Ingredient> difference = compareVectors(&ketelIng, &curesIng);
+
+			for (Ingredient ing : curesIng)
 			{
-				bookPageRight.push_back(s);
+				completeList.push_back(ing.name);
 			}
+
+			for (Ingredient ing : difference)
+			{
+				usedList.push_back(ing.name);
+			}
+		}
+		completeList.push_back("");
+		usedList.push_back("");
+
+		for (string s : completeList)
+		{
+			bookPageRight.push_back(s);
+		}
+
+		for (string s : usedList)
+		{
+			bookPageRight.push_back(s);
+		}
 
 
 		break;

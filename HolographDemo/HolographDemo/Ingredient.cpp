@@ -14,3 +14,8 @@ Ingredient::Ingredient(int id, std::string newname, int s, ObjModel* modelwer, s
 	type = Itype;
 	description = desc;
 }
+
+bool Ingredient::operator==(const Ingredient &other)
+{
+	return (this->name == other.name ?  true :  false);
+}

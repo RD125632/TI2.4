@@ -13,7 +13,7 @@ KetelObject::~KetelObject()
 
 void KetelObject::AddIngredient(std::string ingr)
 {
-	if(!ingr.compare("object"))
+	if(ingr != "object" )
 		addedIngredients.push_back(ingr);
 	if (GlobalCollector::Instance()->potion.checkIngredients(GlobalCollector::Instance()->wizard.symptoms, GetIngredients()))
 		GlobalCollector::Instance()->storyScreen.SwitchScreens(4);

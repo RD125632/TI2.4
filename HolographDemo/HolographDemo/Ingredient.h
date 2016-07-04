@@ -16,6 +16,7 @@ public:
 	std::string name;
 	int cures;
 	std::vector<string> description;
+	bool operator ==(const Ingredient &);
 };
 
 
