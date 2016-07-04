@@ -9,30 +9,33 @@ Potion::Potion()
 
 bool Potion::checkIngredients(vector<int> symptoms, vector<string> ingredients)
 {
-	for (string ingredientname : ingredients)
-	{
-		for (Ingredient ingredient : GlobalCollector::Instance()->ingredients)
+	if (GlobalCollector::Instance()->ketel.GetIngredients().size() != GlobalCollector::Instance()->ingredients.size()) {
+		for (string ingredientname : ingredients)
 		{
-			if (ingredient.name.compare(ingredientname) == 0)
+			for (Ingredient ingredient : GlobalCollector::Instance()->ingredients)
 			{
-				for (unsigned int i = 0; i < symptoms.size(); i++)
+				if (ingredient.name == ingredientname)
 				{
-					if (symptoms[i] == ingredient.cures)
+					for (unsigned int i = 0; i < symptoms.size(); i++)
 					{
-						symptoms.erase(symptoms.begin() + i);
+						if (symptoms[i] == ingredient.cures)
+						{
+							symptoms.erase(symptoms.begin() + i);
+						}
 					}
 				}
 			}
 		}
+		if (symptoms.size() == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-	if (symptoms.size() == 0)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	else return true;
 }
 
 
