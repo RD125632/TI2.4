@@ -13,7 +13,7 @@ bool Potion::checkIngredients(vector<int> symptoms, vector<string> ingredients)
 	{
 		for (Ingredient ingredient : GlobalCollector::Instance()->ingredients)
 		{
-			if (ingredient.name == ingredientname)
+			if (ingredient.name.compare(ingredientname) == 0)
 			{
 				for (unsigned int i = 0; i < symptoms.size(); i++)
 				{

@@ -323,23 +323,18 @@ void StoryScreen::SwitchScreens(int screen)
 		case 1:
 			storyStatus = 2;
 			screenToDraw = &StoryScreen::drawBookScreens;
-			
-		break;
+			break;
 		case 2:
 			screenToDraw = &StoryScreen::drawGameScreen;
-		break;
+			break;
 		case 3:
-			
 			storyStatus = 1;
 			screenToDraw = &StoryScreen::drawBookScreens;
-		break;
+			break;
+		case 4:
 			screenToDraw = &StoryScreen::drawBookScreens;
-		break;
-		case 5:
 			storyStatus = 2;
-			screenToDraw = &StoryScreen::drawBookScreens;
-		break;
-
+			break;
 	}
 	
 }
