@@ -208,6 +208,11 @@
 				GlobalCollector::Instance()->storyScreen.mode = GL_FILL;
 			}
 			break;
+		case 'o':
+			GlobalCollector::reset();
+			StoryInit();
+			GameInit();
+			break;
 		case 'b':
 			GlobalCollector::Instance()->holoScreen.ShowWizzard(false);
 			GlobalCollector::Instance()->holoScreen.ShowPotion(true);

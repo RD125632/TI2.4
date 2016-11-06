@@ -29,6 +29,7 @@ class GlobalCollector
 {
 public:
 	static GlobalCollector* Instance();
+	static void reset();
 	Room* room;
 	HologramScreen holoScreen;
 	StoryScreen storyScreen;

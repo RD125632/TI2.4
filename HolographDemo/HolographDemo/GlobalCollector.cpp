@@ -13,9 +13,15 @@ GlobalCollector * GlobalCollector::Instance()
 	return instance;
 }
 
-GlobalCollector::GlobalCollector()
+void GlobalCollector::reset()
 {
-	
+	delete(instance);
+	instance = NULL;
+	instance = new GlobalCollector();
+}
+
+GlobalCollector::GlobalCollector()
+{	
 	room = new Room(100,100,100);
 	plank = PlankObject();
 	leaphandler = SampleListener();
